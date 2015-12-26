@@ -522,6 +522,8 @@ Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/vimfiler.vim'
 
+Plugin 'terryma/vim-multiple-cursors'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
