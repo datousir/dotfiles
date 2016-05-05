@@ -506,7 +506,7 @@ Plugin 'kien/rainbow_parentheses.vim'
 
 " yank 
 Plugin 'maxbrunsfeld/vim-yankstack'
-Plugin 'vim-scripts/YankRing.vim'
+" Plugin 'vim-scripts/YankRing.vim'
 
 " undo
 Plugin 'sjl/gundo.vim'
@@ -517,12 +517,13 @@ Plugin 'mbbill/undotree'
 Plugin 'derekwyatt/vim-scala'
 
 
-Plugin 'Shougo/neocomplete.vim'
+" Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Shougo/vimfiler.vim'
 
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'altercation/vim-colors-solarized'
 
 
 " All of your Plugins must be added before the following line
@@ -549,7 +550,14 @@ source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 " language messages zh_CN.utf-8
 
-set guifont=PT\ Mono:h16
+if has("gui_gtk2")
+  set guifont=Droid\ Sans\ Mono\ 12
+elseif has("gui_macvim")
+  set guifont=PT\ Mono:h16
+elseif has("gui")
+  set guifont=Courier\ New:h12
+endif
+
 " set guifont=Hack:h15
 " set guifont=Hermit:h16
 
