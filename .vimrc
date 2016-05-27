@@ -474,10 +474,6 @@ Plugin 'gmarik/Vundle.vim'
 " " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
-Plugin 'Valloric/YouCompleteMe'
-
-Plugin 'fatih/vim-go'
-
 Plugin 'jlanzarotta/bufexplorer'
 " Plugin 'vim-scripts/bufexplorer.zip'
 Plugin 'vim-scripts/a.vim'
@@ -496,13 +492,13 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 
-" for clojure
-Plugin 'tpope/vim-salve'
-Plugin 'tpope/vim-projectionist'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fireplace'
-Plugin 'vim-scripts/paredit.vim'
-Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'altercation/vim-colors-solarized'
+
+" Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'Shougo/vimfiler.vim'
 
 " yank 
 Plugin 'maxbrunsfeld/vim-yankstack'
@@ -513,18 +509,24 @@ Plugin 'sjl/gundo.vim'
 "Plugin 'vim-scripts/Gundo'
 Plugin 'mbbill/undotree'
 
+" for golang
+Plugin 'fatih/vim-go'
+
 " for scala
 Plugin 'derekwyatt/vim-scala'
 
+" for clojure
+Plugin 'tpope/vim-salve'
+Plugin 'tpope/vim-projectionist'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fireplace'
+Plugin 'vim-scripts/paredit.vim'
+Plugin 'kien/rainbow_parentheses.vim'
 
-" Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimshell.vim'
-Plugin 'Shougo/vimfiler.vim'
+" for c/c++/golang
+Plugin 'Valloric/YouCompleteMe'
 
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'altercation/vim-colors-solarized'
-
+" ======================================
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
