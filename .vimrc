@@ -153,7 +153,12 @@ if has("gui_running")
 endif
 
 " Set utf8 as standard encoding and term language
-set encoding=utf8
+if has('vim_starting')
+    set encoding=utf-8
+    set fileencodings=utf-8,latin1
+endif
+
+" set encoding=utf8
 set termencoding=utf-8
 
 " Use Unix as the standard file type
@@ -605,7 +610,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_cpp_checkers = ["clang", "clang_check", "clang_tidy","gcc"]
-" let g:syntastic_go_checkers = ["go", "govet"]
 let g:syntastic_go_checkers = ["go", "govet", "golint"]
 
 " lightline
