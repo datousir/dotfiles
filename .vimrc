@@ -496,6 +496,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
 
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'altercation/vim-colors-solarized'
@@ -560,7 +561,7 @@ source $VIMRUNTIME/menu.vim
 if has("gui_gtk2")
   set guifont=Droid\ Sans\ Mono\ 12
 elseif has("gui_macvim")
-  set guifont=PT\ Mono:h16
+  set guifont=PT\ Mono:h14
 elseif has("gui")
   set guifont=Courier\ New:h12
 endif
@@ -781,3 +782,6 @@ let g:vimfiler_tree_opened_icon = '▾'
 let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_file_icon = '-'
 let g:vimfiler_marked_file_icon = '*'
+
+" change the current working directory to current buffer's directory
+autocmd BufEnter * silent! lcd %:p:h
