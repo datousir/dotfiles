@@ -23,6 +23,7 @@
 "       http://amix.dk/vim/vimrc.txt
 "
 " Sections:
+"    -> Vundle
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
@@ -38,6 +39,117 @@
 "    -> Helper functions
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ================================ vundle config ==========================================================
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" " The following are examples of different formats supported.
+" " Keep Plugin commands between vundle#begin/end.
+" " plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" " plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" " Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" " git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" " The sparkup vim script is in a subdirectory of this repo called vim.
+" " Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" " Avoid a name conflict with L9
+" Plugin 'user/L9', {'name': 'newL9'}
+
+Plugin 'jlanzarotta/bufexplorer'
+" Plugin 'vim-scripts/bufexplorer.zip'
+Plugin 'vim-scripts/a.vim'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'majutsushi/tagbar'
+
+Plugin 'itchyny/lightline.vim'
+Plugin 'kien/ctrlp.vim'
+
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'altercation/vim-colors-solarized'
+
+" Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'Shougo/vimfiler.vim'
+
+" yank 
+Plugin 'maxbrunsfeld/vim-yankstack'
+" Plugin 'vim-scripts/YankRing.vim'
+
+" undo
+Plugin 'sjl/gundo.vim'
+"Plugin 'vim-scripts/Gundo'
+Plugin 'mbbill/undotree'
+
+" base16-vim
+Plugin 'chriskempson/base16-vim'
+
+" for golang
+Plugin 'fatih/vim-go'
+
+" for scala
+Plugin 'derekwyatt/vim-scala'
+
+" for clojure
+Plugin 'tpope/vim-salve'
+Plugin 'tpope/vim-projectionist'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fireplace'
+Plugin 'vim-scripts/paredit.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+
+" for c/c++/golang
+Plugin 'Valloric/YouCompleteMe'
+
+" ======================================
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" ==========================================================================================
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -133,22 +245,19 @@ set foldcolumn=1
 " Enable syntax highlighting
 syntax enable 
 
-try
-
-    set background=dark
-    " clear gray background in iterm2 console
-    let g:solarized_termtrans = 1
-    colorscheme solarized
-
-catch
-endtry
+set background=dark
+" clear gray background in iterm2 console
+" let g:solarized_termtrans = 1
+" colorscheme solarized
+" colorscheme base16-default-dark
+colorscheme base16-3024
 
 
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
     set guioptions-=e
-    set t_Co=256
+    " set t_Co=256
     set guitablabel=%M\ %t
 endif
 
@@ -450,106 +559,6 @@ function! <SID>BufcloseCloseIt()
     endif
 endfunction
 
-" ================================ vundle config ==========================================================
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" " The following are examples of different formats supported.
-" " Keep Plugin commands between vundle#begin/end.
-" " plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" " plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" " Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" " git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" " The sparkup vim script is in a subdirectory of this repo called vim.
-" " Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" " Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
-
-Plugin 'jlanzarotta/bufexplorer'
-" Plugin 'vim-scripts/bufexplorer.zip'
-Plugin 'vim-scripts/a.vim'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'majutsushi/tagbar'
-
-Plugin 'itchyny/lightline.vim'
-Plugin 'kien/ctrlp.vim'
-
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'altercation/vim-colors-solarized'
-
-" Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimshell.vim'
-Plugin 'Shougo/vimfiler.vim'
-
-" yank 
-Plugin 'maxbrunsfeld/vim-yankstack'
-" Plugin 'vim-scripts/YankRing.vim'
-
-" undo
-Plugin 'sjl/gundo.vim'
-"Plugin 'vim-scripts/Gundo'
-Plugin 'mbbill/undotree'
-
-" for golang
-Plugin 'fatih/vim-go'
-
-" for scala
-Plugin 'derekwyatt/vim-scala'
-
-" for clojure
-Plugin 'tpope/vim-salve'
-Plugin 'tpope/vim-projectionist'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fireplace'
-Plugin 'vim-scripts/paredit.vim'
-Plugin 'kien/rainbow_parentheses.vim'
-
-" for c/c++/golang
-Plugin 'Valloric/YouCompleteMe'
-
-" ======================================
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" ==========================================================================================
 
 
 set nu
@@ -598,7 +607,7 @@ nnoremap <silent> <leader>nt :NERDTree<CR>
 nnoremap <silent> <leader>cpm :CtrlPMRUFiles<CR>
 
 " neocomplete config
-let g:neocomplete#enable_at_startup = 1
+" let g:neocomplete#enable_at_startup = 1
 
 " syntastic config
 set statusline+=%#warningmsg#
@@ -620,7 +629,7 @@ let g:syntastic_go_checkers = ["go", "govet", "golint"]
 "            \}
 
 let g:lightline = {
-            \ 'colorscheme': 'powerline',
+            \ 'colorscheme': 'wombat',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
             \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ],['time'] ]
@@ -638,6 +647,7 @@ let g:lightline = {
             \ 'separator': { 'left': '⮀', 'right': '⮂' },
             \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
             \ }
+
 let g:lightline.enable = {
             \ 'statusline': 1,
             \ 'tabline': 0
@@ -755,8 +765,6 @@ let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 
 " end of lightline
-
-
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
