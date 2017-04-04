@@ -114,6 +114,9 @@ Plugin 'mbbill/undotree'
 " base16-vim
 Plugin 'chriskempson/base16-vim'
 
+" easymotion
+Plugin 'easymotion/vim-easymotion'
+
 " for golang
 Plugin 'fatih/vim-go'
 
@@ -568,11 +571,11 @@ source $VIMRUNTIME/menu.vim
 " language messages zh_CN.utf-8
 
 if has("gui_gtk2")
-  set guifont=Droid\ Sans\ Mono\ 12
+    set guifont=Droid\ Sans\ Mono\ 12
 elseif has("gui_macvim")
-  set guifont=PT\ Mono:h14
+    set guifont=PT\ Mono:h14
 elseif has("gui")
-  set guifont=Courier\ New:h12
+    set guifont=Courier\ New:h12
 endif
 
 " set guifont=Hack:h15
