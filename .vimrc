@@ -37,6 +37,7 @@
 "    -> Spell checking
 "    -> Misc
 "    -> Helper functions
+"    -> programming language
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -133,6 +134,12 @@ Plugin 'kien/rainbow_parentheses.vim'
 
 " for c/c++/golang
 Plugin 'Valloric/YouCompleteMe'
+
+" rust
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
+
+
 
 " ======================================
 
@@ -245,16 +252,19 @@ set foldcolumn=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Enable syntax highlighting
 syntax enable 
 
 set background=dark
-" clear gray background in iterm2 console
-" let g:solarized_termtrans = 1
-" colorscheme solarized
-" colorscheme base16-default-dark
-colorscheme base16-3024
 
+" base16 colorscheme preview:
+" http://chriskempson.github.io/base16/
+
+" For terminal Vim(non-gui) please ensure you are
+" using a base16 terminal theme.
+" https://github.com/chriskempson/base16-vim#terminal-themes
+colorscheme base16-3024
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -581,9 +591,6 @@ endif
 " set guifont=Hack:h15
 " set guifont=Hermit:h16
 
-auto FileType go autocmd BufWritePre <buffer> GoFmt
-" filetype indent on
-" autocmd FileType go compiler go
 
 " disable the toolbar
 set guioptions-=T
@@ -608,22 +615,6 @@ nnoremap <silent> <leader>nt :NERDTree<CR>
 
 " open CtrlPMRUFiles window
 nnoremap <silent> <leader>cpm :CtrlPMRUFiles<CR>
-
-" neocomplete config
-" let g:neocomplete#enable_at_startup = 1
-
-" syntastic config
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_cpp_checkers = ["clang", "clang_check", "clang_tidy","gcc"]
-let g:syntastic_go_checkers = ["go", "govet", "golint"]
 
 " lightline
 " let g:lightline = {
@@ -796,3 +787,71 @@ let g:vimfiler_marked_file_icon = '*'
 
 " change the current working directory to current buffer's directory
 autocmd BufEnter * silent! lcd %:p:h
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Programming languages 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" neocomplete config
+" let g:neocomplete#enable_at_startup = 1
+
+" syntastic config
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_cpp_checkers = ["clang", "clang_check", "clang_tidy","gcc"]
+let g:syntastic_go_checkers = ["go", "govet", "golint"]
+
+" ==== golang ====
+
+auto FileType go autocmd BufWritePre <buffer> GoFmt
+" filetype indent on
+" autocmd FileType go compiler go
+
+
+" ==== rust lang ====
+
+" rust.vim
+" enable automatic running of :RustFmt when you save a buffer
+let g:rustfmt_autosave = 1
+
+" vim-racer
+" vim-racer enables C-x-C-o to search for completions and provides several <Plug> mappings for source code navigation.
+"  show the complete function definition (e.g. its arguments and return type)
+let g:racer_experimental_completer = 1
+
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+
+" tagbar
+
+" tagbar config for rust
+let g:tagbar_type_rust = {
+            \ 'ctagstype' : 'rust',
+            \ 'kinds' : [
+            \'T:types,type definitions',
+            \'f:functions,function definitions',
+            \'g:enum,enumeration names',
+            \'s:structure names',
+            \'m:modules,module names',
+            \'c:consts,static constants',
+            \'t:traits,traits',
+            \'i:impls,trait implementations',
+            \]
+            \}
+
+
+
+
+
