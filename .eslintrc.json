@@ -1,0 +1,99 @@
+{
+    // docs : http://eslint.cn/
+    "env": {
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    //"extends": "airbnb",
+    "parserOptions": {
+        "sourceType": "script"
+    },
+    "rules": {
+        // 没有默认开启的,es recommended rules
+        "no-extra-parens": 2,
+        "no-template-curly-in-string": 2,
+        "no-unsafe-negation": 2,
+        // es best practices rules
+        "block-scoped-var": 1,
+        "consistent-return": 1,
+        "curly": [1,"all"],
+        "default-case": 2,
+        "eqeqeq": 1,
+        "no-empty-function": 2,
+        "no-eq-null": 2,
+        "no-floating-decimal": 2,
+        "no-global-assign": 2,
+        "no-implicit-coercion": 2,
+        "no-eval": 2,
+        "no-implied-eval": 2,
+        "no-invalid-this": 2,
+        "no-iterator": 2,
+        "no-labels": 2,
+        "no-loop-func": 2,
+        "no-magic-numbers": 1,
+        "no-multi-str": 2,
+        "no-new-func": 2,
+        "no-new-wrappers": 2,
+        "no-new": 2,
+        "no-octal-escape": 2,
+        "no-octal": 2,
+        "no-proto": 2,
+        "no-return-assign": 2,
+        "no-self-compare": 2,
+        "no-sequences": 2,
+        "no-throw-literal": 2,
+        "no-unmodified-loop-condition": 2,
+        "no-unused-expressions": 2,
+        "no-useless-concat": 2,
+        "no-useless-escape": 2,
+        "no-void": 2,
+        "no-with": 2,
+        "radix": 2,
+        "wrap-iife":[2,"any"],
+        "yoda": 2,
+
+        // strict mode
+        "strict": 1,
+
+        // varialbes
+        "no-label-var": 2,
+        "no-shadow": 1,
+        "no-undefined": 2,
+
+        // Node.js and CommonJS
+        "handle-callback-err": 2,
+
+        // Stylistic Issues
+        "indent": [2, 2,{"SwitchCase": 1 }],
+        "quotes": [1, "single"],
+        "keyword-spacing": 2,
+        //"space-before-function-paren": 2,
+        "linebreak-style": [2, "unix"],
+        "semi": [2, "always"],
+        "no-tabs": 2,
+        "unicode-bom": 2,
+            /*  
+            //注释格式要求JSDoc格式
+            "require-jsdoc": [2, {
+                 "require": {
+                     "FunctionDeclaration": true,
+                     "MethodDefinition": false,
+                     "ClassDeclaration": false
+                 }
+             }]
+             */
+
+        // for es6(es2015)
+        "no-confusing-arrow": 2,
+        "arrow-parens": 2,
+        "no-var": 1,
+        "prefer-const": 1,
+        "generator-star-spacing":[2,"after"],
+        "yield-star-spacing":[2,"after"],
+
+        // 与 eslint 默认配置不一致的
+        "no-console": 0
+    }
+}

@@ -118,6 +118,9 @@ Plugin 'chriskempson/base16-vim'
 " easymotion
 Plugin 'easymotion/vim-easymotion'
 
+" dash for mac
+Plugin 'rizzatti/dash.vim'
+
 " for golang
 Plugin 'fatih/vim-go'
 
@@ -264,7 +267,8 @@ set background=dark
 " For terminal Vim(non-gui) please ensure you are
 " using a base16 terminal theme.
 " https://github.com/chriskempson/base16-vim#terminal-themes
-colorscheme base16-3024
+" colorscheme base16-spacemacs
+colorscheme base16-solarflare
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -583,7 +587,9 @@ source $VIMRUNTIME/menu.vim
 if has("gui_gtk2")
     set guifont=Droid\ Sans\ Mono\ 12
 elseif has("gui_macvim")
-    set guifont=PT\ Mono:h14
+    " set guifont=PT\ Mono:h14
+    " set guifont=Noto\ Mono:h14
+    set guifont=Operator\ Mono:h15
 elseif has("gui")
     set guifont=Courier\ New:h12
 endif
@@ -850,8 +856,38 @@ let g:tagbar_type_rust = {
             \'i:impls,trait implementations',
             \]
             \}
-
-
-
-
-
+" tagbar config for obj-c
+" add a definition for Objective-C to tagbar
+let g:tagbar_type_objc = {
+            \ 'ctagstype' : 'ObjectiveC',
+            \ 'kinds'     : [
+            \ 'i:interface',
+            \ 'I:implementation',
+            \ 'p:Protocol',
+            \ 'm:Object_method',
+            \ 'c:Class_method',
+            \ 'v:Global_variable',
+            \ 'F:Object field',
+            \ 'f:function',
+            \ 'p:property',
+            \ 't:type_alias',
+            \ 's:type_structure',
+            \ 'e:enumeration',
+            \ 'M:preprocessor_macro',
+            \ ],
+            \ 'sro'        : ' ',
+            \ 'kind2scope' : {
+            \ 'i' : 'interface',
+            \ 'I' : 'implementation',
+            \ 'p' : 'Protocol',
+            \ 's' : 'type_structure',
+            \ 'e' : 'enumeration'
+            \ },
+            \ 'scope2kind' : {
+            \ 'interface'      : 'i',
+            \ 'implementation' : 'I',
+            \ 'Protocol'       : 'p',
+            \ 'type_structure' : 's',
+            \ 'enumeration'    : 'e'
+            \ }
+            \ }
