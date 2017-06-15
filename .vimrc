@@ -268,7 +268,8 @@ set background=dark
 " using a base16 terminal theme.
 " https://github.com/chriskempson/base16-vim#terminal-themes
 " colorscheme base16-spacemacs
-colorscheme base16-solarflare
+" colorscheme base16-codeschool
+colorscheme base16-monokai
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -589,7 +590,7 @@ if has("gui_gtk2")
 elseif has("gui_macvim")
     " set guifont=PT\ Mono:h14
     " set guifont=Noto\ Mono:h14
-    set guifont=Operator\ Mono:h15
+    set guifont=Operator\ Mono:h16
 elseif has("gui")
     set guifont=Courier\ New:h12
 endif
