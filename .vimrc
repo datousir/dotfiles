@@ -77,7 +77,6 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'user/L9', {'name': 'newL9'}
 
 Plugin 'jlanzarotta/bufexplorer'
-" Plugin 'vim-scripts/bufexplorer.zip'
 Plugin 'vim-scripts/a.vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'majutsushi/tagbar'
@@ -96,24 +95,19 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'altercation/vim-colors-solarized'
-
-" Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimshell.vim'
-Plugin 'Shougo/vimfiler.vim'
+Plugin 'godlygeek/tabular'
 
 " yank 
 Plugin 'maxbrunsfeld/vim-yankstack'
-" Plugin 'vim-scripts/YankRing.vim'
 
 " undo
 Plugin 'sjl/gundo.vim'
-"Plugin 'vim-scripts/Gundo'
 Plugin 'mbbill/undotree'
 
-" base16-vim
+" color themes
 Plugin 'chriskempson/base16-vim'
+Plugin 'dracula/vim'
+Plugin 'altercation/vim-colors-solarized'
 
 " easymotion
 Plugin 'easymotion/vim-easymotion'
@@ -267,9 +261,8 @@ set background=dark
 " For terminal Vim(non-gui) please ensure you are
 " using a base16 terminal theme.
 " https://github.com/chriskempson/base16-vim#terminal-themes
-" colorscheme base16-spacemacs
-" colorscheme base16-codeschool
-colorscheme base16-monokai
+" colorscheme base16-monokai
+colorscheme dracula
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -641,7 +634,7 @@ let g:lightline = {
             \   'fileformat': 'LightLineFileformat',
             \   'filetype': 'LightLineFiletype',
             \   'fileencoding': 'LightLineFileencoding',
-            \   'mode': 'LightLineMode',
+            \   'mode': 'v',
             \   'ctrlpmark': 'CtrlPMark',
             \   'time': 'Time',
             \ },
@@ -668,9 +661,6 @@ function! LightLineFilename()
     return fname == 'ControlP' ? g:lightline.ctrlp_item :
                 \ fname == '__Tagbar__' ? g:lightline.fname :
                 \ fname =~ '__Gundo\|NERD_tree' ? '' :
-                \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-                \ &ft == 'unite' ? unite#get_status_string() :
-                \ &ft == 'vimshell' ? vimshell#get_status_string() :
                 \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
                 \ ('' != fname ? fname : '[No Name]') .
                 \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
@@ -678,7 +668,7 @@ endfunction
 
 function! LightLineFugitive()
     try
-        if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+        if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && exists('*fugitive#head')
             let mark = ''  " edit here for cool mark
             let _ = fugitive#head()
             return strlen(_) ? mark._ : ''
@@ -707,9 +697,6 @@ function! LightLineMode()
                 \ fname == '__Gundo__' ? 'Gundo' :
                 \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
                 \ fname =~ 'NERD_tree' ? 'NERDTree' :
-                \ &ft == 'unite' ? 'Unite' :
-                \ &ft == 'vimfiler' ? 'VimFiler' :
-                \ &ft == 'vimshell' ? 'VimShell' :
                 \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
@@ -761,10 +748,6 @@ function! Time()
     return strftime('%X')
 endfunction
 
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
-
 " end of lightline
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -775,22 +758,6 @@ inoremap kj <esc>
 
 " close autocomplete windows
 autocmd CompleteDone * pclose
-
-" use vimfiler as the default explorer(instead of netrw)
-let g:vimfiler_as_default_explorer = 1
-
-" Enable file operation commands.
-" Edit file by tabedit.
-call vimfiler#custom#profile('default', 'context', {
-            \ 'safe' : 0,
-            \ })
-" \ 'edit_action' : 'tabopen',
-" Like Textmate icons.
-let g:vimfiler_tree_leaf_icon = ' '
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▸'
-let g:vimfiler_file_icon = '-'
-let g:vimfiler_marked_file_icon = '*'
 
 " change the current working directory to current buffer's directory
 autocmd BufEnter * silent! lcd %:p:h
@@ -857,6 +824,7 @@ let g:tagbar_type_rust = {
             \'i:impls,trait implementations',
             \]
             \}
+
 " tagbar config for obj-c
 " add a definition for Objective-C to tagbar
 let g:tagbar_type_objc = {
