@@ -93,6 +93,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-sensible'
 
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'godlygeek/tabular'
