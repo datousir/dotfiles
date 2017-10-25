@@ -23,13 +23,6 @@ ZSH_THEME="lambda"
 # Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
 
-#export GOROOT=/usr/local/opt/go/libexec
-#export GOPATH=~/go
-#export GOBIN=~/go/bin
-#export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-#
-#export PATH=$HOME/Library/Haskell/bin:$PATH
-
 #export C_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/opt/zeromq/include/
 #export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/opt/zeromq/include/
 #export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/zeromq/lib/
@@ -53,8 +46,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 fpath=(/usr/local/share/zsh-completions $fpath)
-
-eval $(thefuck --alias)
+export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

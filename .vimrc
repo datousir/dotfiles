@@ -51,6 +51,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+let g:ale_emit_conflict_warnings = 0
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -112,6 +114,9 @@ Plugin 'altercation/vim-colors-solarized'
 
 " easymotion
 Plugin 'easymotion/vim-easymotion'
+
+" ale
+Plugin 'w0rp/ale'
 
 " dash for mac
 Plugin 'rizzatti/dash.vim'
