@@ -46,7 +46,11 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 fpath=(/usr/local/share/zsh-completions $fpath)
+
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
+
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
