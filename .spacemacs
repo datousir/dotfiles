@@ -52,6 +52,10 @@ values."
      better-defaults
      imenu-list
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
+     (treemacs :variables
+               treemacs-use-follow-mode t
+               treemacs-use-filewatch-mode t
+               treemacs-show-hidden-files nil)
      dash
 
      (spell-checking :variables spell-checking-enable-by-default nil)
@@ -66,6 +70,7 @@ values."
      org
      (markdown :variables markdown-live-preview-engine 'vmd)
      yaml
+     pdf-tools
 
      html
      (sql :variables sql-capitalize-keywords t)
@@ -188,8 +193,8 @@ values."
    dotspacemacs-default-font '("Source Code Pro"
                                :size 14
                                :weight normal
-                               :width normal
-                               :powerline-scale 1.15)
+                               :width normal)
+                               ;; :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -306,13 +311,18 @@ values."
    ;; '(:relative nil
    ;;   :disabled-for-modes dired-mode
    ;;                       doc-view-mode
-   ;;                       markdown-mode
-   ;;                       org-mode
-   ;;                       pdf-view-mode
+   ;;                       ;; markdown-mode
+   ;;                       ;; org-mode
+   ;;                       ;; pdf-view-mode
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   ;; dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers '(:relative nil
+                               :disabled-for-modes dired-mode
+                                                   doc-view-mode
+                                                   pdf-view-mode
+                               :size-limit-kb 1000)
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -369,16 +379,16 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (setq powerline-default-separator 'box)
+  (setq powerline-default-separator 'arrow)
 
   ;; Setting English Font
   ;;(set-face-attribute
   ;; 'default nil :font "Monaco 14")
   ;; Chinese Font
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset
-                      (font-spec :family "WenQuanYi Micro Hei Mono" :size 16)))
+  ;; (dolist (charset '(kana han symbol cjk-misc bopomofo))
+  ;;   (set-fontset-font (frame-parameter nil 'font)
+  ;;                     charset
+  ;;                     (font-spec :family "WenQuanYi Micro Hei Mono" :size 16)))
 
   ;; Setting Org mode
   (setq org-todo-keywords
@@ -387,10 +397,6 @@ you should place your code here."
   (global-company-mode t)
 
   ;; Additional packages
-  ;; neo tree
-  (global-set-key [f8] 'neotree-toggle)
-  ;; icons depands on all-the-icons package
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
   (use-package helm-flycheck
     :defer t
@@ -457,3 +463,56 @@ you should place your code here."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(cua-global-mark-cursor-color "#2aa198")
+ '(cua-normal-cursor-color "#657b83")
+ '(cua-overwrite-cursor-color "#b58900")
+ '(cua-read-only-cursor-color "#859900")
+ '(evil-want-Y-yank-to-eol nil)
+ '(global-semantic-decoration-mode t)
+ '(global-semantic-highlight-func-mode t)
+ '(global-semantic-idle-completions-mode t nil (semantic/idle))
+ '(highlight-symbol-colors
+   (--map
+    (solarized-color-blend it "#fdf6e3" 0.25)
+    (quote
+     ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
+ '(highlight-symbol-foreground-color "#586e75")
+ '(hl-bg-colors
+   (quote
+    ("#DEB542" "#F2804F" "#FF6E64" "#F771AC" "#9EA0E5" "#69B7F0" "#69CABF" "#B4C342")))
+ '(hl-fg-colors
+   (quote
+    ("#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3" "#fdf6e3")))
+ '(nrepl-message-colors
+   (quote
+    ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
+ '(package-selected-packages
+   (quote
+    (pdf-tools goto-chg evil helm vmd-mode evil-snipe zenburn-theme monokai-theme solarized-theme color-theme-sanityinc-solarized dracula-theme typit mmt sudoku pacmacs 2048-game helm-flycheck helm-cscope xcscope ibuffer-projectile sql-indent nginx-mode jinja2-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat company-ansible ansible-doc ansible yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data imenu-list helm-dash dash-at-point smex stickyfunc-enhance srefactor all-the-icons memoize font-lock+ find-file-in-project ivy elpy company-irony-c-headers company-irony ac-ispell yapfify xterm-color unfill smeargle shell-pop reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow lua-mode live-py-mode launchctl intero hy-mode dash-functional htmlize hlint-refactor hindent helm-pydoc helm-hoogle helm-gtags helm-gitignore helm-company helm-c-yasnippet haskell-snippets go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help drupal-mode php-mode disaster diff-hl cython-mode company-statistics company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-anaconda anaconda-mode company cmm-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode auto-yasnippet yasnippet auto-dictionary pythonic auto-complete paradox ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+ '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
+ '(term-default-bg-color "#fdf6e3")
+ '(term-default-fg-color "#657b83")
+ '(vc-annotate-background-mode nil)
+ '(xterm-color-names
+   ["#eee8d5" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#073642"])
+ '(xterm-color-names-bright
+   ["#fdf6e3" "#cb4b16" "#93a1a1" "#839496" "#657b83" "#6c71c4" "#586e75" "#002b36"]))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
