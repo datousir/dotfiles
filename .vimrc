@@ -587,9 +587,11 @@ source $VIMRUNTIME/menu.vim
 if has("gui_gtk2")
     set guifont=Droid\ Sans\ Mono\ 12
 elseif has("gui_macvim")
+    set guifont=Fira\ Code:h14
+    " set guifont=Source\ Code\ Pro:h14
     " set guifont=PT\ Mono:h14
     " set guifont=Noto\ Mono:h14
-    set guifont=Operator\ Mono:h16
+    " set guifont=Operator\ Mono:h16
 elseif has("gui")
     set guifont=Courier\ New:h12
 endif
