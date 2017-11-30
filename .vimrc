@@ -631,7 +631,7 @@ nnoremap <silent> <leader>cpm :CtrlPMRUFiles<CR>
 "            \}
 
 let g:lightline = {
-            \ 'colorscheme': 'wombat',
+            \ 'colorscheme': 'nord',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ], ['ctrlpmark'] ],
             \   'right': [ [ 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ],['time'] ]
