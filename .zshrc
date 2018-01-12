@@ -14,6 +14,8 @@ ZSH_THEME="cobalt2"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias e='emacsclient -t'
+alias ec='emacsclient -c'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -58,3 +60,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Fink
+source /sw/bin/init.sh
