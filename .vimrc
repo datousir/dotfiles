@@ -118,6 +118,14 @@ Plugin 'easymotion/vim-easymotion'
 " ale
 Plugin 'w0rp/ale'
 
+if has('nvim')
+    Plugin 'Shougo/deoplete.nvim'
+else
+    Plugin 'Shougo/deoplete.nvim'
+    Plugin 'roxma/nvim-yarp'
+    Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+
 " dash for mac
 Plugin 'rizzatti/dash.vim'
 
@@ -778,6 +786,9 @@ autocmd BufEnter * silent! lcd %:p:h
 
 " neocomplete config
 " let g:neocomplete#enable_at_startup = 1
+"
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 " syntastic config
 set statusline+=%#warningmsg#
