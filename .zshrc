@@ -9,6 +9,7 @@ ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="lambda"
 #ZSH_THEME="agnoster"
 ZSH_THEME="cobalt2"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="random"
 
 # Example aliases
@@ -16,6 +17,8 @@ ZSH_THEME="cobalt2"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias e='emacsclient -t'
 alias ec='emacsclient -c'
+
+alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -56,7 +59,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # export VIRTUALENVWRAPPER_PYTHON=/usr/local/opt/python2/bin/python
 # source /usr/local/bin/virtualenvwrapper.sh 
 # 
-# ssh-add -K ~/.ssh/websocketserver.pem
+#
+
+ssh-add -K ~/.ssh/websocketserver.pem
  
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -71,6 +76,27 @@ if command -v pyenv 1>/dev/null 2>&1; then
 eval "$(pyenv init -)"
 fi
 # pyenv-virtualenv init
-if which pyenv-virtualenv-init > /dev/null; then
-eval "$(pyenv virtualenv-init -)";
-fi
+# if which pyenv-virtualenv-init > /dev/null; then
+# eval "$(pyenv virtualenv-init -)";
+# fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="/usr/local/sbin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+
+# fzf
+# export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --color=always  --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_DEFAULT_OPTS="-e --reverse --inline-info --preview 'bat {}'"
+export FZF_DEFAULT_OPTS="-e --reverse --inline-info --preview 'pygmentize {}'"
+
+# macports
+export PATH=$PATH:/opt/local/bin:/opt/local/sbin
+export MANPATH=/opt/local/share/man:$MANPATH
+
