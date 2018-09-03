@@ -1,5 +1,8 @@
-let g:python_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim3/bin/python'
+" let g:python_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim2/bin/python'
+" let g:python3_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim3/bin/python'
+
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 set runtimepath+=~/.vim_runtime
 
@@ -9,7 +12,7 @@ source ~/.vim_runtime/vimrcs/filetypes.vim
 " source ~/.vim_runtime/vimrcs/extended.vim
 
 " try
-" source ~/.vim_runtime/my_configs.vim
+"   source ~/.vim_runtime/my_configs.vim
 " catch
 " endtry
 
@@ -38,12 +41,22 @@ Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kien/ctrlp.vim'
-Plug 'vim-scripts/mru.vim'
+" Plug 'vim-scripts/mru.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
 
 Plug 'vim-scripts/a.vim'
 Plug 'amix/open_file_under_cursor.vim'
+
+if has('nvim')
+    Plug 'francoiscabrol/ranger.vim'
+    Plug 'rbgrouleff/bclose.vim'
+else
+    Plug 'francoiscabrol/ranger.vim'
+endif
+
+" projet
+Plug 'airblade/vim-rooter'
 
 " buffer
 Plug 'jlanzarotta/bufexplorer'
@@ -64,7 +77,7 @@ Plug 'scrooloose/nerdcommenter'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
-" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 
 Plug 'tpope/vim-endwise'
@@ -89,9 +102,9 @@ Plug 'sjl/gundo.vim'
 Plug 'mbbill/undotree'
 
 " color themes
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
 Plug 'dracula/vim'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 
 
 " tmux
@@ -105,22 +118,28 @@ Plug 'chr4/nginx.vim'
 Plug 'rizzatti/dash.vim'
 
 " markdown
-Plug 'tpope/vim-markdown'
+" Plug 'tpope/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 
 " ---- lint engine ----
 Plug 'w0rp/ale'
 
-" language server protocol for vim
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
-            \ }
+" ---- language server protocol for vim ----
+"Plug 'autozimu/LanguageClient-neovim', {
+            "\ 'branch': 'next',
+            "\ 'do': 'bash install.sh',
+            "\ }
+
+" vim-lsp
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+
 
 " for golang
 Plug 'fatih/vim-go'
 
 " for python
-" Plug 'jmcantrell/vim-virtualenv'
+Plug 'jmcantrell/vim-virtualenv'
 " Plug 'vim-scripts/indentpython.vim'
 " Plug 'nvie/vim-flake8'
 " Plug 'python-rope/ropevim'
@@ -136,8 +155,8 @@ Plug 'tmhedberg/SimpylFold'
 " Plug 'tpope/vim-projectionist'
 " Plug 'tpope/vim-dispatch'
 " Plug 'tpope/vim-fireplace'
-" Plug 'vim-scripts/paredit.vim'
-" Plug 'kien/rainbow_parentheses.vim'
+Plug 'vim-scripts/paredit.vim'
+Plug 'kien/rainbow_parentheses.vim'
 
 " auto-completiion
 if has('nvim')
@@ -147,11 +166,17 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
 " for python
 Plug 'zchee/deoplete-jedi'
 
+" for go
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
 " rust
 Plug 'rust-lang/rust.vim'
+
+" Plug 'Valloric/YouCompleteMe'
 
 " ======================================
 
@@ -204,7 +229,8 @@ if has('gui_running')
 else
   colorscheme dracula
 endif
-call togglebg#map("<F5>")
+" for solarized
+" call togglebg#map("<F5>")
 
 
 " workaround for vim background color erase
@@ -214,10 +240,10 @@ let &t_ut=''
 set listchars=tab:>-,space:-
 
 if has("gui_macvim")
-    set guifont=Hack\ Nerd\ Font:h14
-    " set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h14
+    set guifont=Hack\ Nerd\ Font:h16
+    " set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h16
     " set guifont=Fira\ Mono\ for\ Powerline:h16
-    " set guifont=Fira\ Code:h16
+    " set guifont=Fira\ Mono:h16
     " set guifont=Source\ Code\ Pro:h14
     " set guifont=PT\ Mono:h14
     " set guifont=Noto\ Mono:h14
@@ -234,7 +260,7 @@ elseif has("gui")
 endif
 
 " configure tagbar
-nnoremap <F8> :TagbarToggle<CR>
+nnoremap <F9> :TagbarToggle<CR>
 
 " open taglist window
 nnoremap <silent> <leader>tl :TlistToggle<CR>
@@ -271,6 +297,8 @@ set rtp+=/usr/local/opt/fzf
 let g:airline#extensions#ale#enabled = 1
 
 " vim-airline
+let g:airline_powerline_fonts = 1
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
@@ -278,16 +306,33 @@ let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = '' 
 " let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+  " airline-theme
+" let g:airline_theme="base16_harmonic16"
+" let g:airline_theme="base16_codeschool"
+" let g:airline_theme="base16_3024"
+" let g:airline_theme="base16_atelierforest"
+" let g:airline_theme="base16_bespin"
+" let g:airline_theme="base16_flat"
+" let g:airline_theme="base16_pop"
+" let g:airline_theme="base16_seti"
+" let g:airline_theme="base16_shapeshifter"
 
 " nerdtree
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+"ignore files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$']
+" How can I open a NERDTree automatically when vim starts up?
+nnoremap <F8> :NERDTreeToggle<CR>
 " autocmd vimenter * NERDTree
-nnoremap <F9> :NERDTreeToggle<CR>
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
 
 if executable("ag")
     " let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
     let g:ackprg = 'ag --vimgrep'
 endif
+
+" tmuxline
+let g:tmuxline_theme = 'jellybeans'
 
 """""""""""" Plugin End """""""""""""""""""""""""""""""""""
 
@@ -295,6 +340,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Programming languages
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set signcolumn=yes
 
 " ======== autocompletion ========"
 " deoplete.
@@ -306,22 +353,65 @@ let g:deoplete#enable_at_startup = 1
 " let g:ale_completion_enabled = 1
 " let g:ale_emit_conflict_warnings = 0
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = 'EE'
-let g:ale_sign_warning = 'WW'
 let g:ale_linters = {
-\   'python': ['flake8'],
+\   'java': ['checkstyle'],
+\   'markdown': ['vale', 'alex'],
+\   'python': ['pyls', 'flake8'],
+\   'yaml': ['yamllint'],
 \}
 
 " ======== lsp: Language server  ========"
 " lsp autozimu/LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ }
+"let g:LanguageClient_serverCommands = {
+            "\ 'python': ['pyls'],
+            "\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+            "\ }
 
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"" Or map each action separately
+"nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+"nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+"nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+"let g:LanguageClient_diagnosticsDisplay = {
+            "\ 1: {
+            "\     "name": "Error",
+            "\     "texthl": "ALEError",
+            "\     "signText": "EE",
+            "\     "signTexthl": "ALEErrorSign",
+            "\ },
+            "\ 2: {
+            "\     "name": "Warning",
+            "\     "texthl": "ALEWarning",
+            "\     "signText": "WW",
+            "\     "signTexthl": "ALEWarningSign",
+            "\ },
+            "\ 3: {
+            "\     "name": "Information",
+            "\     "texthl": "ALEInfo",
+            "\     "signText": "II",
+            "\     "signTexthl": "ALEInfoSign",
+            "\ },
+            "\ 4: {
+            "\     "name": "Hint",
+            "\     "texthl": "ALEInfo",
+            "\     "signText": "HH",
+            "\     "signTexthl": "ALEInfoSign",
+            "\ },
+            "\ }
+
+" vim-lsp
+" python
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+                \ 'name': 'pyls',
+                \ 'cmd': {server_info->['pyls']},
+                \ 'whitelist': ['python'],
+                \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
+                \ })
+endif
+
+
 
 " ======== Python Begin ========"
 " vim-flake8
@@ -330,18 +420,23 @@ nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 " let g:flake8_show_quickfix=0
 " autocmd BufWritePost *.py call Flake8()
 
+" vim-virtualenv
+let g:virtualenv_auto_activate=0
+
 " python-mode
 " let g:pymode_quickfix_minheight=0
 " let g:pymode_quickfix_maxheight=0
 " let g:pymode_doc=1
 " let g:pymode_doc_bind='K'
 " let g:pymode_virtualenv=1
+
 let g:pymode_lint = 0
-let g:pymode_lint_on_write = 0
-let g:pymode_lint_signs = 0
+" let g:pymode_lint_signs = 0
+" let g:pymode_lint_on_write = 0
+
 " let g:pymode_lint_cwindow=0
 
-" let g:pymode_rope = 0
+let g:pymode_rope = 0
 
 " SimpylFold
 let g:SimpylFold_docstring_preview = 1
@@ -374,6 +469,12 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" ======== clojure ========
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 
 " tagbar

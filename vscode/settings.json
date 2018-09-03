@@ -1,25 +1,25 @@
 {
     // config for vim
+    "vim.leader": ",",
     "vim.enableNeovim": true,
     "vim.neovimPath": "/usr/local/bin/nvim",
     "vim.easymotion": true,
-
     "vim.useSystemClipboard": true,
     "vim.incsearch": true,
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
     "vim.statusBarColorControl": true,
-    // "vim.statusBarColors" : {
-    //     "normal": "#005f5f",
-    //     "insert": "#5f0000",
-    //     "visual": "#5f00af",
-    //     "visualline": "#005f87",
-    //     "visualblock": "#86592d",
-    //     "replace": "#000000"
-    // },
-    "vim.leader": ",",
+    "vim.statusBarColors" : {
+        "normal": ["#005f5f", "#ffffff"],
+        "insert": ["#5f0000", "#ffffff"],
+        "visual": ["#5f00af", "#ffffff"],
+        "visualline": ["#005f87", "#ffffff"],
+        "visualblock": ["#86592d", "#ffffff"],
+        "replace": ["#000000", "#ffffff"],
+    },
     "vim.startInInsertMode": false,
-    "vim.insertModeKeyBindings": [{
+    "vim.insertModeKeyBindings": [
+        {
             "before": ["j", "k"],
             "after": ["<Esc>"]
         },
@@ -33,24 +33,41 @@
     "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
     "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
     "workbench.activityBar.visible": true,
-
+    "workbench.statusBar.visible": true,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#5f00af",
+        "statusBar.noFolderBackground": "#5f00af",
+        "statusBar.debuggingBackground": "#5f00af",
+        "statusBar.foreground": "#ffffff"
+    },
 
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 36,
     "editor.fontSize": 14,
     "editor.fontFamily": "'Fira Mono', Menlo, Monaco, 'Courier New', monospace",
-    // "workbench.colorCustomizations": {
-    //     "statusBar.background": "#005f87",
-    //     "statusBar.noFolderBackground": "#005f87",
-    //     "statusBar.debuggingBackground": "#005f87"
-    // },
-    "workbench.statusBar.visible": true,
-    "window.zoomLevel": 0,
-    "extensions.ignoreRecommendations": false,
-    "gitlens.historyExplorer.enabled": true,
 
-    "terminal.integrated.fontFamily": "Meslo LG M DZ for Powerline",
+    "gitlens.historyExplorer.enabled": true,
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
+    },
+
+    "terminal.integrated.fontFamily": "Meslo LG M DZ for Powerline",
+    "window.zoomLevel": 0,
+    "extensions.ignoreRecommendations": false,
+
+    // Java checkstyle config
+    "checkstyle": {
+        // Specify whether the Checkstyle extension will check Java files automatically.
+        "autocheck": true,
+        // Specify the Checkstyle version, or the local path to the checkstyle jar file.
+        "version": "8.0",
+        // Specify the checkstyle configuration file. 
+        // You can use bundled ```google_checks``` or ```sun_checks```.
+        // Or you can specify the local path to the configuration file.
+        "configurationFile": "sun_checks",
+        // Specify the path to the checkstyle properties file, by default it's empty.
+        "propertiesPath": "",
+        // Show a warning if the version of Checkstyle is invalid.
+        "showCheckstyleVersionInvalid": true,
     },
 }
