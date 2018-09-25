@@ -23,8 +23,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# # pyenv & pyenv-virtualenv
-# # pyenv init
+# pyenv init
 # if command -v pyenv 1>/dev/null 2>&1; then
 #   eval "$(pyenv init -)"
 # fi
@@ -33,7 +32,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 #   eval "$(pyenv virtualenv-init -)";
 # fi
 export LC_CTYPE=zh_CN.UTF-8
-# export LC_ALL=zh_CN.UTF-8
+export LC_ALL=zh_CN.UTF-8
 
 
 # ========================= cut from .zshrc =================

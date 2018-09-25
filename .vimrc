@@ -29,7 +29,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-scripts/tlib'
 Plug 'MarcWeber/vim-addon-mw-utils'
-" Plug 'Shougo/denite.nvim'
+
+Plug 'shougo/neomru.vim'
+Plug 'Shougo/denite.nvim'
 
 " search
 Plug 'mileszs/ack.vim'
@@ -76,6 +78,7 @@ Plug 'scrooloose/nerdcommenter'
 
 " git
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
 
@@ -102,9 +105,11 @@ Plug 'sjl/gundo.vim'
 Plug 'mbbill/undotree'
 
 " color themes
-" Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 Plug 'dracula/vim'
-" Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
+Plug 'romainl/flattened'
+Plug 'lifepillar/vim-solarized8'
 
 
 " tmux
@@ -119,20 +124,24 @@ Plug 'rizzatti/dash.vim'
 
 " markdown
 " Plug 'tpope/vim-markdown'
+Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+
+" toml
+Plug 'cespare/vim-toml'
 
 " ---- lint engine ----
 Plug 'w0rp/ale'
 
 " ---- language server protocol for vim ----
-"Plug 'autozimu/LanguageClient-neovim', {
-            "\ 'branch': 'next',
-            "\ 'do': 'bash install.sh',
-            "\ }
+Plug 'autozimu/LanguageClient-neovim', {
+            \ 'branch': 'next',
+            \ 'do': 'bash install.sh',
+            \ }
 
 " vim-lsp
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
 
 
 " for golang
@@ -222,15 +231,37 @@ endif
 " https://github.com/chriskempson/base16-vim#terminal-themes
 " colorscheme base16-monokai
 
+set termguicolors
+
+" 注意\后面有一个空格
+" https://stackoverflow.com/questions/9001337/vim-split-bar-styling
+set fillchars+=vert:\ 
+
+
 if has('gui_running')
+  syntax enable
   set background=dark
+  colorscheme solarized8_flat
   " colorscheme solarized
-  colorscheme dracula
+  " colorscheme solarized8
+  " colorscheme flattened_dark
+  " colorscheme dracula
 else
-  colorscheme dracula
+  syntax enable
+  set background=dark
+  colorscheme solarized8_flat
+  " let g:solarized_termcolors=256
+  " colorscheme solarized
+  " colorscheme flattened_dark
+  " colorscheme dracula
 endif
 " for solarized
-" call togglebg#map("<F5>")
+call togglebg#map("<F5>")
+
+" not display ~ for empty lines
+" https://stackoverflow.com/questions/3813059/is-it-possible-to-not-display-a-for-blank-lines-in-vim
+" highlight EndOfBuffer ctermfg=black ctermbg=black
+highlight EndOfBuffer ctermfg=bg guifg=bg
 
 
 " workaround for vim background color erase
@@ -307,6 +338,7 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 " let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   " airline-theme
+" let g:airline_theme="aurora"
 " let g:airline_theme="base16_harmonic16"
 " let g:airline_theme="base16_codeschool"
 " let g:airline_theme="base16_3024"
@@ -316,6 +348,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " let g:airline_theme="base16_pop"
 " let g:airline_theme="base16_seti"
 " let g:airline_theme="base16_shapeshifter"
+let g:airline_theme="base16_solarized"
 
 " nerdtree
 "ignore files in NERDTree
@@ -328,11 +361,9 @@ nnoremap <F8> :NERDTreeToggle<CR>
 
 if executable("ag")
     " let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-    let g:ackprg = 'ag --vimgrep'
+    let g:ackprg = 'ag --nogroup --nocolor --column'
+    " let g:ackprg = 'ag --vimgrep'
 endif
-
-" tmuxline
-let g:tmuxline_theme = 'jellybeans'
 
 """""""""""" Plugin End """""""""""""""""""""""""""""""""""
 
@@ -362,54 +393,54 @@ let g:ale_linters = {
 
 " ======== lsp: Language server  ========"
 " lsp autozimu/LanguageClient-neovim
-"let g:LanguageClient_serverCommands = {
-            "\ 'python': ['pyls'],
-            "\ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-            "\ }
+let g:LanguageClient_serverCommands = {
+            \ 'python': ['pyls'],
+            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+            \ }
 
-"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-"" Or map each action separately
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
 "nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 "nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 "nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-"let g:LanguageClient_diagnosticsDisplay = {
-            "\ 1: {
-            "\     "name": "Error",
-            "\     "texthl": "ALEError",
-            "\     "signText": "EE",
-            "\     "signTexthl": "ALEErrorSign",
-            "\ },
-            "\ 2: {
-            "\     "name": "Warning",
-            "\     "texthl": "ALEWarning",
-            "\     "signText": "WW",
-            "\     "signTexthl": "ALEWarningSign",
-            "\ },
-            "\ 3: {
-            "\     "name": "Information",
-            "\     "texthl": "ALEInfo",
-            "\     "signText": "II",
-            "\     "signTexthl": "ALEInfoSign",
-            "\ },
-            "\ 4: {
-            "\     "name": "Hint",
-            "\     "texthl": "ALEInfo",
-            "\     "signText": "HH",
-            "\     "signTexthl": "ALEInfoSign",
-            "\ },
-            "\ }
+let g:LanguageClient_diagnosticsDisplay = {
+            \ 1: {
+            \     "name": "Error",
+            \     "texthl": "ALEError",
+            \     "signText": "EE",
+            \     "signTexthl": "ALEErrorSign",
+            \ },
+            \ 2: {
+            \     "name": "Warning",
+            \     "texthl": "ALEWarning",
+            \     "signText": "WW",
+            \     "signTexthl": "ALEWarningSign",
+            \ },
+            \ 3: {
+            \     "name": "Information",
+            \     "texthl": "ALEInfo",
+            \     "signText": "II",
+            \     "signTexthl": "ALEInfoSign",
+            \ },
+            \ 4: {
+            \     "name": "Hint",
+            \     "texthl": "ALEInfo",
+            \     "signText": "HH",
+            \     "signTexthl": "ALEInfoSign",
+            \ },
+            \ }
 
 " vim-lsp
 " python
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-                \ 'name': 'pyls',
-                \ 'cmd': {server_info->['pyls']},
-                \ 'whitelist': ['python'],
-                \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
-                \ })
-endif
+" if executable('pyls')
+"     au User lsp_setup call lsp#register_server({
+"                 \ 'name': 'pyls',
+"                 \ 'cmd': {server_info->['pyls']},
+"                 \ 'whitelist': ['python'],
+"                 \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
+"                 \ })
+" endif
 
 
 
@@ -421,7 +452,7 @@ endif
 " autocmd BufWritePost *.py call Flake8()
 
 " vim-virtualenv
-let g:virtualenv_auto_activate=0
+let g:virtualenv_auto_activate=1
 
 " python-mode
 " let g:pymode_quickfix_minheight=0
@@ -476,6 +507,11 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+" markdown
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
 
 " tagbar
 
