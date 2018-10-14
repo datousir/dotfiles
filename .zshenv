@@ -61,7 +61,7 @@ export PATH="/usr/local/sbin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+# eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 
 # fzf
 # export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --color=always  --exclude .git'

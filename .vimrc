@@ -237,24 +237,14 @@ set termguicolors
 " https://stackoverflow.com/questions/9001337/vim-split-bar-styling
 set fillchars+=vert:\ 
 
+syntax enable
+set background=dark
+" colorscheme solarized8_flat
+" colorscheme solarized
+" colorscheme solarized8
+" colorscheme flattened_dark
+colorscheme dracula
 
-if has('gui_running')
-  syntax enable
-  set background=dark
-  colorscheme solarized8_flat
-  " colorscheme solarized
-  " colorscheme solarized8
-  " colorscheme flattened_dark
-  " colorscheme dracula
-else
-  syntax enable
-  set background=dark
-  colorscheme solarized8_flat
-  " let g:solarized_termcolors=256
-  " colorscheme solarized
-  " colorscheme flattened_dark
-  " colorscheme dracula
-endif
 " for solarized
 call togglebg#map("<F5>")
 
@@ -338,7 +328,7 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 " let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   " airline-theme
-" let g:airline_theme="aurora"
+let g:airline_theme="aurora"
 " let g:airline_theme="base16_harmonic16"
 " let g:airline_theme="base16_codeschool"
 " let g:airline_theme="base16_3024"
@@ -348,7 +338,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " let g:airline_theme="base16_pop"
 " let g:airline_theme="base16_seti"
 " let g:airline_theme="base16_shapeshifter"
-let g:airline_theme="base16_solarized"
+" let g:airline_theme="base16_solarized"
 
 " nerdtree
 "ignore files in NERDTree
@@ -385,6 +375,8 @@ let g:deoplete#enable_at_startup = 1
 " let g:ale_emit_conflict_warnings = 0
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
+\   'c': ['ccls'],
+\   'cpp': ['ccls'],
 \   'java': ['checkstyle'],
 \   'markdown': ['vale', 'alex'],
 \   'python': ['pyls', 'flake8'],
@@ -396,6 +388,8 @@ let g:ale_linters = {
 let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls'],
             \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+            \ 'cpp': ['ccls', '--log-file=/tmp/cxx.log'],
+            \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
             \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
