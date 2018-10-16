@@ -29,7 +29,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(javascript
+   '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -80,6 +80,7 @@ This function should only modify configuration layer settings."
      ;; (c-c++ :variables c-c++-enable-clang-support t)
      ;; clojure
      cscope
+     javascript
      go
      ;; gtags
      ;; haskell
@@ -106,6 +107,7 @@ This function should only modify configuration layer settings."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(helm-flycheck
+                                      doom-modeline
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -169,7 +171,7 @@ It should only modify the values of Spacemacs settings."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
@@ -188,8 +190,8 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
-                         atom-one-dark
                          dracula
+                         atom-one-dark
                          misterioso
                          monokai
                          spacemacs-dark
@@ -345,10 +347,10 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    ;; dotspacemacs-line-numbers t
    dotspacemacs-line-numbers '(:relative nil
-                               :disabled-for-modes dired-mode
-                                                   doc-view-mode
-                                                   pdf-view-mode
-                               :size-limit-kb 1000)
+                                         :disabled-for-modes dired-mode
+                                         doc-view-mode
+                                         pdf-view-mode
+                                         :size-limit-kb 1000)
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -451,13 +453,13 @@ you should place your code here."
   (setq org-todo-keywords
         '((sequence "TODO(t)" "ONGOING(o!)" "PANDING(p!)" "FEEDBACK(f!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c!/@)")))
 
-;;  (add-hook 'after-init-hook 'global-company-mode)
-;;  (require 'company-lsp)
-;;  (push 'company-lsp company-backends)
+  ;;  (add-hook 'after-init-hook 'global-company-mode)
+  ;;  (require 'company-lsp)
+  ;;  (push 'company-lsp company-backends)
 
-;;  (require 'lsp-ui)
-;;  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-;;  (add-hook 'python-mode-hook 'flycheck-mode)
+  ;;  (require 'lsp-ui)
+  ;;  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  ;;  (add-hook 'python-mode-hook 'flycheck-mode)
 
   ;; (add-hook 'after-init-hook 'global-company-mode)
   (global-company-mode 1)
@@ -475,6 +477,12 @@ you should place your code here."
     :defer t
     :init
     (spacemacs/set-leader-keys "ee" 'helm-flycheck))
+
+  (use-package doom-modeline
+    :ensure t
+    :defer t
+    :hook (after-init . doom-modeline-init))
+
   (add-hook 'python-mode-hook (lambda ()
                                 (flycheck-mode 1)
                                 (semantic-mode 1)
@@ -486,7 +494,6 @@ you should place your code here."
 
   ;; python mode
   ;;(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-
 
   ;; (spaceline-compile)
 
@@ -573,7 +580,7 @@ This function is called at the very end of Spacemacs initialization."
  '(nrepl-message-colors
    '("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4"))
  '(package-selected-packages
-   '(yasnippet-snippets string-inflection pdf-tools org-mime lsp-ui lsp-python lsp-go impatient-mode editorconfig counsel-projectile counsel swiper company-lsp atom-one-dark-theme highlight iedit smartparens window-purpose helm-core typescript-mode lsp-mode ghub treepy graphql treemacs pfuture avy projectile dash goto-chg evil helm vmd-mode evil-snipe zenburn-theme monokai-theme solarized-theme color-theme-sanityinc-solarized dracula-theme typit mmt sudoku pacmacs 2048-game helm-flycheck helm-cscope xcscope ibuffer-projectile sql-indent nginx-mode jinja2-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat company-ansible ansible-doc ansible yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data imenu-list helm-dash dash-at-point smex stickyfunc-enhance srefactor all-the-icons memoize font-lock+ find-file-in-project ivy elpy company-irony-c-headers company-irony ac-ispell yapfify xterm-color unfill smeargle shell-pop reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow lua-mode live-py-mode launchctl intero hy-mode dash-functional htmlize hlint-refactor hindent helm-pydoc helm-hoogle helm-gtags helm-gitignore helm-company helm-c-yasnippet haskell-snippets go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help drupal-mode php-mode disaster diff-hl cython-mode company-statistics company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-anaconda anaconda-mode company cmm-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode auto-yasnippet yasnippet auto-dictionary pythonic auto-complete paradox ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
+   '(doom-themes yasnippet-snippets string-inflection pdf-tools org-mime lsp-ui lsp-python lsp-go impatient-mode editorconfig counsel-projectile counsel swiper company-lsp atom-one-dark-theme highlight iedit smartparens window-purpose helm-core typescript-mode lsp-mode ghub treepy graphql treemacs pfuture avy projectile dash goto-chg evil helm vmd-mode evil-snipe zenburn-theme monokai-theme solarized-theme color-theme-sanityinc-solarized dracula-theme typit mmt sudoku pacmacs 2048-game helm-flycheck helm-cscope xcscope ibuffer-projectile sql-indent nginx-mode jinja2-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat company-ansible ansible-doc ansible yaml-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data imenu-list helm-dash dash-at-point smex stickyfunc-enhance srefactor all-the-icons memoize font-lock+ find-file-in-project ivy elpy company-irony-c-headers company-irony ac-ispell yapfify xterm-color unfill smeargle shell-pop reveal-in-osx-finder pyvenv pytest pyenv-mode py-isort pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pbcopy osx-trash osx-dictionary orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow lua-mode live-py-mode launchctl intero hy-mode dash-functional htmlize hlint-refactor hindent helm-pydoc helm-hoogle helm-gtags helm-gitignore helm-company helm-c-yasnippet haskell-snippets go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck-haskell flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help drupal-mode php-mode disaster diff-hl cython-mode company-statistics company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-anaconda anaconda-mode company cmm-mode cmake-mode clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg clang-format cider-eval-sexp-fu cider seq queue clojure-mode auto-yasnippet yasnippet auto-dictionary pythonic auto-complete paradox ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode bind-key auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
  '(term-default-bg-color "#fdf6e3")
  '(term-default-fg-color "#657b83")

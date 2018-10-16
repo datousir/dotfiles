@@ -1,7 +1,7 @@
 " let g:python_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim2/bin/python'
 " let g:python3_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim3/bin/python'
 
-let g:python_host_prog = '/usr/local/bin/python'
+" let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 set runtimepath+=~/.vim_runtime
@@ -70,7 +70,7 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-
+" snippets and comments
 Plug 'scrooloose/snipmate-snippets'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
@@ -90,6 +90,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 
+" motion and indent
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'michaeljsmith/vim-indent-object'
@@ -167,7 +168,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/paredit.vim'
 Plug 'kien/rainbow_parentheses.vim'
 
-" auto-completiion
+" ==== auto-completion ====
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
 else
@@ -177,7 +178,7 @@ else
 endif
 
 " for python
-Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-jedi'
 
 " for go
 Plug 'zchee/deoplete-go', { 'do': 'make'}
@@ -375,15 +376,15 @@ let g:deoplete#enable_at_startup = 1
 " let g:ale_emit_conflict_warnings = 0
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
-\   'c': ['ccls'],
-\   'cpp': ['ccls'],
 \   'java': ['checkstyle'],
 \   'markdown': ['vale', 'alex'],
-\   'python': ['pyls', 'flake8'],
 \   'yaml': ['yamllint'],
 \}
+" \   'c': ['ccls'],
+" \   'cpp': ['ccls'],
+" \   'python': ['pyls', 'flake8'],
 
-" ======== lsp: Language server  ========"
+" ========  Language server  ========"
 " lsp autozimu/LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls'],
@@ -402,25 +403,25 @@ let g:LanguageClient_diagnosticsDisplay = {
             \ 1: {
             \     "name": "Error",
             \     "texthl": "ALEError",
-            \     "signText": "EE",
+            \     "signText": "ER",
             \     "signTexthl": "ALEErrorSign",
             \ },
             \ 2: {
             \     "name": "Warning",
             \     "texthl": "ALEWarning",
-            \     "signText": "WW",
+            \     "signText": "WA",
             \     "signTexthl": "ALEWarningSign",
             \ },
             \ 3: {
             \     "name": "Information",
             \     "texthl": "ALEInfo",
-            \     "signText": "II",
+            \     "signText": "IN",
             \     "signTexthl": "ALEInfoSign",
             \ },
             \ 4: {
             \     "name": "Hint",
             \     "texthl": "ALEInfo",
-            \     "signText": "HH",
+            \     "signText": "HI",
             \     "signTexthl": "ALEInfoSign",
             \ },
             \ }
