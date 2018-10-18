@@ -178,7 +178,7 @@ else
 endif
 
 " for python
-" Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-jedi'
 
 " for go
 Plug 'zchee/deoplete-go', { 'do': 'make'}
@@ -232,7 +232,7 @@ endif
 " https://github.com/chriskempson/base16-vim#terminal-themes
 " colorscheme base16-monokai
 
-set termguicolors
+" set termguicolors
 
 " 注意\后面有一个空格
 " https://stackoverflow.com/questions/9001337/vim-split-bar-styling
@@ -247,7 +247,7 @@ set background=dark
 colorscheme dracula
 
 " for solarized
-call togglebg#map("<F5>")
+" call togglebg#map("<F5>")
 
 " not display ~ for empty lines
 " https://stackoverflow.com/questions/3813059/is-it-possible-to-not-display-a-for-blank-lines-in-vim
