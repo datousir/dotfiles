@@ -232,7 +232,9 @@ endif
 " https://github.com/chriskempson/base16-vim#terminal-themes
 " colorscheme base16-monokai
 
-" set termguicolors
+if !exists('$TMUX')
+  set termguicolors
+endif
 
 " 注意\后面有一个空格
 " https://stackoverflow.com/questions/9001337/vim-split-bar-styling
