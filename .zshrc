@@ -49,7 +49,7 @@ alias tmux='tmux -2'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git brew osx python screen ssh-agent sublime svn textmate vi-mode yum )
-plugins=(git brew osx python screen ssh-agent sublime svn tmux yum )
+plugins=(git brew osx python screen ssh-agent sublime svn tmux yum colorize cargo catimg command-not-found urltools)
 
 source $ZSH/oh-my-zsh.sh
 
