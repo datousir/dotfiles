@@ -89,3 +89,15 @@ alias j9="export JAVA_HOME=`/usr/libexec/java_home -v 9`; java -version"
 alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
 export PATH=$PATH:$JAVA_HOME/bin
 
+# for android tools
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+# for virtualenv 
+# https://vi.stackexchange.com/questions/7644/use-vim-with-virtualenv/7654#7654 
+if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+  source "${VIRTUAL_ENV}/bin/activate"
+fi
+
+# set default editor
+export EDITOR="/usr/local/bin/vim"

@@ -5,11 +5,14 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="lambda"
-#ZSH_THEME="agnoster"
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME="lambda"
+# ZSH_THEME="agnoster"
+# ZSH_THEME="ys"
+# ZSH_THEME="avit"
+# ZSH_THEME="amuse"
 ZSH_THEME="cobalt2"
-# ZSH_THEME="powerlevel9k/powerlevel9k"
+#ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="random"
 
 # Example aliases
@@ -49,7 +52,9 @@ alias tmux='tmux -2'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git brew osx python screen ssh-agent sublime svn textmate vi-mode yum )
-plugins=(git brew osx python screen ssh-agent sublime svn tmux yum colorize cargo catimg command-not-found urltools)
+plugins=(git brew osx python screen ssh-agent sublime svn tmux yum colorize
+         cargo catimg command-not-found urltools vi-mode
+         history-substring-search zsh-autosuggestions zsh-syntax-highlighting python)
 
 source $ZSH/oh-my-zsh.sh
 

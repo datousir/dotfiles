@@ -1,7 +1,7 @@
 " let g:python_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim2/bin/python'
 " let g:python3_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim3/bin/python'
 
-" let g:python_host_prog = '/usr/local/bin/python'
+let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 set runtimepath+=~/.vim_runtime
@@ -106,6 +106,9 @@ Plug 'sjl/gundo.vim'
 Plug 'mbbill/undotree'
 
 " color themes
+Plug 'morhetz/gruvbox'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
 Plug 'dracula/vim'
 Plug 'altercation/vim-colors-solarized'
@@ -203,6 +206,10 @@ set go-=r " right scrollbar
 " line number
 set nu
 
+" enabling mouse support in vim
+" https://www.jacoballred.com/web-dev/enabling-mouse-support-in-vim/
+set mouse=a
+
 " Change cursor shape in different modes
 if has('nvim')
   " https://github.com/neovim/neovim/wiki/FAQ#how-to-change-cursor-shape-in-the-terminal
@@ -232,9 +239,21 @@ endif
 " https://github.com/chriskempson/base16-vim#terminal-themes
 " colorscheme base16-monokai
 
-if !exists('$TMUX')
-  set termguicolors
+" if !exists('$TMUX')
+"   set termguicolors
+" endif
+
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
+
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endi
 
 " 注意\后面有一个空格
 " https://stackoverflow.com/questions/9001337/vim-split-bar-styling
@@ -242,11 +261,18 @@ set fillchars+=vert:\
 
 syntax enable
 set background=dark
+" colorscheme gruvbox
+colorscheme palenight
+" colorscheme dracula
 " colorscheme solarized8_flat
 " colorscheme solarized
 " colorscheme solarized8
 " colorscheme flattened_dark
-colorscheme dracula
+
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+" let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
 
 " for solarized
 " call togglebg#map("<F5>")
@@ -263,24 +289,20 @@ let &t_ut=''
 " set tab and space characters to show in list mode
 set listchars=tab:>-,space:-
 
-if has("gui_macvim")
-    set guifont=Hack\ Nerd\ Font:h16
-    " set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h16
-    " set guifont=Fira\ Mono\ for\ Powerline:h16
-    " set guifont=Fira\ Mono:h16
-    " set guifont=Source\ Code\ Pro:h14
-    " set guifont=PT\ Mono:h14
-    " set guifont=Noto\ Mono:h14
-    " set guifont=Operator\ Mono:h16
-elseif has("gui_vimr")
+" https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode
+set guifont=FuraCode\ Nerd\ Font:h14
+
+" set guifont=Hack\ Nerd\ Font:h16
+" set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h16
+" set guifont=Fira\ Mono\ for\ Powerline:h16
+" set guifont=Fira\ Mono:h16
+" set guifont=Source\ Code\ Pro:h14
+" set guifont=PT\ Mono:h14
+" set guifont=Noto\ Mono:h14
+" set guifont=Operator\ Mono:h16
+
+if has("gui_vimr")
     set wrap
-    " set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h14
-elseif has("gui_gtk2")
-    set guifont=Hack\ Nerd\ Font:h14
-    " set guifont=Droid\ Sans\ Mono\ 12
-elseif has("gui")
-    set guifont=Hack\ Nerd\ Font:h14
-    " set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h14
 endif
 
 " configure tagbar
@@ -331,7 +353,12 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 " let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   " airline-theme
-let g:airline_theme="aurora"
+let g:airline_theme="night_owl"
+" let g:airline_theme="peaksea"
+" let g:airline_theme="onedark"
+" let g:airline_theme="seagull"
+" let g:airline_theme="dark_minimal"
+" let g:airline_theme="aurora"
 " let g:airline_theme="base16_harmonic16"
 " let g:airline_theme="base16_codeschool"
 " let g:airline_theme="base16_3024"
