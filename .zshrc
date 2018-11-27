@@ -8,10 +8,10 @@ ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="lambda"
 # ZSH_THEME="agnoster"
-# ZSH_THEME="ys"
+ZSH_THEME="ys"
 # ZSH_THEME="avit"
 # ZSH_THEME="amuse"
-ZSH_THEME="cobalt2"
+# ZSH_THEME="cobalt2"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="random"
 
@@ -61,7 +61,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-ssh-add -K ~/.ssh/websocketserver.pem
+[ -f ~/.ssh/websocketserver.pem ] && ssh-add -K ~/.ssh/websocketserver.pem
  
 # ======== In addition to nvm and fzf, other PATH settings should be in the .zshenv file. ========
 
