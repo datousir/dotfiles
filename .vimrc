@@ -243,17 +243,19 @@ endif
 "   set termguicolors
 " endif
 
-if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
+if !exists('$TMUX')
+    if (has("nvim"))
+      "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+      let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
 
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-if (has("termguicolors"))
-  set termguicolors
-endi
+    "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+    "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+    " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+    if (has("termguicolors"))
+      set termguicolors
+    endi
+endif
 
 " 注意\后面有一个空格
 " https://stackoverflow.com/questions/9001337/vim-split-bar-styling
@@ -354,6 +356,7 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   " airline-theme
 let g:airline_theme="night_owl"
+" let g:airline_theme="murmur"
 " let g:airline_theme="peaksea"
 " let g:airline_theme="onedark"
 " let g:airline_theme="seagull"
@@ -417,6 +420,7 @@ let g:ale_linters = {
 " lsp autozimu/LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls'],
+            \ 'go': ['go-langserver'], 
             \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
             \ 'cpp': ['ccls', '--log-file=/tmp/cxx.log'],
             \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
