@@ -61,7 +61,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-ssh-add -K ~/.ssh/websocketserver.pem
+[ -f ~/.ssh/websocketserver.pem ] && ssh-add -K ~/.ssh/websocketserver.pem
  
 # ======== In addition to nvm and fzf, other PATH settings should be in the .zshenv file. ========
 
