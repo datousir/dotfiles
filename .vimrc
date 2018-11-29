@@ -356,6 +356,7 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   " airline-theme
 let g:airline_theme="night_owl"
+" let g:airline_theme="lucius"
 " let g:airline_theme="murmur"
 " let g:airline_theme="peaksea"
 " let g:airline_theme="onedark"

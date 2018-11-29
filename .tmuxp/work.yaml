@@ -1,0 +1,30 @@
+---
+session_name: work
+start_directory: ~/
+# before_script: pipenv install --dev --skip-lock # ensure dev deps install
+# shell_command_before:
+#     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
+windows:
+  - window_name: nvim
+    focus: true
+    panes:
+      - shell_command:           # pane no. 1
+          - nvim
+  - window_name: git
+    panes:
+      - tig
+  - window_name: shell
+    layout: tiled
+    # shell_command_before:
+    #   - cd ~/src/work/ihandy/all-tech-server/
+    panes:
+      - blank
+      # - shell_command:           # pane no. 1
+      #   # - cd /var/log          # run multiple commands in this pane
+      #   # - ls -al | grep \.log
+      #     - ll
+      - echo second pane         # pane no. 2
+  - window_name: ranger
+    panes:
+      - shell_command:
+          - ranger
