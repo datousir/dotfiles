@@ -291,17 +291,19 @@ let &t_ut=''
 " set tab and space characters to show in list mode
 set listchars=tab:>-,space:-
 
-" https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode
-set guifont=FuraCode\ Nerd\ Font:h14
+if has("gui_macvim") || has("gui_gtk2") || has("gui")
+    " https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode
+    set guifont=FuraCode\ Nerd\ Font:h14
 
-" set guifont=Hack\ Nerd\ Font:h16
-" set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h16
-" set guifont=Fira\ Mono\ for\ Powerline:h16
-" set guifont=Fira\ Mono:h16
-" set guifont=Source\ Code\ Pro:h14
-" set guifont=PT\ Mono:h14
-" set guifont=Noto\ Mono:h14
-" set guifont=Operator\ Mono:h16
+    " set guifont=Hack\ Nerd\ Font:h16
+    " set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h16
+    " set guifont=Fira\ Mono\ for\ Powerline:h16
+    " set guifont=Fira\ Mono:h16
+    " set guifont=Source\ Code\ Pro:h14
+    " set guifont=PT\ Mono:h14
+    " set guifont=Noto\ Mono:h14
+    " set guifont=Operator\ Mono:h16
+endif
 
 if has("gui_vimr")
     set wrap
