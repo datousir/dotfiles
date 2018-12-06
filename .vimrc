@@ -42,7 +42,7 @@ Plug 'mhinz/vim-startify'
 " file management
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'vim-scripts/mru.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
@@ -357,8 +357,8 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 " let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   " airline-theme
+let g:airline_theme="lucius"
 " let g:airline_theme="night_owl"
-" let g:airline_theme="lucius"
 " let g:airline_theme="murmur"
 " let g:airline_theme="jellybeans"
 " let g:airline_theme="peaksea"
