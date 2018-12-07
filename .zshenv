@@ -1,4 +1,4 @@
-export GOROOT=/usr/local/opt/go/libexec
+# export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
