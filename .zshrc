@@ -73,5 +73,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # pyenv init
-eval "$(pyenv init -)"
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+    fpath+=${ZDOTDIR:-~}/.zsh_functions
+fi
