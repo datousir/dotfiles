@@ -1,4 +1,14 @@
-# export GOROOT=/usr/local/opt/go/libexec
+#
+if [[ $OSTYPE =~ "darwin" ]]; then
+    # macOS 
+    export GOROOT=/usr/local/opt/go/libexec
+elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
+    # RPi 3B 
+    export GOROOT=~/src/go
+elif [[ $OSTYPE =~ "linxu-gnu" ]]; then
+    # ubuntu
+fi
+
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
