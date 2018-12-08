@@ -47,7 +47,7 @@ export LC_ALL=zh_CN.UTF-8
 # pyenv & pyenv-virtualenv
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1; then
-eval "$(pyenv init -)"
+    eval "$(pyenv init -)"
 fi
 # pyenv-virtualenv init
 # if which pyenv-virtualenv-init > /dev/null; then
@@ -81,23 +81,31 @@ export DISABLE_AUTO_TITLE='true'
 # for z
 [ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
 
-# for java
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
-# alias j10="export JAVA_HOME=`/usr/libexec/java_home -v 10`; java -version"
-# alias j9="export JAVA_HOME=`/usr/libexec/java_home -v 9`; java -version"
-alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
-export PATH=$PATH:$JAVA_HOME/bin
+if [[ $OSTYPE =~ "darwin" ]]; then
 
-# for android tools
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+    # for java
+    export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+    alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
+    # alias j10="export JAVA_HOME=`/usr/libexec/java_home -v 10`; java -version"
+    # alias j9="export JAVA_HOME=`/usr/libexec/java_home -v 9`; java -version"
+    alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
+    export PATH=$PATH:$JAVA_HOME/bin
+
+    # for android tools
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+    export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+    # set default editor
+    export EDITOR="/usr/local/bin/vim"
+
+elif [[ $OSTYPE =~ "linux" ]]; then
+
+    # set default editor
+    export EDITOR="/usr/bin/vim"
+fi
 
 # for virtualenv 
 # https://vi.stackexchange.com/questions/7644/use-vim-with-virtualenv/7654#7654 
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
-
-# set default editor
-export EDITOR="/usr/local/bin/vim"
