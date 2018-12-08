@@ -1,5 +1,7 @@
 " let g:python_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim2/bin/python'
 " let g:python3_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim3/bin/python'
+
+" https://vi.stackexchange.com/questions/2572/detect-os-in-vimscript
 if has('mac')
     let g:python_host_prog = '/usr/local/bin/python'
     let g:python3_host_prog = '/usr/local/bin/python3'
