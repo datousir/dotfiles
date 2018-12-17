@@ -285,10 +285,6 @@ colorscheme gruvbox
 " for solarized
 " call togglebg#map("<F5>")
 
-" tmuxline theme
-let g:airline#extensions#tmuxline#enabled = 0
-let g:tmuxline_theme = 'powerline'
-
 " not display ~ for empty lines
 " https://stackoverflow.com/questions/3813059/is-it-possible-to-not-display-a-for-blank-lines-in-vim
 " highlight EndOfBuffer ctermfg=black ctermbg=black
@@ -366,12 +362,13 @@ let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = '' 
 " let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-  " airline-theme
-let g:airline_theme="lucius"
-" let g:airline_theme="night_owl"
-" let g:airline_theme="murmur"
+
+" airline-theme
+let g:airline_theme="night_owl"
 " let g:airline_theme="jellybeans"
+" let g:airline_theme="murmur"
 " let g:airline_theme="peaksea"
+" let g:airline_theme="lucius"
 " let g:airline_theme="onedark"
 " let g:airline_theme="seagull"
 " let g:airline_theme="dark_minimal"
@@ -386,6 +383,18 @@ let g:airline_theme="lucius"
 " let g:airline_theme="base16_seti"
 " let g:airline_theme="base16_shapeshifter"
 " let g:airline_theme="base16_solarized"
+
+" tmuxline theme
+" let g:airline#extensions#tmuxline#enabled = 0
+" let g:tmuxline_theme = 'powerline'
+" tmuxline separators
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_separators = {
+            \ 'left' : '',
+            \ 'left_alt': '▶',
+            \ 'right' : '',
+            \ 'right_alt' : '◀',
+            \ 'space' : ' '}
 
 " nerdtree
 "ignore files in NERDTree
