@@ -285,6 +285,10 @@ colorscheme gruvbox
 " for solarized
 " call togglebg#map("<F5>")
 
+" tmuxline theme
+let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_theme = 'powerline'
+
 " not display ~ for empty lines
 " https://stackoverflow.com/questions/3813059/is-it-possible-to-not-display-a-for-blank-lines-in-vim
 " highlight EndOfBuffer ctermfg=black ctermbg=black
