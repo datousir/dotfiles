@@ -361,7 +361,8 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = '' 
 " let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " airline-theme
 let g:airline_theme="night_owl"
@@ -391,9 +392,9 @@ let g:airline_theme="night_owl"
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_separators = {
             \ 'left' : '',
-            \ 'left_alt': '▶',
+            \ 'left_alt': '❯',
             \ 'right' : '',
-            \ 'right_alt' : '◀',
+            \ 'right_alt' : '❮',
             \ 'space' : ' '}
 
 " nerdtree
