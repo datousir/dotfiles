@@ -3,8 +3,12 @@
 
 " https://vi.stackexchange.com/questions/2572/detect-os-in-vimscript
 if has('mac')
-    let g:python_host_prog = '/usr/local/bin/python'
-    let g:python3_host_prog = '/usr/local/bin/python3'
+    " let g:python_host_prog = '/usr/local/bin/python'
+    " let g:python3_host_prog = '/usr/local/bin/python3'
+    " let g:python_host_prog = '~/.pyenv/shims/python2'
+    " let g:python3_host_prog = '~/.pyenv/shims/python3'
+    let g:python_host_prog = '/Users/baoyan.zhang/.pyenv/shims/python2'
+    let g:python3_host_prog = '/Users/baoyan.zhang/.pyenv/shims/python3'
 elseif has('unix') " for linux
     let g:python_host_prog = '/usr/bin/python'
     let g:python3_host_prog = '/usr/bin/python3'
@@ -155,7 +159,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 
 " for golang
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 
 " for python
 Plug 'jmcantrell/vim-virtualenv'
@@ -234,6 +238,10 @@ else
   endif
 endif
 
+" ==== congif neovim ====
+tnoremap <Esc> <C-\><C-n>
+
+
 
 " ==== colorscheme ====
 
@@ -297,7 +305,7 @@ let &t_ut=''
 " set tab and space characters to show in list mode
 set listchars=tab:>-,space:-
 
-if has("gui_macvim") || has("gui_gtk2") || has("gui")
+if has("gui_macvim") || has("gui_gtk2") || has("gui") || exists("g:gui_oni")
     " https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode
     set guifont=FuraCode\ Nerd\ Font:h14
 
