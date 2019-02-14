@@ -11,7 +11,7 @@ if has('mac')
     let g:python3_host_prog = '/Users/baoyan.zhang/.pyenv/shims/python3'
 elseif has('unix') " for linux
     let g:python_host_prog = '/usr/bin/python'
-    let g:python3_host_prog = '/usr/bin/python3'
+    let g:python3_host_prog = '/usr/bin/python3.6'
 endif
 
 set runtimepath+=~/.vim_runtime
@@ -189,6 +189,12 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-pyclang'
 
 " for python
 Plug 'zchee/deoplete-jedi'
@@ -430,8 +436,18 @@ endif
 set signcolumn=yes
 
 " ======== autocompletion ========"
+
 " deoplete.
 let g:deoplete#enable_at_startup = 1
+
+" ncm2
+autocmd BufEnter * call ncm2#enable_for_buffer()  
+let g:ncm2_pyclang#library_path = '/usr/local/lib/libclang.so'
+" a list of relative paths for compile_commands.json
+let g:ncm2_pyclang#database_path = [
+            \ 'compile_commands.json',
+            \ 'build/compile_commands.json'
+            \ ]
 
 " ======== Lint ========"
 " ALE
@@ -443,9 +459,9 @@ let g:ale_linters = {
 \   'java': ['checkstyle'],
 \   'markdown': ['vale', 'alex'],
 \   'yaml': ['yamllint'],
+\   'c': ['~/bin/cquery'],
+\   'cpp': ['~/bin/cquery'],
 \}
-" \   'c': ['ccls'],
-" \   'cpp': ['ccls'],
 " \   'python': ['pyls', 'flake8'],
 
 " ========  Language server  ========"
@@ -454,15 +470,47 @@ let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls'],
             \ 'go': ['go-langserver'], 
             \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-            \ 'cpp': ['ccls', '--log-file=/tmp/cxx.log'],
-            \ 'c': ['ccls', '--log-file=/tmp/cc.log'],
+            \ 'cpp': ['~/bin/cquery',
+            \ '--log-file=/tmp/cq.log',
+            \ '--init={"cacheDirectory":"/tmp/cquery/"}']
             \ }
+            "\ 'cpp': ['~/src/1404/cquery/build/cquery',
+            "\ 'cpp': ['~/src/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-14.04/bin/clangd'],
+            "\ 'cpp': ['~/bin/ccls', '--log-file=/tmp/cxx.log'],
+            "\ 'cpp': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cxx.log'],
+            "\ 'c': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cc.log'],
+
+let g:LanguageClient_serverStderr = '/tmp/lc.stderr'
+
+function SetLSPShortcuts()
+  " ...
+  " Previous bindings
+  " ...
+  nnoremap <leader>ll :call LanguageClient#debugInfo()<CR>
+endfunction()
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
-"nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-"nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-"nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" nn <silent> <M-.> :call LanguageClient_textDocument_definition()<cr>
+" nn <silent> <M-,> :call LanguageClient_textDocument_references()<cr>
+" nn <f2> :call LanguageClient_textDocument_rename()<cr>
+" nn <leader>ji :Denite documentSymbol<cr>
+" nn <leader>jI :Denite workspaceSymbol<cr>
+" nn ,la :call LanguageClient_workspace_symbol({'query':input('workspace/symbol ')})<cr>
+" 
+" augroup LanguageClient_config
+"   au!
+"   au BufEnter * let b:Plugin_LanguageClient_started = 0
+"   au User LanguageClientStarted setl signcolumn=yes
+"   au User LanguageClientStarted let b:Plugin_LanguageClient_started = 1
+"   au User LanguageClientStopped setl signcolumn=auto
+"   au User LanguageClientStopped let b:Plugin_LanguageClient_stopped = 0
+"   au CursorMoved * if b:Plugin_LanguageClient_started | call LanguageClient_textDocument_hover() | endif
+" augroup END
 
 let g:LanguageClient_diagnosticsDisplay = {
             \ 1: {

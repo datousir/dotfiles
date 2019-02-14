@@ -5,11 +5,11 @@ start_directory: ~/
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: nvim
+  - window_name: vim
     focus: true
     panes:
       - shell_command:           # pane no. 1
-          - nvim
+          - vim
   - window_name: git
     panes:
       - tig
