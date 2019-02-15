@@ -1,5 +1,3 @@
-" let g:python_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim2/bin/python'
-" let g:python3_host_prog = '/Users/baoyan.zhang/.pyenv/versions/neovim3/bin/python'
 
 " https://vi.stackexchange.com/questions/2572/detect-os-in-vimscript
 if has('mac')
@@ -26,7 +24,7 @@ source ~/.vim_runtime/vimrcs/filetypes.vim
 " catch
 " endtry
 
-" ==================== Vim Plug Begin ========================================
+" ==== Vim Plug Begin ====
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -147,44 +145,13 @@ Plug 'plasticboy/vim-markdown'
 " toml
 Plug 'cespare/vim-toml'
 
-" ---- lint engine ----
+" ---- begin lint engine ----
+
 Plug 'w0rp/ale'
 
-" ---- language server protocol for vim ----
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
-            \ }
+" ---- end lint engine ----
 
-" vim-lsp
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-
-
-" for golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
-
-" for python
-Plug 'jmcantrell/vim-virtualenv'
-" Plug 'vim-scripts/indentpython.vim'
-" Plug 'nvie/vim-flake8'
-" Plug 'python-rope/ropevim'
-Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
-Plug 'python-mode/python-mode', {'branch': 'develop'}
-Plug 'tmhedberg/SimpylFold'
-
-" for scala
-" Plug 'derekwyatt/vim-scala'
-
-" for clojure
-" Plug 'tpope/vim-salve'
-" Plug 'tpope/vim-projectionist'
-" Plug 'tpope/vim-dispatch'
-" Plug 'tpope/vim-fireplace'
-Plug 'vim-scripts/paredit.vim'
-Plug 'kien/rainbow_parentheses.vim'
-
-" ==== begin auto-completion ====
+" ---- begin auto-completion ----
 
 " ---- deoplete ----
 
@@ -215,19 +182,56 @@ Plug 'ncm2/ncm2-pyclang'
 " based on ultisnips
 Plug 'ncm2/ncm2-ultisnips'
 
-" ==== end auto-completion ====
+" ---- end auto-completion ----
+
+" ---- begin language server protocol ----
+
+Plug 'autozimu/LanguageClient-neovim', {
+            \ 'branch': 'next',
+            \ 'do': 'bash install.sh',
+            \ }
+
+" vim-lsp
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/vim-lsp'
+
+" ---- end language server protocol ----
+
+" for golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
+
+" for python
+Plug 'jmcantrell/vim-virtualenv'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'nvie/vim-flake8'
+" Plug 'python-rope/ropevim'
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+Plug 'python-mode/python-mode', {'branch': 'develop'}
+Plug 'tmhedberg/SimpylFold'
+
+" for scala
+" Plug 'derekwyatt/vim-scala'
+
+" for clojure
+" Plug 'tpope/vim-salve'
+" Plug 'tpope/vim-projectionist'
+" Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-fireplace'
+Plug 'vim-scripts/paredit.vim'
+Plug 'kien/rainbow_parentheses.vim'
+
 
 " rust
 Plug 'rust-lang/rust.vim'
 
 " Plug 'Valloric/YouCompleteMe'
 
-" ======================================
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
-" =================== Vundle End =======================================================================
+" ==== Vundle End ====
+
 
 " gui options
 
