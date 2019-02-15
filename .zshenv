@@ -103,8 +103,16 @@ elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
     # for golang
     export GOROOT=~/src/go
 elif [[ $OSTYPE =~ "linux-gnu" ]]; then
+    # for golang
+    export GOROOT=~/src/go
+
     # set default editor
     export EDITOR="/usr/bin/vim"
+
+    # add linuxbrew to path
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    
+    # set proxy for tencent
     setproxy
 fi
 

@@ -45,7 +45,7 @@ Plug 'Shougo/denite.nvim'
 
 " search
 Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'mhinz/vim-startify'
 
@@ -76,14 +76,17 @@ Plug 'jlanzarotta/bufexplorer'
 
 Plug 'vim-scripts/taglist.vim'
 Plug 'majutsushi/tagbar'
+Plug 'jsfaint/gen_tags.vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " snippets and comments
-Plug 'scrooloose/snipmate-snippets'
 Plug 'garbas/vim-snipmate'
+Plug 'scrooloose/snipmate-snippets'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
 Plug 'scrooloose/nerdcommenter'
 
 " git
@@ -181,7 +184,10 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/paredit.vim'
 Plug 'kien/rainbow_parentheses.vim'
 
-" ==== auto-completion ====
+" ==== begin auto-completion ====
+
+" ---- deoplete ----
+
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
 else
@@ -189,18 +195,27 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-pyclang'
-
 " for python
 Plug 'zchee/deoplete-jedi'
 
 " for go
 Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+" ---- ncm2 ----
+
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'fgrsnau/ncm2-otherbuf', {'branch': 'ncm2'}
+
+Plug 'ncm2/ncm2-pyclang'
+"Plug 'ncm2/ncm2-gtags'
+
+" based on ultisnips
+Plug 'ncm2/ncm2-ultisnips'
+
+" ==== end auto-completion ====
 
 " rust
 Plug 'rust-lang/rust.vim'
@@ -221,6 +236,10 @@ set go-=r " right scrollbar
 
 " line number
 set nu
+
+" highlight current line/column, set cul/cuc
+set cursorline
+" set cursorcolumn
 
 " enabling mouse support in vim
 " https://www.jacoballred.com/web-dev/enabling-mouse-support-in-vim/
@@ -411,11 +430,12 @@ let g:tmuxline_separators = {
             \ 'right_alt' : '❮',
             \ 'space' : ' '}
 
-" nerdtree
+" ---- nerdtree ----
 "ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']
 " How can I open a NERDTree automatically when vim starts up?
 nnoremap <F8> :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 " autocmd vimenter * NERDTree
 " let g:NERDTreeDirArrowExpandable = '▸'
 " let g:NERDTreeDirArrowCollapsible = '▾'
@@ -440,14 +460,49 @@ set signcolumn=yes
 " deoplete.
 let g:deoplete#enable_at_startup = 1
 
-" ncm2
+" ==== begin ncm2 config ====
+
 autocmd BufEnter * call ncm2#enable_for_buffer()  
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 let g:ncm2_pyclang#library_path = '/usr/local/lib/libclang.so'
 " a list of relative paths for compile_commands.json
 let g:ncm2_pyclang#database_path = [
             \ 'compile_commands.json',
             \ 'build/compile_commands.json'
             \ ]
+
+" ---- ultisnips config ---
+
+" Press enter key to trigger snippet expansion
+" The parameters are the same as `:help feedkeys()`
+" inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
+" c-j c-k for moving in snippet
+" let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+
+" ==== end ncm2 config ====
 
 " ======== Lint ========"
 " ALE
@@ -459,8 +514,8 @@ let g:ale_linters = {
 \   'java': ['checkstyle'],
 \   'markdown': ['vale', 'alex'],
 \   'yaml': ['yamllint'],
-\   'c': ['~/bin/cquery'],
-\   'cpp': ['~/bin/cquery'],
+\   'c': ['clangd'],
+\   'cpp': ['clangd'],
 \}
 " \   'python': ['pyls', 'flake8'],
 
@@ -472,7 +527,8 @@ let g:LanguageClient_serverCommands = {
             \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
             \ 'cpp': ['~/bin/cquery',
             \ '--log-file=/tmp/cq.log',
-            \ '--init={"cacheDirectory":"/tmp/cquery/"}']
+            \ '--init={"cacheDirectory":"/tmp/cquery/"}',
+            \ 'clangd']
             \ }
             "\ 'cpp': ['~/src/1404/cquery/build/cquery',
             "\ 'cpp': ['~/src/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-14.04/bin/clangd'],
@@ -482,21 +538,14 @@ let g:LanguageClient_serverCommands = {
 
 let g:LanguageClient_serverStderr = '/tmp/lc.stderr'
 
-function SetLSPShortcuts()
-  " ...
-  " Previous bindings
-  " ...
-  nnoremap <leader>ll :call LanguageClient#debugInfo()<CR>
-endfunction()
-
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
-" nn <silent> <M-.> :call LanguageClient_textDocument_definition()<cr>
-" nn <silent> <M-,> :call LanguageClient_textDocument_references()<cr>
+nn <silent> <M-.> :call LanguageClient_textDocument_definition()<cr>
+nn <silent> <M-,> :call LanguageClient_textDocument_references()<cr>
 " nn <f2> :call LanguageClient_textDocument_rename()<cr>
 " nn <leader>ji :Denite documentSymbol<cr>
 " nn <leader>jI :Denite workspaceSymbol<cr>
