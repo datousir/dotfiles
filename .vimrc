@@ -519,9 +519,10 @@ let g:ale_linters = {
 \   'markdown': ['vale', 'alex'],
 \   'yaml': ['yamllint'],
 \   'c': ['clangd'],
-\   'cpp': ['clangd'],
+\   'cpp': ['cpplint', 'clangd'],
 \}
 " \   'python': ['pyls', 'flake8'],
+" pip install cpplint
 
 " ========  Language server  ========"
 " lsp autozimu/LanguageClient-neovim
