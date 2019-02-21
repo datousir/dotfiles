@@ -112,9 +112,10 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
     # add linuxbrew to path
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
     
-    # set proxy for tencent
-    setproxy
 fi
+
+# set proxy for tencent
+setproxy
 
 export GOPATH=~/go
 export GOBIN=~/go/bin

@@ -1,10 +1,14 @@
 ---
 session_name: work
-start_directory: ~/
+start_directory: ~/src
 # before_script: pipenv install --dev --skip-lock # ensure dev deps install
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
+  - window_name: ranger
+    panes:
+      - shell_command:
+          - ranger
   - window_name: vim
     focus: true
     panes:
@@ -23,8 +27,7 @@ windows:
       #   # - cd /var/log          # run multiple commands in this pane
       #   # - ls -al | grep \.log
       #     - ll
-      - echo second pane         # pane no. 2
-  - window_name: ranger
+      # - echo second pane         # pane no. 2
+  - window_name: shell
     panes:
-      - shell_command:
-          - ranger
+      - blank
