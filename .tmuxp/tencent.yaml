@@ -1,7 +1,7 @@
 ---
-session_name: work
+session_name: tencent
 start_directory: ~/src/work/tencent
-# before_script: pipenv install --dev --skip-lock # ensure dev deps install
+before_script: docker start u14
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
@@ -22,12 +22,9 @@ windows:
     # shell_command_before:
     #   - cd ~/src/work/ihandy/all-tech-server/
     panes:
-      - blank
-      # - shell_command:           # pane no. 1
-      #   # - cd /var/log          # run multiple commands in this pane
-      #   # - ls -al | grep \.log
-      #     - ll
-      # - echo second pane         # pane no. 2
+      - shell_command:           # pane no. 1
+        - docker attach u14
   - window_name: shell
     panes:
-      - blank
+      - shell_command:
+        - docker exec -it u14 bash
