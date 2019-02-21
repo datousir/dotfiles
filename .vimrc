@@ -49,7 +49,7 @@ Plug 'mhinz/vim-startify'
 
 " file management
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'vim-scripts/mru.vim'
 Plug 'ryanoasis/vim-devicons'
@@ -71,6 +71,7 @@ Plug 'airblade/vim-rooter'
 " buffer
 Plug 'jlanzarotta/bufexplorer'
 " Plug 'bling/vim-bufferline'
+Plug 'vim-scripts/BufOnly.vim'
 
 Plug 'vim-scripts/taglist.vim'
 Plug 'majutsushi/tagbar'
@@ -90,9 +91,11 @@ Plug 'scrooloose/nerdcommenter'
 " git
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
-Plug 'jreybert/vimagit'
 Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 
+" edit
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
@@ -226,6 +229,8 @@ Plug 'rust-lang/rust.vim'
 
 " Plug 'Valloric/YouCompleteMe'
 
+" for c/c++
+" Plug 'octol/vim-cpp-enhanced-highlight'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -459,7 +464,7 @@ endif
 
 set signcolumn=yes
 
-" ======== autocompletion ========"
+" ======== begin autocompletion ========"
 
 " deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -507,6 +512,8 @@ let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 let g:UltiSnipsRemoveSelectModeMappings = 0
 
 " ==== end ncm2 config ====
+
+" ==== end autocompletion ====
 
 " ======== Lint ========"
 " ALE
@@ -605,6 +612,17 @@ let g:LanguageClient_diagnosticsDisplay = {
 " endif
 
 
+" ---- begin programming language pluggin ----
+
+" ---- begin C/C++ ----
+
+" for octol/vim-cpp-enhanced-highlight
+"let g:cpp_class_scope_highlight = 1
+"let g:cpp_member_variable_highlight = 1
+"let g:cpp_class_decl_highlight = 1
+"let g:cpp_experimental_template_highlight = 1
+
+" ---- end C/C++ ----
 
 " ======== Python Begin ========"
 " vim-flake8
@@ -727,3 +745,4 @@ let g:tagbar_type_objc = {
             \ 'enumeration'    : 'e'
             \ }
             \ }
+" ---- end programming language pluggin ----
