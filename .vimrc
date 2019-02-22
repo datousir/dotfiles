@@ -435,6 +435,13 @@ let g:tmuxline_separators = {
             \ 'right_alt' : '❮',
             \ 'space' : ' '}
 
+" ---- buf ----
+unmap <leader>h
+unmap <leader>l
+
+nnoremap <silent> <leader>bh :bprevious<cr>
+nnoremap <silent> <leader>bl :bnext<cr>
+
 " ---- BufOnly ----
 nnoremap <silent> <leader>bo :BufOnly<cr> 
 
@@ -548,7 +555,7 @@ let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls'],
             \ 'go': ['go-langserver'], 
             \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-            \ 'cpp': ['cquery',
+            \ 'cpp': ['~/bin/cquery',
             \ '--log-file=/tmp/cq.log',
             \ '--init={"cacheDirectory":"/tmp/cquery/"}',
             \ 'clangd']
