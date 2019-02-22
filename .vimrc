@@ -357,12 +357,6 @@ if has("gui_vimr")
     set wrap
 endif
 
-" configure tagbar
-nnoremap <F9> :TagbarToggle<CR>
-
-" open taglist window
-nnoremap <silent> <leader>tl :TlistToggle<CR>
-
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -386,17 +380,19 @@ set clipboard=unnamed
 " Height of the command bar
 set cmdheight=1
 
-"""""""""""" Plugin Begin """""""""""""""""""""""""""""""""""
+" ==== begin plugin ====
 
-"fzf
+" fzf
 set rtp+=/usr/local/opt/fzf
 
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
+" GV
+nnoremap <silent> <leader>gv :GV<cr>
+nnoremap <silent> <leader>gc :GV!<cr>
 
 " vim-airline
 let g:airline_powerline_fonts = 1
 
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
@@ -439,12 +435,23 @@ let g:tmuxline_separators = {
             \ 'right_alt' : '❮',
             \ 'space' : ' '}
 
+" ---- BufOnly ----
+nnoremap <silent> <leader>bo :BufOnly<cr> 
+
+" ---- tagbar ----
+nnoremap <F9> :TagbarToggle<CR>
+nnoremap <silent> <leader>tt :TagbarToggle<cr>
+
+" ---- taglist ----
+nnoremap <silent> <leader>tl :TlistToggle<CR>
+
 " ---- nerdtree ----
 "ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']
 " How can I open a NERDTree automatically when vim starts up?
 nnoremap <F8> :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+nnoremap <silent> <Leader>nn :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
 " autocmd vimenter * NERDTree
 " let g:NERDTreeDirArrowExpandable = '▸'
 " let g:NERDTreeDirArrowCollapsible = '▾'
@@ -492,7 +499,11 @@ inoremap <c-c> <ESC>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-let g:ncm2_pyclang#library_path = '/usr/local/lib/libclang.so'
+if has('mac')
+    let g:ncm2_pyclang#library_path = '/usr/local/opt/llvm/lib/'
+elseif has('unix')
+    let g:ncm2_pyclang#library_path = '/usr/local/lib/libclang.so'
+endif
 " a list of relative paths for compile_commands.json
 let g:ncm2_pyclang#database_path = [
             \ 'compile_commands.json',
@@ -537,7 +548,7 @@ let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls'],
             \ 'go': ['go-langserver'], 
             \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-            \ 'cpp': ['~/bin/cquery',
+            \ 'cpp': ['cquery',
             \ '--log-file=/tmp/cq.log',
             \ '--init={"cacheDirectory":"/tmp/cquery/"}',
             \ 'clangd']
