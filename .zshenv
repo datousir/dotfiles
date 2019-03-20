@@ -125,3 +125,6 @@ export PATH=~/bin:$PATH
 
 export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+
+export PATH=$PATH:~/.roswell/bin
+export PATH="/usr/local/opt/llvm/bin:$PATH"

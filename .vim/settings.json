@@ -1,0 +1,8 @@
+"pyls": {
+    "plugins": {
+        "pycodestyle": {
+            "enabled": false
+        }
+    },
+    "configurationSources": ["flake8"]
+}

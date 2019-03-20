@@ -5,14 +5,10 @@ start_directory: ~/
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: ranger
-    panes:
-      - shell_command:
-        - ranger
-  - window_name: shell
-    panes:
-      - blank
   - window_name: vim
     panes:
       - shell_command:
         - vim
+  - window_name: shell
+    panes:
+      - blank

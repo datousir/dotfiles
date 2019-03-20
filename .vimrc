@@ -1,12 +1,7 @@
-
 " https://vi.stackexchange.com/questions/2572/detect-os-in-vimscript
 if has('mac')
     let g:python_host_prog = '/usr/local/bin/python2'
     let g:python3_host_prog = '/usr/local/bin/python3'
-    " let g:python_host_prog = '~/.pyenv/shims/python2'
-    " let g:python3_host_prog = '~/.pyenv/shims/python3'
-    " let g:python_host_prog = '/Users/baoyan.zhang/.pyenv/shims/python2'
-    " let g:python3_host_prog = '/Users/baoyan.zhang/.pyenv/shims/python3'
 elseif has('unix') " for linux
     let g:python_host_prog = '/usr/bin/python'
     let g:python3_host_prog = '/usr/bin/python3.6'
@@ -545,12 +540,29 @@ let g:ale_linters = {
 \   'yaml': ['yamllint'],
 \   'c': ['clangd'],
 \   'cpp': ['cpplint', 'clangd'],
+\   'shell': ['shellcheck'],
 \}
 " \   'python': ['pyls', 'flake8'],
 " pip install cpplint
 
 " ========  Language server  ========"
 " lsp autozimu/LanguageClient-neovim
+if has('mac')
+let g:LanguageClient_serverCommands = {
+            \ 'python': ['pyls'],
+            \ 'go': ['go-langserver'], 
+            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+            \ 'cpp': ['cquery',
+            \ '--log-file=/tmp/cq.log',
+            \ '--init={"cacheDirectory":"/tmp/cquery/"}',
+            \ 'clangd']
+            \ }
+            "\ 'cpp': ['~/src/1404/cquery/build/cquery',
+            "\ 'cpp': ['~/src/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-14.04/bin/clangd'],
+            "\ 'cpp': ['~/bin/ccls', '--log-file=/tmp/cxx.log'],
+            "\ 'cpp': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cxx.log'],
+            "\ 'c': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cc.log'],
+elseif has('unix')
 let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls'],
             \ 'go': ['go-langserver'], 
@@ -565,10 +577,12 @@ let g:LanguageClient_serverCommands = {
             "\ 'cpp': ['~/bin/ccls', '--log-file=/tmp/cxx.log'],
             "\ 'cpp': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cxx.log'],
             "\ 'c': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cc.log'],
+endif
 
 let g:LanguageClient_serverStderr = '/tmp/lc.stderr'
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> <leader>lc :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>

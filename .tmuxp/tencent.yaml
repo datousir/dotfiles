@@ -5,26 +5,19 @@ before_script: docker start u14
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: ranger
-    panes:
-      - shell_command:
-          - ranger
   - window_name: vim
     focus: true
     panes:
       - shell_command:           # pane no. 1
           - vim
-  - window_name: git
-    panes:
-      - tig
   - window_name: shell
-    layout: tiled
-    # shell_command_before:
-    #   - cd ~/src/work/ihandy/all-tech-server/
+    panes:
+      - blank
+  - window_name: u14.dev1
     panes:
       - shell_command:           # pane no. 1
         - docker attach u14
-  - window_name: shell
+  - window_name: u14.dev2
     panes:
       - shell_command:
         - docker exec -it u14 bash
