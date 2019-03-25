@@ -528,6 +528,10 @@ let g:UltiSnipsRemoveSelectModeMappings = 0
 
 " ==== end autocompletion ====
 
+" ---- Formatter ----
+map <C-K> :pyf /usr/local/Cellar/llvm/HEAD-1213cfc/share/clang/clang-format.py<cr>
+imap <C-K> <c-o>:pyf /usr/local/Cellar/llvm/HEAD-1213cfc/share/clang/clang-format.py<cr>
+
 " ======== Lint ========"
 " ALE
 " Enable completion where available.
@@ -539,7 +543,7 @@ let g:ale_linters = {
 \   'markdown': ['vale', 'alex'],
 \   'yaml': ['yamllint'],
 \   'c': ['clangd'],
-\   'cpp': ['cpplint', 'clangd'],
+\   'cpp': ['clang-tidy','cpplint', 'clangd'],
 \   'shell': ['shellcheck'],
 \}
 " \   'python': ['pyls', 'flake8'],
