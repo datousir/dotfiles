@@ -1,0 +1,20 @@
+# http://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# https://www.clangformat.com/
+
+# https://github.com/abseil/abseil-cpp/blob/master/.clang-format
+# https://github.com/Microsoft/cpprestsdk/blob/master/.clang-format
+# https://github.com/facebook/rocksdb/blob/master/.clang-format
+# https://github.com/facebook/proxygen/blob/master/proxygen/.clang-format
+# https://github.com/facebook/osquery/blob/experimental/.clang-format
+
+---
+# clang-format -dump-config -style=Google
+
+Language: Cpp
+
+# BasedOnStyle: Google
+BasedOnStyle: Chromium
+
+IndentWidth: 4  # differ from 2
+Standard: Cpp11 # differ from auto
+...
