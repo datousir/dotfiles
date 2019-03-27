@@ -36,6 +36,8 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'shougo/neomru.vim'
 Plug 'Shougo/denite.nvim'
 
+Plug 'editorconfig/editorconfig-vim'
+
 " search
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -102,6 +104,7 @@ Plug 'tpope/vim-commentary'
 " motion and indent
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'terryma/vim-expand-region'
 
@@ -377,8 +380,21 @@ set cmdheight=1
 
 " ==== begin plugin ====
 
-" fzf
+" ---- fzf ----
 set rtp+=/usr/local/opt/fzf
+
+nnoremap <silent> <leader><Space> :Files<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+
+" this need fugitive plugin
+let g:fzf_commits_log_options = '--graph --color=always
+  \ --format="%C(yellow)%h%C(red)%d%C(reset)
+  \ - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
+nnoremap <silent> <leader>c  :Commits<CR>
+nnoremap <silent> <leader>bc :BCommits<CR>
+
+" this need ripgrep
+nnoremap <leader>rg :Rg<Space>
 
 " GV
 nnoremap <silent> <leader>gv :GV<cr>
@@ -529,8 +545,8 @@ let g:UltiSnipsRemoveSelectModeMappings = 0
 " ==== end autocompletion ====
 
 " ---- Formatter ----
-map <C-K> :pyf /usr/local/Cellar/llvm/HEAD-1213cfc/share/clang/clang-format.py<cr>
-imap <C-K> <c-o>:pyf /usr/local/Cellar/llvm/HEAD-1213cfc/share/clang/clang-format.py<cr>
+map <C-K> :py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<cr>
+imap <C-K> <c-o>:py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<cr>
 
 " ======== Lint ========"
 " ALE
@@ -543,7 +559,7 @@ let g:ale_linters = {
 \   'markdown': ['vale', 'alex'],
 \   'yaml': ['yamllint'],
 \   'c': ['clangd'],
-\   'cpp': ['clang-tidy','cpplint', 'clangd'],
+\   'cpp': ['clangd', 'clang-tidy', 'cpplint'],
 \   'shell': ['shellcheck'],
 \}
 " \   'python': ['pyls', 'flake8'],
