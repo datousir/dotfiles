@@ -12,9 +12,9 @@
 
 Language: Cpp
 
-# BasedOnStyle: Google
-BasedOnStyle: Chromium
+BasedOnStyle: Google
+# BasedOnStyle: Chromium
 
-IndentWidth: 4  # differ from 2
-Standard: Cpp11 # differ from auto
+# IndentWidth: 4  # differ from 2
+# Standard: Cpp11 # differ from auto
 ...

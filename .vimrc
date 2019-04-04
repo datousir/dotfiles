@@ -305,7 +305,7 @@ endif
 
 " 注意\后面有一个空格
 " https://stackoverflow.com/questions/9001337/vim-split-bar-styling
-set fillchars+=vert:\ 
+set fillchars+=vert:\
 
 syntax enable
 set background=dark
@@ -408,7 +408,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = '' 
+let g:airline#extensions#tabline#right_alt_sep = ''
 " let g:airline#extensions#tabline#formatter = 'default'
 " let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -454,7 +454,7 @@ nnoremap <silent> <leader>bh :bprevious<cr>
 nnoremap <silent> <leader>bl :bnext<cr>
 
 " ---- BufOnly ----
-nnoremap <silent> <leader>bo :BufOnly<cr> 
+nnoremap <silent> <leader>bo :BufOnly<cr>
 
 " ---- tagbar ----
 nnoremap <F9> :TagbarToggle<CR>
@@ -496,7 +496,7 @@ let g:deoplete#enable_at_startup = 1
 
 " ==== begin ncm2 config ====
 
-autocmd BufEnter * call ncm2#enable_for_buffer()  
+autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " IMPORTANT: :help Ncm2PopupOpen for more information
 set completeopt=noinsert,menuone,noselect
@@ -559,7 +559,7 @@ let g:ale_linters = {
 \   'markdown': ['vale', 'alex'],
 \   'yaml': ['yamllint'],
 \   'c': ['clangd'],
-\   'cpp': ['clangd', 'clang-tidy', 'cpplint'],
+\   'cpp': ['cquery', 'clangd', 'clang-tidy', 'cpplint'],
 \   'shell': ['shellcheck'],
 \}
 " \   'python': ['pyls', 'flake8'],
@@ -570,22 +570,23 @@ let g:ale_linters = {
 if has('mac')
 let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls'],
-            \ 'go': ['go-langserver'], 
+            \ 'go': ['go-langserver'],
             \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
             \ 'cpp': ['cquery',
             \ '--log-file=/tmp/cq.log',
             \ '--init={"cacheDirectory":"/tmp/cquery/"}',
             \ 'clangd']
             \ }
-            "\ 'cpp': ['~/src/1404/cquery/build/cquery',
-            "\ 'cpp': ['~/src/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-14.04/bin/clangd'],
+            "\ 'cpp': ['cquery',
+            "\ '--log-file=/tmp/cq.log',
+            "\ '--init={"cacheDirectory":"/tmp/cquery/"}',
+            "\ 'clangd']
             "\ 'cpp': ['~/bin/ccls', '--log-file=/tmp/cxx.log'],
             "\ 'cpp': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cxx.log'],
-            "\ 'c': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cc.log'],
 elseif has('unix')
 let g:LanguageClient_serverCommands = {
             \ 'python': ['pyls'],
-            \ 'go': ['go-langserver'], 
+            \ 'go': ['go-langserver'],
             \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
             \ 'cpp': ['~/bin/cquery',
             \ '--log-file=/tmp/cq.log',
@@ -614,7 +615,7 @@ nn <silent> <M-,> :call LanguageClient_textDocument_references()<cr>
 " nn <leader>ji :Denite documentSymbol<cr>
 " nn <leader>jI :Denite workspaceSymbol<cr>
 " nn ,la :call LanguageClient_workspace_symbol({'query':input('workspace/symbol ')})<cr>
-" 
+"
 " augroup LanguageClient_config
 "   au!
 "   au BufEnter * let b:Plugin_LanguageClient_started = 0
