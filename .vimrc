@@ -33,8 +33,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/tlib'
 Plug 'MarcWeber/vim-addon-mw-utils'
 
-Plug 'shougo/neomru.vim'
-Plug 'Shougo/denite.nvim'
+" interface
+" Plug 'Shougo/denite.nvim'
+" Plug 'liuchengxu/vim-which-key'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -47,8 +48,6 @@ Plug 'mhinz/vim-startify'
 " file management
 Plug 'scrooloose/nerdtree'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'vim-scripts/mru.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
 
@@ -92,7 +91,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'jreybert/vimagit'
 
 " edit
-Plug 'jiangmiao/auto-pairs'
+" auto-pairs can cause odd delete actions
+" Plug 'jiangmiao/auto-pairs'
 
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
@@ -196,6 +196,9 @@ Plug 'autozimu/LanguageClient-neovim', {
 " Plug 'prabirshrestha/async.vim'
 " Plug 'prabirshrestha/vim-lsp'
 
+"coc.nvim
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
+
 " ---- end language server protocol ----
 
 " for golang
@@ -271,9 +274,8 @@ else
 endif
 
 " ==== congif neovim ====
+" map exit terminal to Esc
 tnoremap <Esc> <C-\><C-n>
-
-
 
 " ==== colorscheme ====
 
@@ -303,52 +305,52 @@ if !exists('$TMUX')
     endi
 endif
 
-" 注意\后面有一个空格
-" https://stackoverflow.com/questions/9001337/vim-split-bar-styling
-set fillchars+=vert:\
-
 syntax enable
 set background=dark
 colorscheme gruvbox
-" colorscheme palenight
 " colorscheme dracula
 " colorscheme solarized8_flat
 " colorscheme solarized
 " colorscheme solarized8
 " colorscheme flattened_dark
 
-" let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage" " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
-" colorscheme ayu
-
-" for solarized
-" call togglebg#map("<F5>")
+" 注意 \后面有一个空格,因为行尾空格会被删掉,所以增加一个"
+" https://stackoverflow.com/questions/9001337/vim-split-bar-styling
+set fillchars+=vert:\ "
 
 " not display ~ for empty lines
 " https://stackoverflow.com/questions/3813059/is-it-possible-to-not-display-a-for-blank-lines-in-vim
 " highlight EndOfBuffer ctermfg=black ctermbg=black
 highlight EndOfBuffer ctermfg=bg guifg=bg
 
+" enable signcolumn
+set signcolumn=yes
+
+" https://stackoverflow.com/a/41587510
+highlight clear FoldColumn
+highlight clear SignColumn
+" highlight clear LineNr
 
 " workaround for vim background color erase
 let &t_ut=''
 
 " set tab and space characters to show in list mode
 set listchars=tab:>-,space:-
+let &showbreak='↳ '
+" set listchars=nbsp:␣,eol:↲,tab:»\ ,extends:›,precedes:‹,trail:•
+" let &showbreak='↳ '
+" set cpoptions-=n
+" aug my_visuallistchars
+"     au!
+"     au CursorMoved * if mode() =~# "[vV\<C-v>]" | set list | else | set nolist | endif
+" aug END
+
+" set font
 
 if has("gui_macvim") || has("gui_gtk2") || has("gui") || exists("g:gui_oni")
     " https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode
     set guifont=FuraCode\ Nerd\ Font:h14
-
-    " set guifont=Hack\ Nerd\ Font:h16
-    " set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h16
-    " set guifont=Fira\ Mono\ for\ Powerline:h16
-    " set guifont=Fira\ Mono:h16
     " set guifont=Source\ Code\ Pro:h14
-    " set guifont=PT\ Mono:h14
-    " set guifont=Noto\ Mono:h14
-    " set guifont=Operator\ Mono:h16
 endif
 
 if has("gui_vimr")
@@ -385,6 +387,7 @@ set rtp+=/usr/local/opt/fzf
 
 nnoremap <silent> <leader><Space> :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>m :History<CR>
 
 " this need fugitive plugin
 let g:fzf_commits_log_options = '--graph --color=always
@@ -393,7 +396,8 @@ let g:fzf_commits_log_options = '--graph --color=always
 nnoremap <silent> <leader>c  :Commits<CR>
 nnoremap <silent> <leader>bc :BCommits<CR>
 
-" this need ripgrep
+" this need ag or ripgrep
+nnoremap <leader>ag :Ag<Space>
 nnoremap <leader>rg :Rg<Space>
 
 " GV
@@ -415,28 +419,15 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " airline-theme
 let g:airline_theme="night_owl"
-" let g:airline_theme="jellybeans"
-" let g:airline_theme="murmur"
-" let g:airline_theme="peaksea"
-" let g:airline_theme="lucius"
-" let g:airline_theme="onedark"
-" let g:airline_theme="seagull"
-" let g:airline_theme="dark_minimal"
-" let g:airline_theme="aurora"
 " let g:airline_theme="base16_harmonic16"
-" let g:airline_theme="base16_codeschool"
-" let g:airline_theme="base16_3024"
-" let g:airline_theme="base16_atelierforest"
-" let g:airline_theme="base16_bespin"
-" let g:airline_theme="base16_flat"
-" let g:airline_theme="base16_pop"
 " let g:airline_theme="base16_seti"
-" let g:airline_theme="base16_shapeshifter"
-" let g:airline_theme="base16_solarized"
+" let g:airline_theme="jellybeans"
+" let g:airline_theme="aurora"
 
 " tmuxline theme
 " let g:airline#extensions#tmuxline#enabled = 0
 " let g:tmuxline_theme = 'powerline'
+
 " tmuxline separators
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_separators = {
@@ -474,6 +465,10 @@ nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
 " let g:NERDTreeDirArrowExpandable = '▸'
 " let g:NERDTreeDirArrowCollapsible = '▾'
 
+let g:indentLine_enabled = 1
+let g:vim_json_syntax_conceal = 0
+autocmd Filetype json :IndentLinesDisable
+
 if executable("ag")
     " let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
     let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -487,7 +482,6 @@ endif
 " => Programming languages
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set signcolumn=yes
 
 " ======== begin autocompletion ========"
 
@@ -555,13 +549,23 @@ imap <C-K> <c-o>:py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<c
 " let g:ale_emit_conflict_warnings = 0
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
-\   'java': ['checkstyle'],
-\   'markdown': ['vale', 'alex'],
-\   'yaml': ['yamllint'],
-\   'c': ['clangd'],
-\   'cpp': ['cquery', 'clangd', 'clang-tidy', 'cpplint'],
-\   'shell': ['shellcheck'],
-\}
+            \   'c': ['clangd'],
+            \   'cpp': ['cquery', 'ccls', 'clangd', 'clang-tidy', 'cpplint'],
+            \   'java': ['checkstyle'],
+            \   'markdown': ['vale', 'alex'],
+            \   'rust': ['rls', 'cargo'],
+            \   'shell': ['shellcheck'],
+            \   'yaml': ['yamllint'],
+            \}
+" rustup component add rls rust-analysis rust-src
+" rustup component add clippy
+let g:ale_rust_rls_config = {
+            \   'rust': {
+            \     'clippy_preference': 'on'
+            \   }
+            \ }
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
+
 " \   'python': ['pyls', 'flake8'],
 " pip install cpplint
 
@@ -569,29 +573,28 @@ let g:ale_linters = {
 " lsp autozimu/LanguageClient-neovim
 if has('mac')
 let g:LanguageClient_serverCommands = {
-            \ 'python': ['pyls'],
+            \ 'cpp': ['cquery','--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}',
+            \ 'ccls','--log-file=/tmp/ccls.log',
+            \ 'clangd'],
             \ 'go': ['go-langserver'],
-            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-            \ 'cpp': ['cquery',
-            \ '--log-file=/tmp/cq.log',
-            \ '--init={"cacheDirectory":"/tmp/cquery/"}',
-            \ 'clangd']
+            \ 'python': ['pyls'],
+            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
             \ }
             "\ 'cpp': ['cquery',
             "\ '--log-file=/tmp/cq.log',
             "\ '--init={"cacheDirectory":"/tmp/cquery/"}',
             "\ 'clangd']
-            "\ 'cpp': ['~/bin/ccls', '--log-file=/tmp/cxx.log'],
-            "\ 'cpp': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cxx.log'],
+            "\ 'cpp': ['~/bin/ccls', '--log-file=/tmp/cc.log'],
+            "\ 'cpp': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cc.log'],
 elseif has('unix')
 let g:LanguageClient_serverCommands = {
-            \ 'python': ['pyls'],
-            \ 'go': ['go-langserver'],
-            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
             \ 'cpp': ['~/bin/cquery',
             \ '--log-file=/tmp/cq.log',
             \ '--init={"cacheDirectory":"/tmp/cquery/"}',
-            \ 'clangd']
+            \ 'clangd'],
+            \ 'go': ['go-langserver'],
+            \ 'python': ['pyls'],
+            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
             \ }
             "\ 'cpp': ['~/src/1404/cquery/build/cquery',
             "\ 'cpp': ['~/src/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-14.04/bin/clangd'],
@@ -606,7 +609,8 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> <leader>lc :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 nn <silent> <M-.> :call LanguageClient_textDocument_definition()<cr>
@@ -653,7 +657,7 @@ let g:LanguageClient_diagnosticsDisplay = {
             \ },
             \ }
 
-" vim-lsp
+" -- vim-lsp --
 " python
 " if executable('pyls')
 "     au User lsp_setup call lsp#register_server({
@@ -664,6 +668,30 @@ let g:LanguageClient_diagnosticsDisplay = {
 "                 \ })
 " endif
 
+" -- coc.nvim --
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " ---- begin programming language pluggin ----
 
@@ -727,12 +755,12 @@ let g:rustfmt_autosave = 1
 " vim-racer
 " vim-racer enables C-x-C-o to search for completions and provides several <Plug> mappings for source code navigation.
 "  show the complete function definition (e.g. its arguments and return type)
-let g:racer_experimental_completer = 1
-
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
+" let g:racer_experimental_completer = 1
+"
+" au FileType rust nmap gd <Plug>(rust-def)
+" au FileType rust nmap gs <Plug>(rust-def-split)
+" au FileType rust nmap gx <Plug>(rust-def-vertical)
+" au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " ======== clojure ========
 au VimEnter * RainbowParenthesesToggle

@@ -16,8 +16,8 @@ export LC_ALL=zh_CN.UTF-8
 export WORKON_HOME=$HOME/.virtualenvs
 # export PIPENV_VENV_IN_PROJECT=1
 
-# for virtualenv 
-# https://vi.stackexchange.com/questions/7644/use-vim-with-virtualenv/7654#7654 
+# for virtualenv
+# https://vi.stackexchange.com/questions/7644/use-vim-with-virtualenv/7654#7654
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
@@ -69,7 +69,7 @@ function setproxy() {
     # export HTTPS_PROXY=http://web-proxy.tencent.com:8080
     # export https_proxy=http://web-proxy.tencent.com:8080
     # export no_proxy="127.0.0.1,localhost,git.code.oa.com"
-    export {http,https,ftp}_proxy="http://web-proxy.tencent.com:8080"
+    export {http,https,ftp,rsync}_proxy="http://web-proxy.tencent.com:8080"
     export no_proxy="127.0.0.1,localhost,git.code.oa.com"
 }
 
@@ -82,14 +82,11 @@ if [[ $OSTYPE =~ "darwin" ]]; then
 
     # for java
     export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-    alias j12="export JAVA_HOME=`/usr/libexec/java_home -v 12`; java -version"
-    # alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
-    # alias j10="export JAVA_HOME=`/usr/libexec/java_home -v 10`; java -version"
-    # alias j9="export JAVA_HOME=`/usr/libexec/java_home -v 9`; java -version"
     alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
+    alias j12="export JAVA_HOME=`/usr/libexec/java_home -v 12`; java -version"
     export PATH=$PATH:$JAVA_HOME/bin
-    
-    # for golang 
+
+    # for golang
     export GOROOT=/usr/local/opt/go/libexec
 
     # for android tools
@@ -100,7 +97,7 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     export EDITOR="/usr/local/bin/vim"
 
 elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
-    # RPi 3B 
+    # RPi 3B
     # for golang
     export GOROOT=~/src/go
 elif [[ $OSTYPE =~ "linux-gnu" ]]; then
@@ -112,7 +109,7 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
 
     # add linuxbrew to path
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-    
+
 fi
 
 # set proxy for tencent
