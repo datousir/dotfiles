@@ -5,10 +5,10 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell"
 # ZSH_THEME="lambda"
 # ZSH_THEME="agnoster"
-ZSH_THEME="ys"
+# ZSH_THEME="ys"
 # ZSH_THEME="avit"
 # ZSH_THEME="amuse"
 # ZSH_THEME="cobalt2"
@@ -20,6 +20,9 @@ ZSH_THEME="ys"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias e='emacsclient -t'
 alias ec='emacsclient -c'
+alias en='emacs -nw'
+
+alias vim='nvim'
 
 alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
 
@@ -70,10 +73,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# pyenv init
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-    fpath+=${ZDOTDIR:-~}/.zsh_functions
-fi
+# 如果想让新加入的 PATH 在 系统 PATH 之前,比如放在 zshrc 里,而不能放在 zshenv 里
+# https://unix.stackexchange.com/a/250456
+# http://www.softec.lu/site/DevelopersCorner/MasteringThePathHelper
+
+# ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"

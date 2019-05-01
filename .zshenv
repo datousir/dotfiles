@@ -1,15 +1,11 @@
-#
-
 # LC config
 export LC_CTYPE=zh_CN.UTF-8
 export LC_ALL=zh_CN.UTF-8
-
 
 # nvm
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
 # ==== begin python ====
 
@@ -25,6 +21,7 @@ fi
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
+    fpath+=${ZDOTDIR:-~}/.zsh_functions
 fi
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="/usr/local/sbin:$PATH"
@@ -39,7 +36,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_COMMAND='fd --type file --color=always --follow --exclude .git'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
 # export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --color=always  --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="-e --reverse --inline-info"
@@ -80,10 +77,10 @@ function unsetproxy() {
 
 if [[ $OSTYPE =~ "darwin" ]]; then
 
-    # for java
+    # for java, only use LTS version
     export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
     alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
-    alias j12="export JAVA_HOME=`/usr/libexec/java_home -v 12`; java -version"
+    alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
     export PATH=$PATH:$JAVA_HOME/bin
 
     # for golang
@@ -113,16 +110,19 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
 fi
 
 # set proxy for tencent
-setproxy
+unsetproxy
 
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
-export PATH=~/bin:$PATH
+# roswell
+export PATH=$PATH:~/.roswell/bin
 
+# llvm
 export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-
-export PATH=$PATH:~/.roswell/bin
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# brew install coreutils
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"

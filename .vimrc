@@ -408,6 +408,7 @@ nnoremap <silent> <leader>gc :GV!<cr>
 let g:airline_powerline_fonts = 1
 
 let g:airline#extensions#ale#enabled = 1
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
@@ -429,7 +430,7 @@ let g:airline_theme="night_owl"
 " let g:tmuxline_theme = 'powerline'
 
 " tmuxline separators
-let g:tmuxline_powerline_separators = 0
+let g:tmuxline_powerline_separators = 1
 let g:tmuxline_separators = {
             \ 'left' : '',
             \ 'left_alt': '❯',
@@ -475,6 +476,8 @@ if executable("ag")
     " let g:ackprg = 'ag --vimgrep'
 endif
 
+" Dash
+nmap <silent> <leader>d <Plug>DashSearch
 """""""""""" Plugin End """""""""""""""""""""""""""""""""""
 
 

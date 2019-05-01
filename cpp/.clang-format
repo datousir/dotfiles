@@ -10,7 +10,7 @@
 ---
 # clang-format -dump-config -style=Google
 
-Language: Cpp
+# Language: Cpp
 
 BasedOnStyle: Google
 # BasedOnStyle: Chromium
