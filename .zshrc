@@ -55,9 +55,9 @@ alias tmux='tmux -2'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git brew osx python screen ssh-agent sublime svn textmate vi-mode yum )
-plugins=(git brew osx python screen ssh-agent sublime svn tmux yum colorize
-         cargo catimg command-not-found urltools vi-mode python
-         history-substring-search zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+plugins=(git brew osx python screen ssh-agent sublime svn tmux vi-mode yum
+         colorize cargo catimg command-not-found urltools history-substring-search
+         zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -70,8 +70,10 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+# This loads nvm
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+# This loads nvm bash_completion
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -59,20 +59,21 @@ export DISABLE_AUTO_TITLE='true'
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Set Proxy
-function setproxy() {
+function setproxy {
     # tencent internal
-    # export HTTP_PROXY=http://web-proxy.tencent.com:8080
-    # export http_proxy=http://web-proxy.tencent.com:8080
-    # export HTTPS_PROXY=http://web-proxy.tencent.com:8080
-    # export https_proxy=http://web-proxy.tencent.com:8080
-    # export no_proxy="127.0.0.1,localhost,git.code.oa.com"
     export {http,https,ftp,rsync}_proxy="http://web-proxy.tencent.com:8080"
     export no_proxy="127.0.0.1,localhost,git.code.oa.com"
+    if [ -f $HOME/.m2/settings.xml.orig ]; then
+        mv $HOME/.m2/settings.xml.orig $HOME/.m2/settings.xml
+    fi
 }
 
 # Unset Proxy
-function unsetproxy() {
+function unsetproxy {
     unset {http,https,ftp}_proxy
+    if [ -f $HOME/.m2/settings.xml ]; then
+        mv $HOME/.m2/settings.xml $HOME/.m2/settings.xml.orig
+    fi
 }
 
 if [[ $OSTYPE =~ "darwin" ]]; then
@@ -89,6 +90,9 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     # for android tools
     export ANDROID_HOME=$HOME/Library/Android/sdk
     export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+    # llvm
+    export PATH="/usr/local/opt/llvm/bin:$PATH"
 
     # set default editor
     export EDITOR="/usr/local/bin/vim"
@@ -107,6 +111,9 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
     # add linuxbrew to path
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
+    # llvm
+    export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
+
 fi
 
 # set proxy for tencent
@@ -119,10 +126,8 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 # roswell
 export PATH=$PATH:~/.roswell/bin
 
-# llvm
-export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
+# $HOME/bin
 export PATH="$HOME/bin:$PATH"
-export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # brew install coreutils
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
