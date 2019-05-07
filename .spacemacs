@@ -64,9 +64,10 @@ This function should only modify configuration layer settings."
         semantic
 
         ;; Filetree
-        (treemacs :variable
-            treemacs-use-follow-mode t
-            treemacs-use-filewatch-mode t)
+        ;;(treemacs :variable
+        ;;    treemacs-use-follow-mode t
+        ;;    treemacs-use-filewatch-mode t)
+        (neotree :variables neo-smart-open t)
 
         ;; Programming and markup languages
         (c-c++ :variables
@@ -287,7 +288,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("FuraCode Nerd Font" ;;"Source Code Pro"
-                               :size 12
+                               :size 14
                                :weight normal
                                :width normal)
 
@@ -559,6 +560,10 @@ dump."
     ;; https://stackoverflow.com/a/42038174
     ;; (when (string= system-type "darwin")
     ;;    (setq dired-use-ls-dired nil))
+
+    ;; NeoTree provides following themes: classic(default) ascii arrow icons nerd.
+    ;; For example, use icons for window system and nerd terminal.
+    (setq neo-theme (if (display-graphic-p) 'icons 'nerd))
 
   )
 
