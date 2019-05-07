@@ -256,9 +256,9 @@ It should only modify the values of Spacemacs settings."
         ;; List sizes may be nil, in which case
         ;; `spacemacs-buffer-startup-lists-length' takes effect.
         dotspacemacs-startup-lists '((recents . 5
-                                         (projects . 7)
-                                         (todos . 5)
-                                         (agenda . 5)))
+                                        (projects . 7)
+                                        (todos . 5)
+                                        (agenda . 5)))
 
         ;; True if the home buffer should respond to resize events. (default t)
         dotspacemacs-startup-buffer-responsive t
@@ -664,13 +664,13 @@ static char *gnus-pointer[] = {
         '(highlight-tail-colors
              (quote
                  (("#3C3D37" . 0
-                      ("#679A01" . 20)
-                      ("#4BBEAE" . 30)
-                      ("#1DB4D0" . 50)
-                      ("#9A8F21" . 60)
-                      ("#A75B00" . 70)
-                      ("#F309DF" . 85)
-                      ("#3C3D37" . 100)))))
+                     ("#679A01" . 20)
+                     ("#4BBEAE" . 30)
+                     ("#1DB4D0" . 50)
+                     ("#9A8F21" . 60)
+                     ("#A75B00" . 70)
+                     ("#F309DF" . 85)
+                     ("#3C3D37" . 100)))))
         '(hl-bg-colors
              (quote
                  ("#7B6000" "#8B2C02" "#990A1B" "#93115C" "#3F4D91" "#00629D" "#00736F" "#546E00")))
@@ -683,21 +683,21 @@ static char *gnus-pointer[] = {
         '(hl-todo-keyword-faces
              (quote
                  (("TODO" . "#dc752f"
-                      ("NEXT" . "#dc752f")
-                      ("THEM" . "#2d9574")
-                      ("PROG" . "#4f97d7")
-                      ("OKAY" . "#4f97d7")
-                      ("DONT" . "#f2241f")
-                      ("FAIL" . "#f2241f")
-                      ("DONE" . "#86dc2f")
-                      ("NOTE" . "#b1951d")
-                      ("KLUDGE" . "#b1951d")
-                      ("HACK" . "#b1951d")
-                      ("TEMP" . "#b1951d")
-                      ("FIXME" . "#dc752f")
-                      ("XXX" . "#dc752f")
-                      ("XXXX" . "#dc752f")
-                      ("???" . "#dc752f")))))
+                     ("NEXT" . "#dc752f")
+                     ("THEM" . "#2d9574")
+                     ("PROG" . "#4f97d7")
+                     ("OKAY" . "#4f97d7")
+                     ("DONT" . "#f2241f")
+                     ("FAIL" . "#f2241f")
+                     ("DONE" . "#86dc2f")
+                     ("NOTE" . "#b1951d")
+                     ("KLUDGE" . "#b1951d")
+                     ("HACK" . "#b1951d")
+                     ("TEMP" . "#b1951d")
+                     ("FIXME" . "#dc752f")
+                     ("XXX" . "#dc752f")
+                     ("XXXX" . "#dc752f")
+                     ("???" . "#dc752f")))))
         '(linum-format "%3i")
         '(magit-diff-use-overlays nil)
         '(main-line-color1 "#222232")
@@ -705,8 +705,8 @@ static char *gnus-pointer[] = {
         '(notmuch-search-line-faces
              (quote
                  (("unread" :foreground "#aeee00"
-                      ("flagged" :foreground "#0a9dff")
-                      ("deleted" :foreground "#ff2c4b" :bold t)))))
+                     ("flagged" :foreground "#0a9dff")
+                     ("deleted" :foreground "#ff2c4b" :bold t)))))
         '(nrepl-message-colors
              (quote
                  ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
@@ -736,7 +736,7 @@ static char *gnus-pointer[] = {
         '(xterm-color-names-bright
              ["#002b36" "#cb4b16" "#586e75" "#657b83" "#839496" "#6c71c4" "#93a1a1" "#fdf6e3"]))
     (custom-set-faces))
-;; custom-set-faces was added by Custom.
-;; If you edit it by hand, you could mess it up, so be careful.
-;; Your init file should contain only one such instance.
-;; If there is more than one, they won't work right.
+        ;; custom-set-faces was added by Custom.
+        ;; If you edit it by hand, you could mess it up, so be careful.
+        ;; Your init file should contain only one such instance.
+        ;; If there is more than one, they won't work right.
