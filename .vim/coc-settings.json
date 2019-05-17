@@ -1,5 +1,4 @@
 {
-    "http.proxy":"web-proxy.tencent.com:8080",
     "languageserver": {
         "ccls": {
             "command": "ccls",
@@ -29,5 +28,6 @@
                 "lintTool": "golint"
             }
         }
-    }
+    },
+    "http.proxy":"web-proxy.tencent.com:8080"
 }

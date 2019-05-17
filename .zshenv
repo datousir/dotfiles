@@ -62,15 +62,18 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 function setproxy {
     # tencent internal
     export {http,https,ftp,rsync}_proxy="http://web-proxy.tencent.com:8080"
-    export no_proxy="127.0.0.1,localhost,git.code.oa.com"
-    if [ -f $HOME/.m2/settings.xml.orig ]; then
-        mv $HOME/.m2/settings.xml.orig $HOME/.m2/settings.xml
-    fi
+    export no_proxy="127.0.0.1,localhost,git.code.oa.com,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
+    export {HTTP,HTTPS,FTP,RSYNC}_PROXY="http://web-proxy.tencent.com:8080"
+    export NO_PROXY="127.0.0.1,localhost,git.code.oa.com,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
+    #if [ -f $HOME/.m2/settings.xml.orig ]; then
+    #    mv $HOME/.m2/settings.xml.orig $HOME/.m2/settings.xml
+    #fi
 }
 
 # Unset Proxy
 function unsetproxy {
     unset {http,https,ftp}_proxy
+    unset {HTTP,HTTPS,FTP}_PROXY
     if [ -f $HOME/.m2/settings.xml ]; then
         mv $HOME/.m2/settings.xml $HOME/.m2/settings.xml.orig
     fi

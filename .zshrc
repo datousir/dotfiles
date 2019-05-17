@@ -6,21 +6,16 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
-# ZSH_THEME="lambda"
 # ZSH_THEME="agnoster"
-# ZSH_THEME="ys"
-# ZSH_THEME="avit"
-# ZSH_THEME="amuse"
 # ZSH_THEME="cobalt2"
-# ZSH_THEME="powerlevel9k/powerlevel9k"
 # ZSH_THEME="random"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias e='emacsclient -t'
+alias e='emacs -nw'
 alias ec='emacsclient -c'
-alias en='emacs -nw'
+alias et='emacsclient -t'
 
 alias vim='nvim'
 

@@ -113,9 +113,10 @@ This function should only modify configuration layer settings."
 
         ;; Themes
         (colors :variables colors-colorize-identifiers 'all)
+        themes-megapack
 
         ;; Tools
-        chrome
+        (chrome :variables chrome-exec-path "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
         dap
         docker
         ;;(cmake :variables cmake-enable-cmake-ide-support t)
@@ -243,7 +244,7 @@ It should only modify the values of Spacemacs settings."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner '100
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -260,7 +261,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-startup-buffer-responsive t
 
    ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'text-mode
+   dotspacemacs-scratch-mode 'markdown-mode
 
    ;; Initial message in the scratch buffer, such as "Welcome to Spacemacs!"
    ;; (default nil)
@@ -269,7 +270,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
+   dotspacemacs-themes '(doom-Iosvkem
+                         dracula
+                         doom-one
+                         spacemacs-dark
                          spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -279,7 +283,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme 'vim-powerline ;;'(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom :separator arrow) ;;'(spacemacs :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -565,6 +569,34 @@ dump."
     ;; For example, use icons for window system and nerd terminal.
     (setq neo-theme (if (display-graphic-p) 'icons 'nerd))
 
+    ;; https://github.com/syl20bnr/spacemacs/issues/8789#issuecomment-3311165811
+    (defun my-flymd-browser-function (url)
+        (let ((process-environment (browse-url-process-environment)))
+            (apply 'start-process
+                (concat "firefox " url)
+                nil
+                "/usr/bin/open"
+                (list "-a" "firefox developer edition" url))))
+    (setq flymd-browser-open-function 'my-flymd-browser-function)
+
+    ;; ;; Install meghanada from melpa.
+    ;; (require 'meghanada)
+    ;; (add-hook 'java-mode-hook
+    ;;     (lambda ()
+    ;;         ;; meghanada-mode on
+    ;;         (meghanada-mode t)
+    ;;         (flycheck-mode +1)
+    ;;         (setq c-basic-offset 2)
+    ;;         ;; use code format
+    ;;         (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
+    ;; (cond
+    ;;     ((eq system-type 'windows-nt)
+    ;;         (setq meghanada-java-path (expand-file-name "bin/java.exe" (getenv "JAVA_HOME")))
+    ;;         (setq meghanada-maven-path "mvn.cmd"))
+    ;;     (t
+    ;;         (setq meghanada-java-path "java")
+    ;;         (setq meghanada-maven-path "mvn")))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -579,13 +611,32 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+    '(hl-todo-keyword-faces
+         (quote
+             (("TODO" . "#dc752f")
+                 ("NEXT" . "#dc752f")
+                 ("THEM" . "#2aa198")
+                 ("PROG" . "#268bd2")
+                 ("OKAY" . "#268bd2")
+                 ("DONT" . "#d70000")
+                 ("FAIL" . "#d70000")
+                 ("DONE" . "#86dc2f")
+                 ("NOTE" . "#875f00")
+                 ("KLUDGE" . "#875f00")
+                 ("HACK" . "#875f00")
+                 ("TEMP" . "#875f00")
+                 ("FIXME" . "#dc752f")
+                 ("XXX" . "#dc752f")
+                 ("XXXX" . "#dc752f"))))
     '(package-selected-packages
          (quote
-             (dap-mode bui tree-mode yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toml-mode toc-org symon string-inflection stickyfunc-enhance srefactor spaceline-all-the-icons smeargle shell-pop reveal-in-osx-finder restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters racer pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim mvn multi-term move-text mmm-mode meghanada maven-test-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-treemacs lsp-java lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic ibuffer-projectile hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-lsp helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-ctest helm-cscope helm-company helm-c-yasnippet helm-ag groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio gnuplot gmail-message-mode gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flymd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav editorconfig edit-server dumb-jump dotenv-mode doom-modeline dockerfile-mode docker disaster diminish diff-hl dash-at-point cython-mode cquery counsel-projectile company-statistics company-rtags company-lsp company-emacs-eclim company-c-headers company-anaconda column-enforce-mode color-identifiers-mode cmake-mode cmake-ide clean-aindent-mode clang-format centered-cursor-mode ccls cargo browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
+             (zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme kaolin-themes jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme eziam-theme exotica-theme espresso-theme doom-themes django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme sicp seti-theme darkroom atom-one-dark-theme dracula-theme dap-mode bui tree-mode yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toml-mode toc-org symon string-inflection stickyfunc-enhance srefactor spaceline-all-the-icons smeargle shell-pop reveal-in-osx-finder restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters racer pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim mvn multi-term move-text mmm-mode meghanada maven-test-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-treemacs lsp-java lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic ibuffer-projectile hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-lsp helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-ctest helm-cscope helm-company helm-c-yasnippet helm-ag groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio gnuplot gmail-message-mode gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flymd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav editorconfig edit-server dumb-jump dotenv-mode doom-modeline dockerfile-mode docker disaster diminish diff-hl dash-at-point cython-mode cquery counsel-projectile company-statistics company-rtags company-lsp company-emacs-eclim company-c-headers company-anaconda column-enforce-mode color-identifiers-mode cmake-mode cmake-ide clean-aindent-mode clang-format centered-cursor-mode ccls cargo browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+ '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#262626"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:background nil)))))
 )
