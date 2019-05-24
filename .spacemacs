@@ -32,111 +32,121 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '()
 
    ;; List of configuration layers to load.
-   dotspacemacs-configuration-layers
-   '(
-        ;; ----------------------------------------------------------------
-        ;; Example of useful layers you may want to use right away.
-        ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-        ;; `M-m f e R' (Emacs style) to install them.
-        ;; ----------------------------------------------------------------
+    dotspacemacs-configuration-layers
+    '(
+       ;; ----------------------------------------------------------------
+       ;; Example of useful layers you may want to use right away.
+       ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
+       ;; `M-m f e R' (Emacs style) to install them.
+       ;; ----------------------------------------------------------------
 
-        ;; Checkers
-        spell-checking
-        syntax-checking
+       ;; Checkers
+       spell-checking
+       syntax-checking
 
-        ;; Completion
-        (auto-completion :variables
-            auto-completion-return-key-behavior 'complete
-            auto-completion-tab-key-behavior 'cycle
-            auto-completion-complete-with-key-sequence (kbd "jk")
-            auto-completion-complete-with-key-sequence-delay 0.1
-            auto-completion-idle-delay 0.2
-            auto-completion-private-snippets-directory nil
-            auto-completion-enable-snippets-in-popup t
-            auto-completion-enable-help-tooltip t
-            auto-completion-enable-sort-by-usage t)
-        (helm :variables helm-enable-auto-resize t)
+       ;; Completion
+       (auto-completion :variables
+         auto-completion-return-key-behavior 'complete
+         auto-completion-tab-key-behavior 'cycle
+         auto-completion-complete-with-key-sequence (kbd "jk")
+         auto-completion-complete-with-key-sequence-delay 0.1
+         auto-completion-idle-delay 0.2
+         auto-completion-private-snippets-directory nil
+         auto-completion-enable-snippets-in-popup t
+         auto-completion-enable-help-tooltip t
+         auto-completion-enable-sort-by-usage t)
+       (helm :variables helm-enable-auto-resize t)
 
-        ;; Emacs
-        better-defaults
-        (ibuffer :variables ibuffer-group-buffers-by 'projects)
-        org
-        semantic
+       ;; Emacs
+       better-defaults
+       (ibuffer :variables ibuffer-group-buffers-by 'projects)
+       org
+       semantic
 
-        ;; Filetree
-        ;;(treemacs :variable
-        ;;    treemacs-use-follow-mode t
-        ;;    treemacs-use-filewatch-mode t)
-        (neotree :variables neo-smart-open t)
+       ;; Filetree
+       ;;(treemacs :variable
+       ;;    treemacs-use-follow-mode t
+       ;;    treemacs-use-filewatch-mode t)
+       (neotree :variables neo-smart-open t)
 
-        ;; Programming and markup languages
-        (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-adopt-subprojects t
-            ;;c-c++-lsp-cache-dir '.
-            c-c++-backend 'lsp-ccls
-            c-c++-lsp-sem-highlight-method 'font-lock
-            c-c++-lsp-sem-highlight-rainbow t)
-        emacs-lisp
-        ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+lang/go/README.org
-        (go :variables
-            go-use-gometalinter t
-            go-backend 'lsp)
-        (java :variables java-backend 'lsp)
-        (json :variables json-fmt-tool 'prettier)
-        markdown
-        protobuf ;; need protoc
-        (python :variables
-            python-backend 'lsp
-            python-test-runner 'pytest)
-        (rust :variables
-            rust-backend 'lsp)
-        shell-scripts ;; brew install shellcheck && pip install bashate
-        (sql :variables sql-capitalize-keywords t) ;;gem install sqlint
-        yaml
+       ;; Programming and markup languages
+       (c-c++ :variables
+         c-c++-default-mode-for-headers 'c++-mode
+         c-c++-adopt-subprojects t
+         ;;c-c++-lsp-cache-dir '.
+         c-c++-backend 'lsp-ccls
+         c-c++-lsp-sem-highlight-method 'font-lock
+         c-c++-lsp-sem-highlight-rainbow t)
+       emacs-lisp
+       ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+lang/go/README.org
+       (go :variables
+         go-use-gometalinter t
+         go-backend 'lsp)
+       (html :variables web-fmt-tool 'prettier)
+       (java :variables java-backend 'lsp)
+       (json :variables json-fmt-tool 'prettier)
+       (markdown :variables
+         markdown-mmm-auto-modes '("c" "c++" "python" "java" "shell" ("elisp" "emacs-lisp"))
+         markdown-live-preview-engine 'vmd)
+       protobuf ;; need protoc
+       (python :variables
+         python-backend 'lsp
+         python-test-runner 'pytest)
+       (rust :variables
+         rust-backend 'lsp)
+       shell-scripts ;; brew install shellcheck && pip install bashate
+       (sql :variables sql-capitalize-keywords t) ;;gem install sqlint
+       yaml
 
-        ;; Misc
-        multiple-cursors
+       ;; Misc
+       multiple-cursors
 
-        ;; os
-        osx
+       ;; os
+       (osx :variables
+         osx-command-as       'hyper
+         osx-option-as        'meta
+         osx-control-as       'control
+         osx-function-as      nil
+         osx-right-command-as 'left
+         osx-right-option-as  'left
+         osx-right-control-as 'left)
 
-        ;; Readers
-        dash
+       ;; Readers
+       dash
 
-        ;; Source control
-        git
-        version-control
+       ;; SourcE ControL
+       git
+       version-control
 
-        ;; Tags
-        cscope
+       ;; Tags
+       cscope
 
-        ;; Themes
-        (colors :variables colors-colorize-identifiers 'all)
-        themes-megapack
+       ;; Themes
+       (colors :variables colors-colorize-identifiers 'all)
+       themes-megapack
 
-        ;; Tools
-        (chrome :variables chrome-exec-path "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
-        dap
-        docker
-        ;;(cmake :variables cmake-enable-cmake-ide-support t)
-        imenu-list
-        lsp
-        prettier ;; npm install -g prettier
-        (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom
-            shell-default-term-shell "/usr/local/bin/zsh"
-            shell-default-shell 'eshell)
-        tmux
-        xclipboard
+       ;; Tools
+       (chrome :variables chrome-exec-path "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+       dap
+       docker
+       ;;(cmake :variables cmake-enable-cmake-ide-support t)
+       imenu-list ;; vim taglist
+       lsp
+       prettier ;; npm install -g prettier
+       (shell :variables
+         shell-default-height 30
+         shell-default-position 'bottom
+         shell-default-term-shell "/usr/local/bin/zsh"
+         shell-default-shell 'eshell)
+       tmux
+       xclipboard
 
-        ;; vim
-        (vinegar :variables
-            vinegar-reuse-dired-buffer t
-            vinegar-dired-hide-details t)
+       ;; vim
+       (vinegar :variables
+         vinegar-reuse-dired-buffer t
+         vinegar-dired-hide-details t)
 
-     )
+       )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -270,11 +280,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-Iosvkem
-                         dracula
-                         doom-one
-                         spacemacs-dark
-                         spacemacs-light)
+    dotspacemacs-themes '(
+                           spacemacs-dark
+                           dracula
+                           spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -550,52 +559,42 @@ dump."
  Put your configuration code here, except for variables that should be set
  before packages are loaded."
 
-    ;; Setting Org mode
-    (setq org-todo-keywords
-        '((sequence "TODO(t)" "ONGOING(o!)" "PANDING(p!)" "FEEDBACK(f!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c!/@)")))
+  ;; Setting Org mode
+  (setq org-todo-keywords
+    '((sequence "TODO(t)" "ONGOING(o!)" "PANDING(p!)" "FEEDBACK(f!)" "VERIFY(v!)" "|" "DONE(d!)" "CANCELED(c!/@)")))
 
-    ;; Enable company globally
-    (global-company-mode)
+  ;; Enable company globally
+  (global-company-mode)
 
-    ;; emacs-plus natural title bar
-    (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-    (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  ;; emacs-plus natural title bar
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
-    ;; https://stackoverflow.com/a/42038174
-    ;; (when (string= system-type "darwin")
-    ;;    (setq dired-use-ls-dired nil))
+  ;; https://stackoverflow.com/a/42038174
+  ;; (when (string= system-type "darwin")
+  ;;    (setq dired-use-ls-dired nil))
 
-    ;; NeoTree provides following themes: classic(default) ascii arrow icons nerd.
-    ;; For example, use icons for window system and nerd terminal.
-    (setq neo-theme (if (display-graphic-p) 'icons 'nerd))
+  ;; NeoTree provides following themes: classic(default) ascii arrow icons nerd.
+  ;; For example, use icons for window system and nerd terminal.
+  (setq neo-theme (if (display-graphic-p) 'icons 'nerd))
 
-    ;; https://github.com/syl20bnr/spacemacs/issues/8789#issuecomment-3311165811
-    (defun my-flymd-browser-function (url)
-        (let ((process-environment (browse-url-process-environment)))
-            (apply 'start-process
-                (concat "firefox " url)
-                nil
-                "/usr/bin/open"
-                (list "-a" "firefox developer edition" url))))
-    (setq flymd-browser-open-function 'my-flymd-browser-function)
+  ;; https://github.com/syl20bnr/spacemacs/issues/8789#issuecomment-3311165811
+  (defun my-flymd-browser-function (url)
+    (let ((process-environment (browse-url-process-environment)))
+      (apply 'start-process
+        (concat "firefox " url)
+        nil
+        "/usr/bin/open"
+        (list "-a" "firefox developer edition" url))))
+  (setq flymd-browser-open-function 'my-flymd-browser-function)
 
-    ;; ;; Install meghanada from melpa.
-    ;; (require 'meghanada)
-    ;; (add-hook 'java-mode-hook
-    ;;     (lambda ()
-    ;;         ;; meghanada-mode on
-    ;;         (meghanada-mode t)
-    ;;         (flycheck-mode +1)
-    ;;         (setq c-basic-offset 2)
-    ;;         ;; use code format
-    ;;         (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
-    ;; (cond
-    ;;     ((eq system-type 'windows-nt)
-    ;;         (setq meghanada-java-path (expand-file-name "bin/java.exe" (getenv "JAVA_HOME")))
-    ;;         (setq meghanada-maven-path "mvn.cmd"))
-    ;;     (t
-    ;;         (setq meghanada-java-path "java")
-    ;;         (setq meghanada-maven-path "mvn")))
+  ;; Enable mouse support
+  ;; (unless window-system
+  ;;   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+  ;;   (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
+
+  (if (load "mwheel" t)
+    (mwheel-install))
 
   )
 
@@ -612,27 +611,25 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(evil-want-Y-yank-to-eol nil)
-    '(hl-todo-keyword-faces
-         (quote
-             (("TODO" . "#dc752f")
-                 ("NEXT" . "#dc752f")
-                 ("THEM" . "#2aa198")
-                 ("PROG" . "#268bd2")
-                 ("OKAY" . "#268bd2")
-                 ("DONT" . "#d70000")
-                 ("FAIL" . "#d70000")
-                 ("DONE" . "#86dc2f")
-                 ("NOTE" . "#875f00")
-                 ("KLUDGE" . "#875f00")
-                 ("HACK" . "#875f00")
-                 ("TEMP" . "#875f00")
-                 ("FIXME" . "#dc752f")
-                 ("XXX" . "#dc752f")
-                 ("XXXX" . "#dc752f"))))
-    '(package-selected-packages
-         (quote
-             (zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme kaolin-themes jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme eziam-theme exotica-theme espresso-theme doom-themes django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme sicp seti-theme darkroom atom-one-dark-theme dracula-theme dap-mode bui tree-mode yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toml-mode toc-org symon string-inflection stickyfunc-enhance srefactor spaceline-all-the-icons smeargle shell-pop reveal-in-osx-finder restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters racer pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim mvn multi-term move-text mmm-mode meghanada maven-test-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-treemacs lsp-java lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic ibuffer-projectile hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-lsp helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-ctest helm-cscope helm-company helm-c-yasnippet helm-ag groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio gnuplot gmail-message-mode gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flymd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav editorconfig edit-server dumb-jump dotenv-mode doom-modeline dockerfile-mode docker disaster diminish diff-hl dash-at-point cython-mode cquery counsel-projectile company-statistics company-rtags company-lsp company-emacs-eclim company-c-headers company-anaconda column-enforce-mode color-identifiers-mode cmake-mode cmake-ide clean-aindent-mode clang-format centered-cursor-mode ccls cargo browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
- '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#262626"))))
+  '(hl-todo-keyword-faces
+     '(("TODO" . "#dc752f")
+        ("NEXT" . "#dc752f")
+        ("THEM" . "#2aa198")
+        ("PROG" . "#268bd2")
+        ("OKAY" . "#268bd2")
+        ("DONT" . "#d70000")
+        ("FAIL" . "#d70000")
+        ("DONE" . "#86dc2f")
+        ("NOTE" . "#875f00")
+        ("KLUDGE" . "#875f00")
+        ("HACK" . "#875f00")
+        ("TEMP" . "#875f00")
+        ("FIXME" . "#dc752f")
+        ("XXX" . "#dc752f")
+        ("XXXX" . "#dc752f")))
+  '(package-selected-packages
+     '(impatient-mode company-web web-mode tagedit slim-mode scss-mode pug-mode simple-httpd helm-css-scss haml-mode emmet-mode counsel-css web-completion-data add-node-modules-path vmd-mode zenburn-theme zen-and-art-theme white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme reverse-theme rebecca-theme railscasts-theme purple-haze-theme professional-theme planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme light-soap-theme kaolin-themes jbeans-theme jazz-theme ir-black-theme inkpot-theme heroku-theme hemisu-theme hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme gandalf-theme flatui-theme flatland-theme farmhouse-theme eziam-theme exotica-theme espresso-theme doom-themes django-theme darktooth-theme autothemer darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes afternoon-theme sicp seti-theme darkroom atom-one-dark-theme dracula-theme dap-mode bui tree-mode yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package unfill treemacs-projectile treemacs-evil toml-mode toc-org symon string-inflection stickyfunc-enhance srefactor spaceline-all-the-icons smeargle shell-pop reveal-in-osx-finder restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters racer pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox overseer osx-trash osx-dictionary osx-clipboard orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nameless mwim mvn multi-term move-text mmm-mode meghanada maven-test-mode markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-treemacs lsp-java lorem-ipsum live-py-mode link-hint launchctl indent-guide importmagic ibuffer-projectile hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-lsp helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-ctest helm-cscope helm-company helm-c-yasnippet helm-ag groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio gnuplot gmail-message-mode gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flyspell-correct-helm flymd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav editorconfig edit-server dumb-jump dotenv-mode doom-modeline dockerfile-mode docker disaster diminish diff-hl dash-at-point cython-mode cquery counsel-projectile company-statistics company-rtags company-lsp company-emacs-eclim company-c-headers company-anaconda column-enforce-mode color-identifiers-mode cmake-mode cmake-ide clean-aindent-mode clang-format centered-cursor-mode ccls cargo browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))
+ '(pdf-view-midnight-colors '("#b2b2b2" . "#262626")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

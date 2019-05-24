@@ -59,7 +59,7 @@ export DISABLE_AUTO_TITLE='true'
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Set Proxy
-function setproxy {
+function proxy_on {
     # tencent internal
     export {http,https,ftp,rsync}_proxy="http://web-proxy.tencent.com:8080"
     export no_proxy="127.0.0.1,localhost,git.code.oa.com,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
@@ -71,13 +71,27 @@ function setproxy {
 }
 
 # Unset Proxy
-function unsetproxy {
+function proxy_off {
     unset {http,https,ftp}_proxy
     unset {HTTP,HTTPS,FTP}_PROXY
+    #if [ -f $HOME/.m2/settings.xml ]; then
+    #    mv $HOME/.m2/settings.xml $HOME/.m2/settings.xml.orig
+    #fi
+}
+
+function setmaven {
+    if [ -f $HOME/.m2/settings.xml.orig ]; then
+        mv $HOME/.m2/settings.xml.orig $HOME/.m2/settings.xml
+    fi
+}
+function unsetmaven {
     if [ -f $HOME/.m2/settings.xml ]; then
         mv $HOME/.m2/settings.xml $HOME/.m2/settings.xml.orig
     fi
 }
+
+# set proxy for tencent
+proxy_on
 
 if [[ $OSTYPE =~ "darwin" ]]; then
 
@@ -119,8 +133,6 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
 
 fi
 
-# set proxy for tencent
-setproxy
 
 export GOPATH=~/go
 export GOBIN=~/go/bin
