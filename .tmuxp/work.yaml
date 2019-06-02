@@ -5,7 +5,7 @@ start_directory: ~/src/work/tencent
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: vim
+  - window_name: editor
     focus: true
     panes:
       - shell_command:           # pane no. 1

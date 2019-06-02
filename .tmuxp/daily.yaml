@@ -5,7 +5,7 @@ start_directory: ~/
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: vim
+  - window_name: editor
     panes:
       - shell_command:
         - vim
