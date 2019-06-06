@@ -72,19 +72,19 @@ function proxy_on {
 
 # Unset Proxy
 function proxy_off {
-    unset {http,https,ftp}_proxy
-    unset {HTTP,HTTPS,FTP}_PROXY
+    unset {http,https,ftp,no}_proxy
+    unset {HTTP,HTTPS,FTP,NO}_PROXY
     #if [ -f $HOME/.m2/settings.xml ]; then
     #    mv $HOME/.m2/settings.xml $HOME/.m2/settings.xml.orig
     #fi
 }
 
-function setmaven {
+function maven_proxy_on {
     if [ -f $HOME/.m2/settings.xml.orig ]; then
         mv $HOME/.m2/settings.xml.orig $HOME/.m2/settings.xml
     fi
 }
-function unsetmaven {
+function maven_proxy_off {
     if [ -f $HOME/.m2/settings.xml ]; then
         mv $HOME/.m2/settings.xml $HOME/.m2/settings.xml.orig
     fi
