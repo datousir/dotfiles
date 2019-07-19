@@ -72,8 +72,8 @@ function proxy_on {
 
 # Unset Proxy
 function proxy_off {
-    unset {http,https,ftp,no}_proxy
-    unset {HTTP,HTTPS,FTP,NO}_PROXY
+    unset {http,https,ftp,rsync,no}_proxy
+    unset {HTTP,HTTPS,FTP,RSYNC,NO}_PROXY
     #if [ -f $HOME/.m2/settings.xml ]; then
     #    mv $HOME/.m2/settings.xml $HOME/.m2/settings.xml.orig
     #fi

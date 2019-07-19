@@ -5,25 +5,23 @@ start_directory: ~/src/work/tencent
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: editor
-    focus: true
+  - window_name: ssh
     panes:
       - shell_command:           # pane no. 1
           - vim
-  - window_name: git
-    panes:
-      - tig
-  - window_name: shell
-    layout: tiled
+  - window_name: docker
     # shell_command_before:
     #   - cd ~/src/work/ihandy/all-tech-server/
     panes:
+      - shell_command:
+        - docker images
+  - window_name: shell
+    # layout: tiled
+    layout: main-vertical
+    focus: true
+    panes:
       - blank
-      # - shell_command:           # pane no. 1
-      #   # - cd /var/log          # run multiple commands in this pane
-      #   # - ls -al | grep \.log
-      #     - ll
-      # - echo second pane         # pane no. 2
+      - blank
   - window_name: shell
     panes:
       - blank

@@ -1,16 +1,16 @@
 ---
 session_name: tencent
 start_directory: ~/src/work/tencent
-before_script: docker start u14
+# before_script: docker start u14
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: vim
+  - window_name: ssh
     focus: true
     panes:
       - shell_command:           # pane no. 1
           - vim
-  - window_name: shell
+  - window_name: docker
     panes:
       - blank
   - window_name: u14.dev1

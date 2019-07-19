@@ -17,8 +17,6 @@ alias e='emacs -nw'
 alias ec='emacsclient -c'
 alias et='emacsclient -t'
 
-alias vim='nvim'
-
 alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
 
 # force tmux to assume the terminal supports 256 colors
