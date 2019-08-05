@@ -8,15 +8,16 @@ root = true
 end_of_line = lf
 insert_final_newline = false
 trim_trailing_whitespace = true
+
 # Set default charset
 charset = utf-8
 
-[*.md]
+# 2 space indentation
+indent_style = space
+indent_size = 2
+
+[*.{md,py}]
 # 4 space indentation
 indent_style = space
 indent_size = 4
 
-[*]
-# 2 space indentation
-indent_style = space
-indent_size = 2

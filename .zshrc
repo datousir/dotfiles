@@ -13,7 +13,7 @@ ZSH_THEME="ys"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias e='emacs -nw'
+alias en='emacs -nw'
 alias ec='emacsclient -c'
 alias et='emacsclient -t'
 
@@ -21,6 +21,9 @@ alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
 
 # force tmux to assume the terminal supports 256 colors
 alias tmux='tmux -2'
+
+alias e="exa -l"
+alias lsd="lsd -l"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
