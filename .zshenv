@@ -126,10 +126,10 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
     export EDITOR="/usr/bin/vim"
 
     # add linuxbrew to path
-    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
     # llvm
-    export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
+    # export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
 
 fi
 
