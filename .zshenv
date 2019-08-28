@@ -90,8 +90,6 @@ function maven_proxy_off {
     fi
 }
 
-# set proxy for tencent
-proxy_on
 
 if [[ $OSTYPE =~ "darwin" ]]; then
 
@@ -114,6 +112,9 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     # set default editor
     export EDITOR="/usr/local/bin/vim"
 
+    # set proxy for tencent
+    proxy_on
+
 elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
     # RPi 3B
     # for golang
@@ -130,6 +131,8 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
 
     # llvm
     # export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
+    export CC=gcc-7
+    export CXX=g++-7
 
 fi
 
