@@ -82,8 +82,9 @@ This function should only modify configuration layer settings."
        emacs-lisp
        ;; https://github.com/syl20bnr/spacemacs/blob/develop/layers/+lang/go/README.org
        (go :variables
-         go-use-gometalinter t
-         go-backend 'lsp)
+         go-backend 'lsp
+         go-tab-width 2
+         go-use-gometalinter t)
        (html :variables web-fmt-tool 'prettier)
        (java :variables java-backend 'lsp)
        (json :variables json-fmt-tool 'prettier)
