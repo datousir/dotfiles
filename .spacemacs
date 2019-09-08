@@ -69,6 +69,9 @@ This function should only modify configuration layer settings."
        ;;    treemacs-use-filewatch-mode t)
        (neotree :variables neo-smart-open t)
 
+       ;; Fonts
+       (unicode-fonts :variables unicode-fonts-force-multi-color-on-mac t)
+
        ;; Programming and markup languages
        (c-c++ :variables
          c-c++-default-mode-for-headers 'c++-mode
