@@ -5,23 +5,24 @@ start_directory: ~/src/work/tencent
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: ssh
+  - window_name: vim
     panes:
       - shell_command:           # pane no. 1
           - vim
-  - window_name: docker
-    # shell_command_before:
-    #   - cd ~/src/work/ihandy/all-tech-server/
+          - docker images
+  - window_name: shell
+    layout: tiled
+    focus: true
     panes:
       - shell_command:
         - docker images
   - window_name: shell
     # layout: tiled
     layout: main-vertical
-    focus: true
+    # focus: true
     panes:
       - blank
-      - blank
+      # - blank
   - window_name: shell
     panes:
       - blank

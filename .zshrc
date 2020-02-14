@@ -10,20 +10,6 @@ ZSH_THEME="ys"
 # ZSH_THEME="cobalt2"
 # ZSH_THEME="random"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias en='emacs -nw'
-alias ec='emacsclient -c'
-alias et='emacsclient -t'
-
-alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
-
-# force tmux to assume the terminal supports 256 colors
-alias tmux='tmux -2'
-
-alias e="exa -l"
-alias lsd="lsd -l"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -57,6 +43,21 @@ plugins=(git brew osx python screen ssh-agent sublime svn tmux vi-mode yum
 
 source $ZSH/oh-my-zsh.sh
 
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias en='emacs -nw'
+alias ec='emacsclient -c'
+alias et='emacsclient -t'
+
+alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
+
+# force tmux to assume the terminal supports 256 colors
+alias tmux='tmux -2'
+
+alias e="exa -l"
+alias l="lsd -l"
+
 # Customize to your needs...
 fpath=(/usr/local/share/zsh-completions $fpath)
 
@@ -84,3 +85,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+
+# pyenv
+eval "$(pyenv init -)"

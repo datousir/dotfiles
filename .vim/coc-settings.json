@@ -28,6 +28,5 @@
                 "lintTool": "golint"
             }
         }
-    },
-    "http.proxy":"web-proxy.tencent.com:8080"
+    }
 }

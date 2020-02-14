@@ -19,12 +19,12 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 fi
 
 # pyenv init
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-    fpath+=${ZDOTDIR:-~}/.zsh_functions
-fi
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="/usr/local/sbin:$PATH"
+# if command -v pyenv 1>/dev/null 2>&1; then
+#     eval "$(pyenv init -)"
+#     fpath+=${ZDOTDIR:-~}/.zsh_functions
+# fi
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="/usr/local/sbin:$PATH"
 
 # ==== end python ====
 
