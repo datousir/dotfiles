@@ -1,5 +1,4 @@
 {
-    // config for vim
     "vim.leader": ",",
     "vim.enableNeovim": true,
     "vim.neovimPath": "/usr/local/bin/nvim",
@@ -30,14 +29,17 @@
             ]
         }
     ],
-    // config for workbench
+
     "workbench.activityBar.visible": true,
-    "workbench.statusBar.visible": true,
     "workbench.colorCustomizations": {
-        "statusBar.background": "#005f5f",
-        "statusBar.noFolderBackground": "#005f5f",
-        "statusBar.debuggingBackground": "#005f5f"
+        "statusBar.background": "#5f00af",
+        "statusBar.noFolderBackground": "#5f00af",
+        "statusBar.debuggingBackground": "#5f00af"
     },
+    "workbench.colorTheme": "Gruvbox Dark (Hard)",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.statusBar.visible": true,
+
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 36,
     "editor.suggestSelection": "first",
@@ -45,6 +47,7 @@
     "editor.fontLigatures": true,
     "editor.fontFamily": "'Fira Code Retina', Menlo, Monaco, 'Courier New', monospace",
     "editor.formatOnSave": true,
+
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
     },
@@ -61,19 +64,17 @@
     },
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "C_Cpp.clang_format_fallbackStyle": "Google",
-    "C_Cpp.default.cppStandard": "c++11",
+    "C_Cpp.default.cppStandard": "c++14",
     "C_Cpp.default.intelliSenseMode": "gcc-x64",
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
     "C_Cpp.updateChannel": "Insiders",
     "go.useLanguageServer": true,
     "goOutliner.extendExplorerTab": true,
     "goOutliner.enableDebugChannel": true,
-    "workbench.colorTheme": "Dracula",
-    "workbench.iconTheme": "vscode-icons",
     "sync.gist": "16d79153afefe13e6a606e0127a15619",
     "python.jediEnabled": false,
     "terminal.integrated.rendererType": "dom",
-    "breadcrumbs.enabled": false,
+    "breadcrumbs.enabled": true,
     "cmake.configureOnOpen": false,
     "vsicons.dontShowNewVersionMessage": true,
     "cmake-tools-helper.cmake_download_path": "/Users/datousir/.vscode/extensions/maddouri.cmake-tools-helper-0.2.1/cmake_download",
@@ -85,5 +86,8 @@
     },
     "[latex]": {
         "editor.defaultFormatter": "nickfode.latex-formatter"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
     }
 }

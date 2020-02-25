@@ -120,8 +120,6 @@ Plug 'mbbill/undotree'
 
 " color themes
 Plug 'morhetz/gruvbox'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
 Plug 'dracula/vim'
 Plug 'altercation/vim-colors-solarized'
