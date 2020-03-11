@@ -441,10 +441,8 @@ let g:tmuxline_separators = {
 unmap <leader>h
 unmap <leader>l
 
-nnoremap <silent> <leader>bh :bprevious<cr>
-nnoremap <silent> <leader>bl :bnext<cr>
-
-" ---- BufOnly ----
+nnoremap <silent> <leader>bp :bprevious<cr>
+nnoremap <silent> <leader>bn :bnext<cr>
 nnoremap <silent> <leader>bo :BufOnly<cr>
 
 " ---- tagbar ----

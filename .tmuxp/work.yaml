@@ -1,28 +1,39 @@
 ---
+# http://tmuxp.git-pull.com/en/latest/
 session_name: work
 start_directory: ~/src/work/tencent
 # before_script: pipenv install --dev --skip-lock # ensure dev deps install
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: vim
+  - window_name: playground
+    focus: true
+    shell_command_before:
+      - cd ~
+    panes:
+      - vim
+      - focus: true
+  - window_name: docker
+    layout: main-vertical
     panes:
       - shell_command:           # pane no. 1
-          - vim
-          - docker images
-  - window_name: shell
+        - docker images
+  - window_name: ssh-csig
     layout: tiled
-    focus: true
     panes:
       - shell_command:
-        - docker images
-  - window_name: shell
-    # layout: tiled
-    layout: main-vertical
+        - ssh csig
+  - window_name: dev-sche
+    shell_command_before:
+      - cd tad_sim/simcloud_scheduler
+    layout: tiled
+    # layout: main-vertical
     # focus: true
     panes:
       - blank
       # - blank
-  - window_name: shell
+  - window_name: dev-agent
+    shell_command_before:
+      - cd tad_sim/simcloud_agent
     panes:
       - blank

@@ -113,7 +113,7 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     export EDITOR="/usr/local/bin/vim"
 
     # set proxy for tencent
-    proxy_on
+    proxy_off
 
 elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
     # RPi 3B
