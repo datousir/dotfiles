@@ -70,6 +70,17 @@ function proxy_on {
     #fi
 }
 
+function proxy_home {
+    # tencent internal
+    export {http,https,ftp,rsync}_proxy="127.0.0.1:12759"
+    export no_proxy="127.0.0.1,localhost,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
+    export {HTTP,HTTPS,FTP,RSYNC}_PROXY="127.0.0.1:12759"
+    export NO_PROXY="127.0.0.1,localhost,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
+    #if [ -f $HOME/.m2/settings.xml.orig ]; then
+    #    mv $HOME/.m2/settings.xml.orig $HOME/.m2/settings.xml
+    #fi
+}
+
 # Unset Proxy
 function proxy_off {
     unset {http,https,ftp,rsync,no}_proxy
