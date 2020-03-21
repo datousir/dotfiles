@@ -88,3 +88,4 @@ export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 
 # pyenv
 eval "$(pyenv init -)"
+source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
