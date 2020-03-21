@@ -144,8 +144,8 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 # roswell
 export PATH=$PATH:~/.roswell/bin
 
-# $HOME/bin
-export PATH="$HOME/bin:$PATH"
+# ~/bin and ~/.local/bin
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 # brew install coreutils
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
