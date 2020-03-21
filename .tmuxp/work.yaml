@@ -7,6 +7,7 @@ start_directory: ~/src/work/tencent
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
   - window_name: playground
+    layout: main-vertical
     focus: true
     shell_command_before:
       - cd ~
