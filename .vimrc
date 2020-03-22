@@ -165,6 +165,8 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+let g:deoplete#enable_at_startup = 1
+
 " for python
 Plug 'zchee/deoplete-jedi'
 
@@ -488,8 +490,6 @@ nmap <silent> <leader>d <Plug>DashSearch
 
 " ======== begin autocompletion ========"
 
-" deoplete.
-let g:deoplete#enable_at_startup = 1
 
 " " ==== begin ncm2 config ====
 "
