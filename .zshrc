@@ -20,10 +20,6 @@ ZSH_THEME="ys"
 # Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
 
-#export C_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/opt/zeromq/include/
-#export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/opt/zeromq/include/
-#export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/zeromq/lib/
-
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
 
@@ -61,8 +57,6 @@ alias l="lsd -l"
 # Customize to your needs...
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-[ -f ~/.ssh/websocketserver.pem ] && ssh-add -K ~/.ssh/websocketserver.pem
-
 # ======== In addition to nvm and fzf, other PATH settings should be in the .zshenv file. ========
 
 # nvm
@@ -70,8 +64,6 @@ export NVM_DIR="$HOME/.nvm"
 # This loads nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 # This loads nvm bash_completion
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
