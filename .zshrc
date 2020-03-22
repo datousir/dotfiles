@@ -88,3 +88,16 @@ export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 
 # pyenv
 eval "$(pyenv init -)"
+
+if [[ $OSTYPE =~ "darwin" ]]; then
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+  if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+  fi
+fi
+
