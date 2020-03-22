@@ -99,5 +99,6 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     autoload -Uz compinit
     compinit
   fi
+elif [[ $OSTYPE =~ "linux-gnu" ]]; then
+  source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
 fi
-
