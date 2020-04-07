@@ -1,5 +1,4 @@
 {
-    // config for vim
     "vim.leader": ",",
     "vim.enableNeovim": true,
     "vim.neovimPath": "/usr/local/bin/nvim",
@@ -9,65 +8,87 @@
     "vim.useCtrlKeys": true,
     "vim.hlsearch": true,
     "vim.statusBarColorControl": true,
-    "vim.statusBarColors" : {
-        "normal": ["#005f5f", "#ffffff"],
-        "insert": ["#5f0000", "#ffffff"],
-        "visual": ["#5f00af", "#ffffff"],
-        "visualline": ["#005f87", "#ffffff"],
-        "visualblock": ["#86592d", "#ffffff"],
-        "replace": ["#000000", "#ffffff"],
-    },
     "vim.startInInsertMode": false,
     "vim.insertModeKeyBindings": [
         {
-            "before": ["j", "k"],
-            "after": ["<Esc>"]
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
         },
         {
-            "before": ["k", "j"],
-            "after": ["<Esc>"]
+            "before": [
+                "k",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
         }
     ],
 
-    // config for workbench
-    "workbench.colorTheme": "Monokai Pro (Filter Spectrum)",
-    "workbench.iconTheme": "Monokai Pro (Filter Spectrum) Icons",
     "workbench.activityBar.visible": true,
-    "workbench.statusBar.visible": true,
     "workbench.colorCustomizations": {
-        "statusBar.background": "#5f00af",
-        "statusBar.noFolderBackground": "#5f00af",
-        "statusBar.debuggingBackground": "#5f00af",
-        "statusBar.foreground": "#ffffff"
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
     },
+    "workbench.colorTheme": "Solarized Dark",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.statusBar.visible": true,
 
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 36,
-    "editor.fontSize": 14,
-    "editor.fontFamily": "'Fira Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.suggestSelection": "first",
+    "editor.fontSize": 16,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Fira Code Retina', Menlo, Monaco, 'Courier New', monospace",
+    "editor.formatOnSave": true,
 
-    "gitlens.historyExplorer.enabled": true,
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
     },
-
-    "terminal.integrated.fontFamily": "Meslo LG M DZ for Powerline",
     "window.zoomLevel": 0,
     "extensions.ignoreRecommendations": false,
-
-    // Java checkstyle config
-    "checkstyle": {
-        // Specify whether the Checkstyle extension will check Java files automatically.
-        "autocheck": true,
-        // Specify the Checkstyle version, or the local path to the checkstyle jar file.
-        "version": "8.0",
-        // Specify the checkstyle configuration file. 
-        // You can use bundled ```google_checks``` or ```sun_checks```.
-        // Or you can specify the local path to the configuration file.
-        "configurationFile": "sun_checks",
-        // Specify the path to the checkstyle properties file, by default it's empty.
-        "propertiesPath": "",
-        // Show a warning if the version of Checkstyle is invalid.
-        "showCheckstyleVersionInvalid": true,
+    "files.exclude": {
+        "**/.ccls-cache": true,
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.idea": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/build": true
     },
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "C_Cpp.default.cppStandard": "c++14",
+    "C_Cpp.default.intelliSenseMode": "gcc-x64",
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "C_Cpp.updateChannel": "Insiders",
+    "go.useLanguageServer": true,
+    "goOutliner.extendExplorerTab": true,
+    "goOutliner.enableDebugChannel": true,
+    "sync.gist": "16d79153afefe13e6a606e0127a15619",
+    "python.jediEnabled": false,
+    "terminal.integrated.rendererType": "dom",
+    "breadcrumbs.enabled": true,
+    "cmake.configureOnOpen": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "cmake-tools-helper.cmake_download_path": "/Users/datousir/.vscode/extensions/maddouri.cmake-tools-helper-0.2.1/cmake_download",
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    "[latex]": {
+        "editor.defaultFormatter": "nickfode.latex-formatter"
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "debug.onTaskErrors": "showErrors"
 }

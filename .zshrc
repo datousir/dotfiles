@@ -10,20 +10,6 @@ ZSH_THEME="ys"
 # ZSH_THEME="cobalt2"
 # ZSH_THEME="random"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias en='emacs -nw'
-alias ec='emacsclient -c'
-alias et='emacsclient -t'
-
-alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
-
-# force tmux to assume the terminal supports 256 colors
-alias tmux='tmux -2'
-
-alias e="exa -l"
-alias lsd="lsd -l"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -33,10 +19,6 @@ alias lsd="lsd -l"
 
 # Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
-
-#export C_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/opt/zeromq/include/
-#export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/opt/zeromq/include/
-#export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/zeromq/lib/
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
@@ -57,17 +39,31 @@ plugins=(git brew osx python screen ssh-agent sublime svn tmux vi-mode yum
 
 source $ZSH/oh-my-zsh.sh
 
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias em='emacs -nw'
+alias ec='emacsclient -c'
+alias et='emacsclient -t'
+
+alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
+
+# force tmux to assume the terminal supports 256 colors
+alias tmux='tmux -2'
+
+alias e="exa -l"
+alias l="lsd -l"
+
 # Customize to your needs...
 fpath=(/usr/local/share/zsh-completions $fpath)
-
-[ -f ~/.ssh/websocketserver.pem ] && ssh-add -K ~/.ssh/websocketserver.pem
 
 # ======== In addition to nvm and fzf, other PATH settings should be in the .zshenv file. ========
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
 # This loads nvm
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 # This loads nvm bash_completion
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
@@ -81,3 +77,20 @@ export NVM_DIR="$HOME/.nvm"
 # ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+
+# pyenv
+eval "$(pyenv init -)"
+
+if [[ $OSTYPE =~ "darwin" ]]; then
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+  if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+  fi
+elif [[ $OSTYPE =~ "linux-gnu" ]]; then
+  source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
+fi

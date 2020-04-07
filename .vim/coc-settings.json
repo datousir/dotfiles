@@ -1,33 +1,33 @@
 {
-    "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/coc/ccls"
-                }
-            }
-        },
-        "cquery": {
-            "command": "cquery",
-            "args": ["--log-file=/tmp/cq.log"],
-            "filetypes": ["c", "cpp"],
-            "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-            "initializationOptions": {
-                "cacheDirectory": "/tmp/coc/cquery"
-            }
-        },
-        "golang": {
-            "command": "go-langserver",
-            "filetypes": ["go"],
-            "initializationOptions": {
-                "gocodeCompletionEnabled": true,
-                "diagnosticsEnabled": true,
-                "lintTool": "golint"
-            }
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/", ".projectile"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/coc/ccls"
         }
+      }
     },
-    "http.proxy":"web-proxy.tencent.com:8080"
+    "cquery": {
+      "command": "cquery",
+      "args": ["--log-file=/tmp/cq.log"],
+      "filetypes": ["c", "cpp"],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/", ".projectile"],
+      "initializationOptions": {
+        "cacheDirectory": "/tmp/coc/cquery"
+      }
+    },
+    "golang": {
+      "command": "go-langserver",
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "gocodeCompletionEnabled": true,
+        "diagnosticsEnabled": true,
+        "lintTool": "golint"
+      }
+    }
+  },
+  "http.proxy":"127.0.0.1:12759"
 }

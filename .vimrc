@@ -1,7 +1,9 @@
 " https://vi.stackexchange.com/questions/2572/detect-os-in-vimscript
 if has('mac')
-    let g:python_host_prog = '/usr/local/bin/python2'
-    let g:python3_host_prog = '/usr/local/bin/python3'
+    " let g:python_host_prog = '/usr/local/bin/python2'
+    let g:python_host_prog = '/Users/datousir/.pyenv/shims/python'
+    " let g:python3_host_prog = '/usr/local/bin/python3'
+    let g:python_host_prog = '/Users/datousir/.pyenv/shims/python3'
 elseif has('unix') " for linux
     let g:python_host_prog = '/usr/bin/python'
     let g:python3_host_prog = '/usr/bin/python3.6'
@@ -48,6 +50,8 @@ Plug 'mhinz/vim-startify'
 " file management
 Plug 'scrooloose/nerdtree'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Adds dev icons to vim plugins
 Plug 'ryanoasis/vim-devicons'
 Plug 'Yggdroot/indentLine'
 
@@ -119,8 +123,6 @@ Plug 'mbbill/undotree'
 
 " color themes
 Plug 'morhetz/gruvbox'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
 Plug 'dracula/vim'
 Plug 'altercation/vim-colors-solarized'
@@ -156,32 +158,34 @@ Plug 'w0rp/ale'
 
 " ---- deoplete ----
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-" for python
-Plug 'zchee/deoplete-jedi'
-
-" for go
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" let g:deoplete#enable_at_startup = 1
+"
+" " for python
+" Plug 'zchee/deoplete-jedi'
+"
+" " for go
+" Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " ---- ncm2 ----
 
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'fgrsnau/ncm2-otherbuf', {'branch': 'ncm2'}
-
-Plug 'ncm2/ncm2-pyclang'
-"Plug 'ncm2/ncm2-gtags'
-
-" based on ultisnips
-Plug 'ncm2/ncm2-ultisnips'
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-path'
+" Plug 'fgrsnau/ncm2-otherbuf', {'branch': 'master'}
+"
+" Plug 'ncm2/ncm2-pyclang'
+" "Plug 'ncm2/ncm2-gtags'
+"
+" " based on ultisnips
+" Plug 'ncm2/ncm2-ultisnips'
 
 " ---- end auto-completion ----
 
@@ -197,7 +201,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 " Plug 'prabirshrestha/vim-lsp'
 
 "coc.nvim
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() }}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " ---- end language server protocol ----
 
@@ -442,10 +446,8 @@ let g:tmuxline_separators = {
 unmap <leader>h
 unmap <leader>l
 
-nnoremap <silent> <leader>bh :bprevious<cr>
-nnoremap <silent> <leader>bl :bnext<cr>
-
-" ---- BufOnly ----
+nnoremap <silent> <leader>bp :bprevious<cr>
+nnoremap <silent> <leader>bn :bnext<cr>
 nnoremap <silent> <leader>bo :BufOnly<cr>
 
 " ---- tagbar ----
@@ -488,56 +490,54 @@ nmap <silent> <leader>d <Plug>DashSearch
 
 " ======== begin autocompletion ========"
 
-" deoplete.
-let g:deoplete#enable_at_startup = 1
 
-" ==== begin ncm2 config ====
-
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-
-" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-" found' messages
-set shortmess+=c
-
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-inoremap <c-c> <ESC>
-
-" When the <Enter> key is pressed while the popup menu is visible, it only
-" hides the menu. Use this mapping to close the menu and also start a new
-" line.
-" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-
-" Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-if has('mac')
-    let g:ncm2_pyclang#library_path = '/usr/local/opt/llvm/lib/'
-elseif has('unix')
-    let g:ncm2_pyclang#library_path = '/usr/local/lib/libclang.so'
-endif
-" a list of relative paths for compile_commands.json
-let g:ncm2_pyclang#database_path = [
-            \ 'compile_commands.json',
-            \ 'build/compile_commands.json'
-            \ ]
-
-" ---- ultisnips config ---
-
-" Press enter key to trigger snippet expansion
-" The parameters are the same as `:help feedkeys()`
-" inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-
-" c-j c-k for moving in snippet
-" let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
-let g:UltiSnipsRemoveSelectModeMappings = 0
-
-" ==== end ncm2 config ====
+" " ==== begin ncm2 config ====
+"
+" autocmd BufEnter * call ncm2#enable_for_buffer()
+"
+" " IMPORTANT: :help Ncm2PopupOpen for more information
+" set completeopt=noinsert,menuone,noselect
+"
+" " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
+" " found' messages
+" set shortmess+=c
+"
+" " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+" inoremap <c-c> <ESC>
+"
+" " When the <Enter> key is pressed while the popup menu is visible, it only
+" " hides the menu. Use this mapping to close the menu and also start a new
+" " line.
+" " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+"
+" " Use <TAB> to select the popup menu:
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"
+" if has('mac')
+"     let g:ncm2_pyclang#library_path = '/usr/local/opt/llvm/lib/'
+" elseif has('unix')
+"     let g:ncm2_pyclang#library_path = '/usr/local/lib/libclang.so'
+" endif
+" " a list of relative paths for compile_commands.json
+" let g:ncm2_pyclang#database_path = [
+"             \ 'compile_commands.json',
+"             \ 'build/compile_commands.json'
+"             \ ]
+"
+" " ---- ultisnips config ---
+"
+" " Press enter key to trigger snippet expansion
+" " The parameters are the same as `:help feedkeys()`
+" " inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+"
+" " c-j c-k for moving in snippet
+" " let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+" let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+" let g:UltiSnipsRemoveSelectModeMappings = 0
+"
+" " ==== end ncm2 config ====
 
 " ==== end autocompletion ====
 
