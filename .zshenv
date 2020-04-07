@@ -131,6 +131,9 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
     # llvm
     # export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
 
+    # gcc/g++
+    # export CC=gcc-9
+    # export CXX=g++-9
 fi
 
 
