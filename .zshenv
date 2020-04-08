@@ -127,6 +127,8 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
   # c and c++ compiler config
   export CC=gcc-7
   export CXX=g++-7
+  # export CC=gcc-9
+  # export CXX=g++-9
 
   # java
   export JAVA_HOME=/usr/lib/jvm/default-java
