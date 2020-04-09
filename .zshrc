@@ -74,14 +74,11 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # https://unix.stackexchange.com/a/250456
 # http://www.softec.lu/site/DevelopersCorner/MasteringThePathHelper
 
-# ruby
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
-
-# pyenv
-eval "$(pyenv init -)"
-
 if [[ $OSTYPE =~ "darwin" ]]; then
+  # ruby
+  export PATH="/usr/local/opt/ruby/bin:$PATH"
+  export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+
   source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -92,5 +89,9 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     compinit
   fi
 elif [[ $OSTYPE =~ "linux-gnu" ]]; then
-  source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
+  export PATH="/home/datousir/.pyenv/bin:$PATH"
 fi
+
+# pyenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

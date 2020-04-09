@@ -72,41 +72,40 @@ function maven_proxy_off {
 
 
 if [[ $OSTYPE =~ "darwin" ]]; then
+  # set proxy for tencent
+  proxy_off
 
-    # set proxy for tencent
-    proxy_off
+  # macports
+  export PATH=$PATH:/opt/local/bin:/opt/local/sbin
+  export MANPATH=/opt/local/share/man:$MANPATH
 
-    # macports
-    export PATH=$PATH:/opt/local/bin:/opt/local/sbin
-    export MANPATH=/opt/local/share/man:$MANPATH
+  # for z
+  [ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
 
-    # for z
-    [ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
+  # for iterm2_shell_integration
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-    # for iterm2_shell_integration
-    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+  # set default editor
+  export EDITOR="/usr/local/bin/vim"
 
-    # set default editor
-    export EDITOR="/usr/local/bin/vim"
+  # brew install coreutils
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
-    # brew install coreutils
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  # for android tools
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-    # for android tools
-    export ANDROID_HOME=$HOME/Library/Android/sdk
-    export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+  # llvm
+  export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-    # llvm
-    export PATH="/usr/local/opt/llvm/bin:$PATH"
+  # for java, only use LTS version
+  export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+  alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
+  alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
+  export PATH=$PATH:$JAVA_HOME/bin
 
-    # for java, only use LTS version
-    export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-    alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
-    alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
-    export PATH=$PATH:$JAVA_HOME/bin
-
-    # for golang
-    export GOROOT=/usr/local/opt/go/libexec
+  # for golang
+  export GOROOT=/usr/local/opt/go/libexec
 
 elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
   # RPi 3B
@@ -116,20 +115,25 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
   # for golang
   export GOROOT=~/src/go
 
-    # set default editor
-    export EDITOR="/usr/bin/vim"
+  # set default editor
+  export EDITOR="/usr/bin/vim"
 
-    # add linuxbrew to path
-    # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+  # add linuxbrew to path
+  # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-    # llvm
-    # export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
-    export CC=gcc-7
-    export CXX=g++-7
+  # llvm
+  # export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
 
-    # gcc/g++
-    # export CC=gcc-9
-    # export CXX=g++-9
+  # c and c++ compiler config
+  export CC=gcc-7
+  export CXX=g++-7
+  # export CC=gcc-9
+  # export CXX=g++-9
+
+  # java
+  export JAVA_HOME=/usr/lib/jvm/default-java
+  export PATH=$PATH:$JAVA_HOME/bin
+
 fi
 
 # ~/bin and ~/.local/bin
