@@ -27,19 +27,7 @@ export FZF_DEFAULT_OPTS="-e --reverse --inline-info"
 # for tmuxp
 export DISABLE_AUTO_TITLE='true'
 
-# Set Proxy
 function proxy_on {
-  # tencent internal
-  export {http,https,ftp,rsync}_proxy="http://web-proxy.tencent.com:8080"
-  export no_proxy="127.0.0.1,localhost,git.code.oa.com,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
-  export {HTTP,HTTPS,FTP,RSYNC}_PROXY="http://web-proxy.tencent.com:8080"
-  export NO_PROXY="127.0.0.1,localhost,git.code.oa.com,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
-  #if [ -f $HOME/.m2/settings.xml.orig ]; then
-  #    mv $HOME/.m2/settings.xml.orig $HOME/.m2/settings.xml
-  #fi
-}
-
-function proxy_home {
   # tencent internal
   export {http,https,ftp,rsync}_proxy="127.0.0.1:12639"
   export no_proxy="127.0.0.1,localhost,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
@@ -73,7 +61,7 @@ function maven_proxy_off {
 
 if [[ $OSTYPE =~ "darwin" ]]; then
   # set proxy for tencent
-  proxy_off
+  # proxy_off
 
   # macports
   export PATH=$PATH:/opt/local/bin:/opt/local/sbin
