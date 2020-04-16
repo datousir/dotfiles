@@ -101,7 +101,7 @@ elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
   export GOROOT=~/src/go
 elif [[ $OSTYPE =~ "linux-gnu" ]]; then
   # for golang
-  export GOROOT=~/src/go
+  export GOROOT=/usr/local/go
 
   # set default editor
   export EDITOR="/usr/bin/vim"
