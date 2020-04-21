@@ -1,94 +1,113 @@
 {
-    "vim.leader": ",",
-    "vim.enableNeovim": true,
-    "vim.neovimPath": "/usr/local/bin/nvim",
-    "vim.easymotion": true,
-    "vim.useSystemClipboard": true,
-    "vim.incsearch": true,
-    "vim.useCtrlKeys": true,
-    "vim.hlsearch": true,
-    "vim.statusBarColorControl": true,
-    "vim.startInInsertMode": false,
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [
-                "j",
-                "k"
-            ],
-            "after": [
-                "<Esc>"
-            ]
-        },
-        {
-            "before": [
-                "k",
-                "j"
-            ],
-            "after": [
-                "<Esc>"
-            ]
-        }
-    ],
-
-    "workbench.activityBar.visible": true,
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#005f5f",
-        "statusBar.noFolderBackground": "#005f5f",
-        "statusBar.debuggingBackground": "#005f5f"
+  "vim.leader": ",",
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/usr/local/bin/nvim",
+  "vim.easymotion": true,
+  "vim.useSystemClipboard": true,
+  "vim.incsearch": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.statusBarColorControl": true,
+  "vim.startInInsertMode": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<Esc>"
+      ]
     },
-    "workbench.colorTheme": "Solarized Dark",
-    "workbench.iconTheme": "vscode-icons",
-    "workbench.statusBar.visible": true,
-
-    "editor.minimap.enabled": false,
-    "editor.minimap.maxColumn": 36,
-    "editor.suggestSelection": "first",
-    "editor.fontSize": 16,
-    "editor.fontLigatures": true,
-    "editor.fontFamily": "'Fira Code Retina', Menlo, Monaco, 'Courier New', monospace",
+    {
+      "before": [
+        "k",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "workbench.activityBar.visible": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f"
+  },
+  "workbench.colorTheme": "Gruvbox Dark (Hard)",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.statusBar.visible": true,
+  "editor.minimap.enabled": false,
+  "editor.minimap.maxColumn": 36,
+  "editor.suggestSelection": "first",
+  "editor.fontSize": 16,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "'Fira Code Retina', Menlo, Monaco, 'Courier New', monospace",
+  "editor.formatOnSave": true,
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "window.zoomLevel": 0,
+  "extensions.ignoreRecommendations": false,
+  "files.exclude": {
+    "**/.ccls-cache": true,
+    "**/.classpath": true,
+    "**/.factorypath": true,
+    "**/.idea": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/build": true
+  },
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "C_Cpp.clang_format_fallbackStyle": "Google",
+  "C_Cpp.default.cppStandard": "c++14",
+  "C_Cpp.default.intelliSenseMode": "gcc-x64",
+  "C_Cpp.intelliSenseEngineFallback": "Enabled",
+  "C_Cpp.updateChannel": "Insiders",
+  // for golang plugins
+  "go.useLanguageServer": true,
+  "[go]": {
     "editor.formatOnSave": true,
-
-    "gitlens.advanced.messages": {
-        "suppressShowKeyBindingsNotice": true
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
     },
-    "window.zoomLevel": 0,
-    "extensions.ignoreRecommendations": false,
-    "files.exclude": {
-        "**/.ccls-cache": true,
-        "**/.classpath": true,
-        "**/.factorypath": true,
-        "**/.idea": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/build": true
+    // Optional: Disable snippets, as they conflict with completion ranking.
+    "editor.snippetSuggestions": "none",
+  },
+  "[go.mod]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
     },
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "C_Cpp.clang_format_fallbackStyle": "Google",
-    "C_Cpp.default.cppStandard": "c++14",
-    "C_Cpp.default.intelliSenseMode": "gcc-x64",
-    "C_Cpp.intelliSenseEngineFallback": "Enabled",
-    "C_Cpp.updateChannel": "Insiders",
-    "go.useLanguageServer": true,
-    "goOutliner.extendExplorerTab": true,
-    "goOutliner.enableDebugChannel": true,
-    "sync.gist": "16d79153afefe13e6a606e0127a15619",
-    "python.jediEnabled": false,
-    "terminal.integrated.rendererType": "dom",
-    "breadcrumbs.enabled": true,
-    "cmake.configureOnOpen": false,
-    "vsicons.dontShowNewVersionMessage": true,
-    "cmake-tools-helper.cmake_download_path": "/Users/datousir/.vscode/extensions/maddouri.cmake-tools-helper-0.2.1/cmake_download",
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[xml]": {
-        "editor.defaultFormatter": "redhat.vscode-xml"
-    },
-    "[latex]": {
-        "editor.defaultFormatter": "nickfode.latex-formatter"
-    },
-    "[cpp]": {
-        "editor.defaultFormatter": "xaver.clang-format"
-    },
-    "debug.onTaskErrors": "showErrors"
+  },
+  "gopls": {
+    // Add parameter placeholders when completing a function.
+    "usePlaceholders": true,
+    // If true, enable additional analyses with staticcheck.
+    // Warning: This will significantly increase memory usage.
+    "staticcheck": false,
+  },
+  "sync.gist": "16d79153afefe13e6a606e0127a15619",
+  "python.jediEnabled": false,
+  "terminal.integrated.rendererType": "dom",
+  "breadcrumbs.enabled": true,
+  "cmake.configureOnOpen": false,
+  "vsicons.dontShowNewVersionMessage": true,
+  "cmake-tools-helper.cmake_download_path": "/Users/datousir/.vscode/extensions/maddouri.cmake-tools-helper-0.2.1/cmake_download",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[latex]": {
+    "editor.defaultFormatter": "nickfode.latex-formatter"
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "debug.onTaskErrors": "showErrors",
+  "editor.renderControlCharacters": true,
+  "sonarlint.ls.javaHome": "/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home"
 }
