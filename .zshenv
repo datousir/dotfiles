@@ -27,23 +27,11 @@ export FZF_DEFAULT_OPTS="-e --reverse --inline-info"
 # for tmuxp
 export DISABLE_AUTO_TITLE='true'
 
-# Set Proxy
 function proxy_on {
   # tencent internal
-  export {http,https,ftp,rsync}_proxy="http://web-proxy.tencent.com:8080"
-  export no_proxy="127.0.0.1,localhost,git.code.oa.com,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
-  export {HTTP,HTTPS,FTP,RSYNC}_PROXY="http://web-proxy.tencent.com:8080"
-  export NO_PROXY="127.0.0.1,localhost,git.code.oa.com,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
-  #if [ -f $HOME/.m2/settings.xml.orig ]; then
-  #    mv $HOME/.m2/settings.xml.orig $HOME/.m2/settings.xml
-  #fi
-}
-
-function proxy_home {
-  # tencent internal
-  export {http,https,ftp,rsync}_proxy="127.0.0.1:12759"
+  export {http,https,ftp,rsync}_proxy="127.0.0.1:12639"
   export no_proxy="127.0.0.1,localhost,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
-  export {HTTP,HTTPS,FTP,RSYNC}_PROXY="127.0.0.1:12759"
+  export {HTTP,HTTPS,FTP,RSYNC}_PROXY="127.0.0.1:12639"
   export NO_PROXY="127.0.0.1,localhost,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24"
   #if [ -f $HOME/.m2/settings.xml.orig ]; then
   #    mv $HOME/.m2/settings.xml.orig $HOME/.m2/settings.xml
@@ -72,41 +60,40 @@ function maven_proxy_off {
 
 
 if [[ $OSTYPE =~ "darwin" ]]; then
+  # set proxy for tencent
+  # proxy_off
 
-    # set proxy for tencent
-    proxy_off
+  # macports
+  export PATH=$PATH:/opt/local/bin:/opt/local/sbin
+  export MANPATH=/opt/local/share/man:$MANPATH
 
-    # macports
-    export PATH=$PATH:/opt/local/bin:/opt/local/sbin
-    export MANPATH=/opt/local/share/man:$MANPATH
+  # for z
+  [ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
 
-    # for z
-    [ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
+  # for iterm2_shell_integration
+  test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-    # for iterm2_shell_integration
-    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+  # set default editor
+  export EDITOR="/usr/local/bin/vim"
 
-    # set default editor
-    export EDITOR="/usr/local/bin/vim"
+  # brew install coreutils
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
-    # brew install coreutils
-    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  # for android tools
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
-    # for android tools
-    export ANDROID_HOME=$HOME/Library/Android/sdk
-    export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+  # llvm
+  export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-    # llvm
-    export PATH="/usr/local/opt/llvm/bin:$PATH"
+  # for java, only use LTS version
+  export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+  alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
+  alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
+  export PATH=$PATH:$JAVA_HOME/bin
 
-    # for java, only use LTS version
-    export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-    alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
-    alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
-    export PATH=$PATH:$JAVA_HOME/bin
-
-    # for golang
-    export GOROOT=/usr/local/opt/go/libexec
+  # for golang
+  export GOROOT=/usr/local/opt/go/libexec
 
 elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
   # RPi 3B
@@ -114,18 +101,26 @@ elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
   export GOROOT=~/src/go
 elif [[ $OSTYPE =~ "linux-gnu" ]]; then
   # for golang
-  export GOROOT=~/src/go
+  export GOROOT=/usr/local/go
 
-    # set default editor
-    export EDITOR="/usr/bin/vim"
+  # set default editor
+  export EDITOR="/usr/bin/vim"
 
-    # add linuxbrew to path
-    # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+  # add linuxbrew to path
+  # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-    # llvm
-    # export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
-    export CC=gcc-7
-    export CXX=g++-7
+  # llvm
+  # export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
+
+  # c and c++ compiler config
+  export CC=gcc-7
+  export CXX=g++-7
+  # export CC=gcc-9
+  # export CXX=g++-9
+
+  # java
+  export JAVA_HOME=/usr/lib/jvm/default-java
+  export PATH=$PATH:$JAVA_HOME/bin
 
 fi
 

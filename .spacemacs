@@ -41,7 +41,7 @@ This function should only modify configuration layer settings."
        ;; ----------------------------------------------------------------
 
        ;; Checkers
-       spell-checking
+       (spell-checking :variables spell-checking-enable-by-default nil)
        syntax-checking
 
        ;; Completion
@@ -313,13 +313,10 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-    dotspacemacs-default-font '("Fira Code"
-                                 ;;"Source Code Pro"
-                                 :size 16
-                                 :weight normal
-                                 )
-                               ;:weight normal
-                               ;:width normal)
+   dotspacemacs-default-font '("Source Code Pro"
+                               :size 14
+                               :weight normal
+                               :width normal)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
