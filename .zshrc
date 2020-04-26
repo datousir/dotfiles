@@ -33,9 +33,10 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git brew osx python screen ssh-agent sublime svn textmate vi-mode yum )
-plugins=(git brew osx python screen ssh-agent sublime svn tmux vi-mode yum
+plugins=(colorize docker git brew osx python screen ssh-agent sublime svn tmux vi-mode yum
          colorize cargo catimg command-not-found urltools history-substring-search
-         zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+         ubuntu encode64 themes vscode
+         z zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 

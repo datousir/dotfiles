@@ -6,7 +6,7 @@ if has('mac')
     let g:python_host_prog = '/Users/datousir/.pyenv/shims/python3'
 elseif has('unix') " for linux
     let g:python_host_prog = '/usr/bin/python'
-    let g:python3_host_prog = '/usr/bin/python3.6'
+    let g:python3_host_prog = '/usr/bin/python3'
 endif
 
 set runtimepath+=~/.vim_runtime

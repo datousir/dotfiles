@@ -114,8 +114,8 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
   # export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
 
   # c and c++ compiler config
-  export CC=gcc-7
-  export CXX=g++-7
+  # export CC=gcc-7
+  # export CXX=g++-7
   # export CC=gcc-9
   # export CXX=g++-9
 
