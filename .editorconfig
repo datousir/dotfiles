@@ -12,12 +12,16 @@ trim_trailing_whitespace = true
 # Set default charset
 charset = utf-8
 
-# 2 space indentation
+# 2 columns indentation
 indent_style = space
 indent_size = 2
 
 [*.{md,py}]
-# 4 space indentation
+# 4 columns indentation
 indent_style = space
 indent_size = 4
 
+[*.go]
+# 8 columns indentation
+indent_style = tab
+indent_size = 8
