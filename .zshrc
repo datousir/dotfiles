@@ -43,7 +43,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias em='emacs -nw'
+alias en='emacs -nw'
 alias ec='emacsclient -c'
 alias et='emacsclient -t'
 

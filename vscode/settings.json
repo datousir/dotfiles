@@ -35,7 +35,7 @@
     "statusBar.noFolderBackground": "#005f5f",
     "statusBar.debuggingBackground": "#005f5f"
   },
-  "workbench.colorTheme": "Gruvbox Dark (Hard)",
+  "workbench.colorTheme": "Atom One Dark",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.statusBar.visible": true,
   "editor.minimap.enabled": false,
@@ -108,9 +108,16 @@
     "editor.defaultFormatter": "xaver.clang-format"
   },
   "debug.onTaskErrors": "showErrors",
+  "sonarlint.ls.javaHome": "/home/datousir/.vscode/extensions/sonarsource.sonarlint_managed-jre/jre/jdk-11.0.6+10-jre",
   "editor.renderControlCharacters": true,
-  "sonarlint.ls.javaHome": "/Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home",
-  "terminal.integrated.shell.osx": "/bin/zsh",
+  "sonarlint.rules": {
+    "java:S1186": {
+      "level": "off"
+    }
+  },
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
   "java.requirements.JDK11Warning": false,
-  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/Users/datousir/.vscode/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\""
+  "editor.codeActionsOnSave": null
 }
