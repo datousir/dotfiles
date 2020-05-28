@@ -58,6 +58,9 @@ function maven_proxy_off {
   fi
 }
 
+# for china
+export GOPROXY=https://goproxy.io
+
 
 if [[ $OSTYPE =~ "darwin" ]]; then
   # set proxy for tencent
