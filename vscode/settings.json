@@ -108,7 +108,6 @@
     "editor.defaultFormatter": "xaver.clang-format"
   },
   "debug.onTaskErrors": "showErrors",
-  "sonarlint.ls.javaHome": "/home/datousir/.vscode/extensions/sonarsource.sonarlint_managed-jre/jre/jdk-11.0.6+10-jre",
   "editor.renderControlCharacters": true,
   "sonarlint.rules": {
     "java:S1186": {
