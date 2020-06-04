@@ -316,7 +316,7 @@ It should only modify the values of Spacemacs settings."
     dotspacemacs-default-font '(
                                ;;"Source Code Pro"
                                "Fira Code"
-                               :size 12
+                               :size 14
                                :weight normal
                                :width normal)
 

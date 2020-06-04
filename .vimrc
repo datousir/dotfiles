@@ -542,8 +542,8 @@ nmap <silent> <leader>d <Plug>DashSearch
 " ==== end autocompletion ====
 
 " ---- Formatter ----
-map <C-K> :py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<cr>
-imap <C-K> <c-o>:py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<cr>
+" map <C-K> :py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<cr>
+imap <C-K> <c-o>:py3f /usr/local/opt/llvm/share/clang/clang-format.py<cr>
 
 " ======== Lint ========"
 " ALE
