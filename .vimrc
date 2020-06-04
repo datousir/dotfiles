@@ -13,13 +13,6 @@ set runtimepath+=~/.vim_runtime
 
 source ~/.vim_runtime/vimrcs/basic.vim
 source ~/.vim_runtime/vimrcs/filetypes.vim
-" source ~/.vim_runtime/vimrcs/plugins_config.vim
-" source ~/.vim_runtime/vimrcs/extended.vim
-
-" try
-"   source ~/.vim_runtime/my_configs.vim
-" catch
-" endtry
 
 " ==== Vim Plug Begin ====
 set nocompatible              " be iMproved, required
@@ -35,10 +28,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-scripts/tlib'
 Plug 'MarcWeber/vim-addon-mw-utils'
 
-" interface
-" Plug 'Shougo/denite.nvim'
-" Plug 'liuchengxu/vim-which-key'
-
+" editorconfig
 Plug 'editorconfig/editorconfig-vim'
 
 " search
@@ -49,10 +39,11 @@ Plug 'mhinz/vim-startify'
 
 " file management
 Plug 'scrooloose/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Adds dev icons to vim plugins
 Plug 'ryanoasis/vim-devicons'
+
 Plug 'Yggdroot/indentLine'
 
 Plug 'vim-scripts/a.vim'
@@ -148,60 +139,60 @@ Plug 'plasticboy/vim-markdown'
 " toml
 Plug 'cespare/vim-toml'
 
-" ---- begin lint engine ----
+" ---- begin linter ----
 
 Plug 'w0rp/ale'
 
-" ---- end lint engine ----
+" ---- end linter ----
 
 " ---- begin auto-completion ----
 
-" ---- deoplete ----
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" let g:deoplete#enable_at_startup = 1
-"
-" " for python
-" Plug 'zchee/deoplete-jedi'
-"
-" " for go
-" Plug 'zchee/deoplete-go', { 'do': 'make'}
+" deoplete source for vim-lsp
+Plug 'lighttiger2505/deoplete-vim-lsp'
 
-" ---- ncm2 ----
+" for python
+Plug 'zchee/deoplete-jedi'
 
-" Plug 'ncm2/ncm2'
-" Plug 'roxma/nvim-yarp'
-" Plug 'ncm2/ncm2-bufword'
-" Plug 'ncm2/ncm2-path'
-" Plug 'fgrsnau/ncm2-otherbuf', {'branch': 'master'}
-"
-" Plug 'ncm2/ncm2-pyclang'
-" "Plug 'ncm2/ncm2-gtags'
-"
-" " based on ultisnips
-" Plug 'ncm2/ncm2-ultisnips'
+" for go
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " ---- end auto-completion ----
 
 " ---- begin language server protocol ----
 
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
-            \ }
+" Plug 'autozimu/LanguageClient-neovim', {
+"             \ 'branch': 'next',
+"             \ 'do': 'bash install.sh',
+"             \ }
 
-" vim-lsp
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-
-"coc.nvim
+" coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" --- vim-lsp ---
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+
+" Snippets
+Plug 'thomasfaingnaert/vim-lsp-snippets'
+Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+
+" Folding
+set foldmethod=expr
+  \ foldexpr=lsp#ui#vim#folding#foldexpr()
+  \ foldtext=lsp#ui#vim#folding#foldtext()
+" let g:lsp_fold_enabled = 0
+
+" --- vim-lsp ---
 
 " ---- end language server protocol ----
 
@@ -232,11 +223,6 @@ Plug 'kien/rainbow_parentheses.vim'
 " rust
 Plug 'rust-lang/rust.vim'
 
-" Plug 'Valloric/YouCompleteMe'
-
-" for c/c++
-" Plug 'octol/vim-cpp-enhanced-highlight'
-
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
@@ -244,7 +230,6 @@ call plug#end()            " required
 
 
 " gui options
-
 set go-=L " left scrollbar
 set go-=r " right scrollbar
 
@@ -353,7 +338,7 @@ let &showbreak='↳ '
 
 if has("gui_macvim") || has("gui_gtk2") || has("gui") || exists("g:gui_oni")
     " https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode
-    set guifont=FuraCode\ Nerd\ Font:h14
+    set guifont=FiraCode\ Nerd\ Font:h14
     " set guifont=Source\ Code\ Pro:h14
 endif
 
@@ -389,9 +374,9 @@ set cmdheight=1
 " ---- fzf ----
 set rtp+=/usr/local/opt/fzf
 
-nnoremap <silent> <leader><Space> :Files<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>m :History<CR>
+nnoremap <silent> <leader>h :History<CR>
 
 " this need fugitive plugin
 let g:fzf_commits_log_options = '--graph --color=always
@@ -491,59 +476,11 @@ nmap <silent> <leader>d <Plug>DashSearch
 " ======== begin autocompletion ========"
 
 
-" " ==== begin ncm2 config ====
-"
-" autocmd BufEnter * call ncm2#enable_for_buffer()
-"
-" " IMPORTANT: :help Ncm2PopupOpen for more information
-" set completeopt=noinsert,menuone,noselect
-"
-" " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-" " found' messages
-" set shortmess+=c
-"
-" " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-" inoremap <c-c> <ESC>
-"
-" " When the <Enter> key is pressed while the popup menu is visible, it only
-" " hides the menu. Use this mapping to close the menu and also start a new
-" " line.
-" " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-"
-" " Use <TAB> to select the popup menu:
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"
-" if has('mac')
-"     let g:ncm2_pyclang#library_path = '/usr/local/opt/llvm/lib/'
-" elseif has('unix')
-"     let g:ncm2_pyclang#library_path = '/usr/local/lib/libclang.so'
-" endif
-" " a list of relative paths for compile_commands.json
-" let g:ncm2_pyclang#database_path = [
-"             \ 'compile_commands.json',
-"             \ 'build/compile_commands.json'
-"             \ ]
-"
-" " ---- ultisnips config ---
-"
-" " Press enter key to trigger snippet expansion
-" " The parameters are the same as `:help feedkeys()`
-" " inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-"
-" " c-j c-k for moving in snippet
-" " let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
-" let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-" let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
-" let g:UltiSnipsRemoveSelectModeMappings = 0
-"
-" " ==== end ncm2 config ====
-
 " ==== end autocompletion ====
 
 " ---- Formatter ----
-map <C-K> :py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<cr>
-imap <C-K> <c-o>:py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<cr>
+" map <C-K> :py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<cr>
+imap <C-K> <c-o>:py3f /usr/local/opt/llvm/share/clang/clang-format.py<cr>
 
 " ======== Lint ========"
 " ALE
@@ -553,9 +490,11 @@ imap <C-K> <c-o>:py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<c
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
             \   'c': ['clangd'],
-            \   'cpp': ['cquery', 'ccls', 'clangd', 'clang-tidy', 'cpplint'],
+            \   'cpp': ['ccls', 'clangd', 'clang-tidy', 'cquery', 'cpplint'],
             \   'java': ['checkstyle'],
+            \   'javascript': ['eslint'],
             \   'markdown': ['vale', 'alex'],
+            \   'python': ['pyls', 'flake8'],
             \   'rust': ['rls', 'cargo'],
             \   'shell': ['shellcheck'],
             \   'yaml': ['yamllint'],
@@ -572,106 +511,71 @@ let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 " \   'python': ['pyls', 'flake8'],
 " pip install cpplint
 
-" ========  Language server  ========"
+" ========  LSP ========"
+
 " lsp autozimu/LanguageClient-neovim
-if has('mac')
-let g:LanguageClient_serverCommands = {
-            \ 'cpp': ['cquery','--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}',
-            \ 'ccls','--log-file=/tmp/ccls.log',
-            \ 'clangd'],
-            \ 'go': ['go-langserver'],
-            \ 'python': ['pyls'],
-            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
-            \ }
-            "\ 'cpp': ['cquery',
-            "\ '--log-file=/tmp/cq.log',
-            "\ '--init={"cacheDirectory":"/tmp/cquery/"}',
-            "\ 'clangd']
-            "\ 'cpp': ['~/bin/ccls', '--log-file=/tmp/cc.log'],
-            "\ 'cpp': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cc.log'],
-elseif has('unix')
-let g:LanguageClient_serverCommands = {
-            \ 'cpp': ['~/bin/cquery',
-            \ '--log-file=/tmp/cq.log',
-            \ '--init={"cacheDirectory":"/tmp/cquery/"}',
-            \ 'clangd'],
-            \ 'go': ['go-langserver'],
-            \ 'python': ['pyls'],
-            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
-            \ }
-            "\ 'cpp': ['~/src/1404/cquery/build/cquery',
-            "\ 'cpp': ['~/src/clang+llvm-7.0.0-x86_64-linux-gnu-ubuntu-14.04/bin/clangd'],
-            "\ 'cpp': ['~/bin/ccls', '--log-file=/tmp/cxx.log'],
-            "\ 'cpp': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cxx.log'],
-            "\ 'c': ['~/src/1404/ccls/Release/ccls', '--log-file=/tmp/cc.log'],
-endif
-
-let g:LanguageClient_serverStderr = '/tmp/lc.stderr'
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> <leader>lc :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-nn <silent> <M-.> :call LanguageClient_textDocument_definition()<cr>
-nn <silent> <M-,> :call LanguageClient_textDocument_references()<cr>
-" nn <f2> :call LanguageClient_textDocument_rename()<cr>
-" nn <leader>ji :Denite documentSymbol<cr>
-" nn <leader>jI :Denite workspaceSymbol<cr>
-" nn ,la :call LanguageClient_workspace_symbol({'query':input('workspace/symbol ')})<cr>
-"
-" augroup LanguageClient_config
-"   au!
-"   au BufEnter * let b:Plugin_LanguageClient_started = 0
-"   au User LanguageClientStarted setl signcolumn=yes
-"   au User LanguageClientStarted let b:Plugin_LanguageClient_started = 1
-"   au User LanguageClientStopped setl signcolumn=auto
-"   au User LanguageClientStopped let b:Plugin_LanguageClient_stopped = 0
-"   au CursorMoved * if b:Plugin_LanguageClient_started | call LanguageClient_textDocument_hover() | endif
-" augroup END
-
-let g:LanguageClient_diagnosticsDisplay = {
-            \ 1: {
-            \     "name": "Error",
-            \     "texthl": "ALEError",
-            \     "signText": "ER",
-            \     "signTexthl": "ALEErrorSign",
-            \ },
-            \ 2: {
-            \     "name": "Warning",
-            \     "texthl": "ALEWarning",
-            \     "signText": "WA",
-            \     "signTexthl": "ALEWarningSign",
-            \ },
-            \ 3: {
-            \     "name": "Information",
-            \     "texthl": "ALEInfo",
-            \     "signText": "IN",
-            \     "signTexthl": "ALEInfoSign",
-            \ },
-            \ 4: {
-            \     "name": "Hint",
-            \     "texthl": "ALEInfo",
-            \     "signText": "HI",
-            \     "signTexthl": "ALEInfoSign",
-            \ },
-            \ }
-
-" -- vim-lsp --
-" python
-" if executable('pyls')
-"     au User lsp_setup call lsp#register_server({
-"                 \ 'name': 'pyls',
-"                 \ 'cmd': {server_info->['pyls']},
-"                 \ 'whitelist': ['python'],
-"                 \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}}}}
-"                 \ })
+" if has('mac')
+"   let g:LanguageClient_serverCommands = {
+"         \ 'cpp': ['cquery','--log-file=/tmp/cq.log', '--init={"cacheDirectory":"/tmp/cquery/"}',
+"         \ 'ccls','--log-file=/tmp/ccls.log',
+"         \ 'clangd'],
+"         \ 'go': ['go-langserver'],
+"         \ 'python': ['pyls'],
+"         \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
+"         \ }
+" elseif has('unix')
+"   let g:LanguageClient_serverCommands = {
+"         \ 'cpp': ['~/bin/cquery',
+"         \ '--log-file=/tmp/cq.log',
+"         \ '--init={"cacheDirectory":"/tmp/cquery/"}',
+"         \ 'clangd'],
+"         \ 'go': ['go-langserver'],
+"         \ 'python': ['pyls'],
+"         \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls']
+"         \ }
 " endif
+"
+" let g:LanguageClient_serverStderr = '/tmp/lc.stderr'
+"
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" nnoremap <silent> <leader>lc :call LanguageClient_contextMenu()<CR>
+" " Or map each action separately
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" nn <silent> <M-.> :call LanguageClient_textDocument_definition()<cr>
+" nn <silent> <M-,> :call LanguageClient_textDocument_references()<cr>
+"
+" let g:LanguageClient_diagnosticsDisplay = {
+"             \ 1: {
+"             \     "name": "Error",
+"             \     "texthl": "ALEError",
+"             \     "signText": "ER",
+"             \     "signTexthl": "ALEErrorSign",
+"             \ },
+"             \ 2: {
+"             \     "name": "Warning",
+"             \     "texthl": "ALEWarning",
+"             \     "signText": "WA",
+"             \     "signTexthl": "ALEWarningSign",
+"             \ },
+"             \ 3: {
+"             \     "name": "Information",
+"             \     "texthl": "ALEInfo",
+"             \     "signText": "IN",
+"             \     "signTexthl": "ALEInfoSign",
+"             \ },
+"             \ 4: {
+"             \     "name": "Hint",
+"             \     "texthl": "ALEInfo",
+"             \     "signText": "HI",
+"             \     "signTexthl": "ALEInfoSign",
+"             \ },
+"             \ }
 
-" -- coc.nvim --
+
+" -- begin coc.nvim --
+
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
@@ -696,24 +600,10 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" -- end coc.nvim --
+
 " ---- begin programming language pluggin ----
 
-" ---- begin C/C++ ----
-
-" for octol/vim-cpp-enhanced-highlight
-"let g:cpp_class_scope_highlight = 1
-"let g:cpp_member_variable_highlight = 1
-"let g:cpp_class_decl_highlight = 1
-"let g:cpp_experimental_template_highlight = 1
-
-" ---- end C/C++ ----
-
-" ======== Python Begin ========"
-" vim-flake8
-" let g:flake8_show_in_gutter=1
-" let g:flake8_show_in_file=1
-" let g:flake8_show_quickfix=0
-" autocmd BufWritePost *.py call Flake8()
 
 " vim-virtualenv
 let g:virtualenv_auto_activate=1
@@ -755,16 +645,6 @@ auto FileType go autocmd BufWritePre <buffer> GoFmt
 " enable automatic running of :RustFmt when you save a buffer
 let g:rustfmt_autosave = 1
 
-" vim-racer
-" vim-racer enables C-x-C-o to search for completions and provides several <Plug> mappings for source code navigation.
-"  show the complete function definition (e.g. its arguments and return type)
-" let g:racer_experimental_completer = 1
-"
-" au FileType rust nmap gd <Plug>(rust-def)
-" au FileType rust nmap gs <Plug>(rust-def-split)
-" au FileType rust nmap gx <Plug>(rust-def-vertical)
-" au FileType rust nmap <leader>gd <Plug>(rust-doc)
-
 " ======== clojure ========
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -781,52 +661,52 @@ let g:vim_markdown_json_frontmatter = 1
 
 " tagbar config for rust
 let g:tagbar_type_rust = {
-            \ 'ctagstype' : 'rust',
-            \ 'kinds' : [
-            \'T:types,type definitions',
-            \'f:functions,function definitions',
-            \'g:enum,enumeration names',
-            \'s:structure names',
-            \'m:modules,module names',
-            \'c:consts,static constants',
-            \'t:traits,traits',
-            \'i:impls,trait implementations',
-            \]
-            \}
+      \ 'ctagstype' : 'rust',
+      \ 'kinds' : [
+      \'T:types,type definitions',
+      \'f:functions,function definitions',
+      \'g:enum,enumeration names',
+      \'s:structure names',
+      \'m:modules,module names',
+      \'c:consts,static constants',
+      \'t:traits,traits',
+      \'i:impls,trait implementations',
+      \]
+      \}
 
 " tagbar config for obj-c
 " add a definition for Objective-C to tagbar
 let g:tagbar_type_objc = {
-            \ 'ctagstype' : 'ObjectiveC',
-            \ 'kinds'     : [
-            \ 'i:interface',
-            \ 'I:implementation',
-            \ 'p:Protocol',
-            \ 'm:Object_method',
-            \ 'c:Class_method',
-            \ 'v:Global_variable',
-            \ 'F:Object field',
-            \ 'f:function',
-            \ 'p:property',
-            \ 't:type_alias',
-            \ 's:type_structure',
-            \ 'e:enumeration',
-            \ 'M:preprocessor_macro',
-            \ ],
-            \ 'sro'        : ' ',
-            \ 'kind2scope' : {
-            \ 'i' : 'interface',
-            \ 'I' : 'implementation',
-            \ 'p' : 'Protocol',
-            \ 's' : 'type_structure',
-            \ 'e' : 'enumeration'
-            \ },
-            \ 'scope2kind' : {
-            \ 'interface'      : 'i',
-            \ 'implementation' : 'I',
-            \ 'Protocol'       : 'p',
-            \ 'type_structure' : 's',
-            \ 'enumeration'    : 'e'
-            \ }
-            \ }
+      \ 'ctagstype' : 'ObjectiveC',
+      \ 'kinds'     : [
+      \ 'i:interface',
+      \ 'I:implementation',
+      \ 'p:Protocol',
+      \ 'm:Object_method',
+      \ 'c:Class_method',
+      \ 'v:Global_variable',
+      \ 'F:Object field',
+      \ 'f:function',
+      \ 'p:property',
+      \ 't:type_alias',
+      \ 's:type_structure',
+      \ 'e:enumeration',
+      \ 'M:preprocessor_macro',
+      \ ],
+      \ 'sro'        : ' ',
+      \ 'kind2scope' : {
+      \ 'i' : 'interface',
+      \ 'I' : 'implementation',
+      \ 'p' : 'Protocol',
+      \ 's' : 'type_structure',
+      \ 'e' : 'enumeration'
+      \ },
+      \ 'scope2kind' : {
+      \ 'interface'      : 'i',
+      \ 'implementation' : 'I',
+      \ 'Protocol'       : 'p',
+      \ 'type_structure' : 's',
+      \ 'enumeration'    : 'e'
+      \ }
+      \ }
 " ---- end programming language pluggin ----
