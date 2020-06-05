@@ -147,23 +147,23 @@ Plug 'w0rp/ale'
 
 " ---- begin auto-completion ----
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" let g:deoplete#enable_at_startup = 1
+"
+" " deoplete source for vim-lsp
+" Plug 'lighttiger2505/deoplete-vim-lsp'
+"
+" " for python
+" Plug 'zchee/deoplete-jedi'
 
-" deoplete source for vim-lsp
-Plug 'lighttiger2505/deoplete-vim-lsp'
-
-" for python
-Plug 'zchee/deoplete-jedi'
-
-" for go
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+" " for go
+" Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " ---- end auto-completion ----
 
@@ -374,9 +374,9 @@ set cmdheight=1
 " ---- fzf ----
 set rtp+=/usr/local/opt/fzf
 
-nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>r :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>h :History<CR>
+nnoremap <silent> <leader>m :History<CR>
 
 " this need fugitive plugin
 let g:fzf_commits_log_options = '--graph --color=always
@@ -634,8 +634,7 @@ imap <C-y> <c-o>:call yapf#YAPF()<cr>
 
 " ==== golang ====
 
-auto FileType go autocmd BufWritePre <buffer> GoFmt
-" filetype indent on
+" auto FileType go autocmd BufWritePre <buffer> GoFmt
 " autocmd FileType go compiler go
 
 

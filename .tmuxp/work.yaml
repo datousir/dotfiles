@@ -12,18 +12,21 @@ windows:
     shell_command_before:
       - cd ~
     panes:
-      - vim
+      - nvim
       - focus: true
+
   - window_name: docker
     layout: main-vertical
     panes:
       - shell_command:           # pane no. 1
         - docker images
+
   - window_name: ssh-csig
     layout: tiled
     panes:
       - shell_command:
         - ssh csig
+
   - window_name: dev-sche
     shell_command_before:
       - cd tad_sim/simcloud_scheduler
@@ -33,8 +36,21 @@ windows:
     panes:
       - blank
       # - blank
+
   - window_name: dev-agent
     shell_command_before:
       - cd tad_sim/simcloud_agent
+    panes:
+      - blank
+
+  - window_name: dev-supervisor
+    shell_command_before:
+      - cd tad_sim/simcloud_supervisor
+    panes:
+      - blank
+
+  - window_name: dev-simservice
+    shell_command_before:
+      - cd tad_sim/simcloud_service
     panes:
       - blank
