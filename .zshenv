@@ -64,7 +64,7 @@ export GOPROXY=https://goproxy.io
 
 if [[ $OSTYPE =~ "darwin" ]]; then
   # set proxy for tencent
-  # proxy_off
+  proxy_on
 
   # macports
   export PATH=$PATH:/opt/local/bin:/opt/local/sbin
