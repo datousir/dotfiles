@@ -107,8 +107,6 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
   # for golang
   export GOROOT=/usr/local/go
 
-  # set default editor
-  export EDITOR="/usr/bin/vim"
 
   # add linuxbrew to path
   # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)

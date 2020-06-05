@@ -12,8 +12,8 @@ windows:
     shell_command_before:
       - cd ~
     panes:
+      - echo hello
       - nvim
-      - focus: true
 
   - window_name: docker
     layout: main-vertical
