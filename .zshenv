@@ -12,14 +12,15 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 fi
 
 # ==== begin fzf ====
+if [[ $OSTYPE =~ "darwin" ]]; then
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+# export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
 # export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --color=always  --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="-e --reverse --inline-info"
-# export FZF_DEFAULT_OPTS="-e --reverse --inline-info --preview 'bat {}'"
 # export FZF_DEFAULT_OPTS="-e --reverse --inline-info --preview 'pygmentize {}'"
 
 # ==== end fzf ====

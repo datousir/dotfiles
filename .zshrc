@@ -72,7 +72,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # 如果想让新加入的 PATH 在 系统 PATH 之前,比如放在 zshrc 里,而不能放在 zshenv 里
 # https://unix.stackexchange.com/a/250456
@@ -94,6 +94,9 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   fi
 elif [[ $OSTYPE =~ "linux-gnu" ]]; then
   export PATH="/home/datousir/.pyenv/bin:$PATH"
+  # fzf for zsh
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+  source /usr/share/doc/fzf/examples/completion.zsh
 fi
 
 # pyenv

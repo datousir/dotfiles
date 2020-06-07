@@ -374,9 +374,9 @@ set cmdheight=1
 " ---- fzf ----
 set rtp+=/usr/local/opt/fzf
 
-nnoremap <silent> <leader>r :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>m :History<CR>
+nnoremap <silent> <leader>t :Files<CR>
+nnoremap <silent> <leader>r :History<CR>
 
 " this need fugitive plugin
 let g:fzf_commits_log_options = '--graph --color=always
