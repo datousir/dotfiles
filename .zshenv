@@ -125,6 +125,9 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
   export JAVA_HOME=/usr/lib/jvm/default-java
   export PATH=$PATH:$JAVA_HOME/bin
 
+  # snap
+  export PATH=$PATH:/snap/bin/
+
 fi
 
 # ~/bin and ~/.local/bin
