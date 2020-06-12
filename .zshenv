@@ -12,10 +12,6 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
 fi
 
 # ==== begin fzf ====
-if [[ $OSTYPE =~ "darwin" ]]; then
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-fi
-
 # export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
 # export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --color=always  --exclude .git'
@@ -100,6 +96,9 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   # for golang
   export GOROOT=/usr/local/opt/go/libexec
 
+  # for fzf
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
   # RPi 3B
   # for golang
@@ -111,9 +110,6 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
 
   # add linuxbrew to path
   # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-  # llvm
-  # export PATH="$HOME/src/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-18.04/bin:$PATH"
 
   # c and c++ compiler config
   # export CC=gcc-7

@@ -11,6 +11,7 @@ windows:
     focus: true
     shell_command_before:
       - cd ~
+      - mc
     panes:
       - echo hello
       - nvim
