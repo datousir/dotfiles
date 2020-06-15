@@ -297,12 +297,12 @@ endif
 
 syntax enable
 set background=dark
-" colorscheme gruvbox
+colorscheme gruvbox
 " colorscheme dracula
 
-let g:rehash256 = 1
-let g:molokai_original = 1
-colorscheme molokai
+" let g:rehash256 = 1
+" let g:molokai_original = 1
+" colorscheme molokai
 
 " 注意 \后面有一个空格,因为行尾空格会被删掉,所以增加一个"
 " https://stackoverflow.com/questions/9001337/vim-split-bar-styling
