@@ -73,8 +73,18 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 # fzf
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#
+# ==== begin fzf ====
+# export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
+# export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --color=always  --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="-e --reverse --inline-info"
+# export FZF_DEFAULT_OPTS="-e --reverse --inline-info --preview 'pygmentize {}'"
 
-# 如果想让新加入的 PATH 在 系统 PATH 之前,比如放在 zshrc 里,而不能放在 zshenv 里
+# ==== end fzf ====
+
+# 如果想让新加入的 PATH 在 系统 PATH 之前,需要放在 zshrc 里,而不能放在 zshenv 里
 # https://unix.stackexchange.com/a/250456
 # http://www.softec.lu/site/DevelopersCorner/MasteringThePathHelper
 
@@ -92,8 +102,13 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     autoload -Uz compinit
     compinit
   fi
+
+  # for fzf
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 elif [[ $OSTYPE =~ "linux-gnu" ]]; then
-  export PATH="/home/datousir/.pyenv/bin:$PATH"
+  export PATH="$HOME/.pyenv/bin:$PATH"
+
   # fzf for zsh
   source /usr/share/doc/fzf/examples/key-bindings.zsh
   source /usr/share/doc/fzf/examples/completion.zsh

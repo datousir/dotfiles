@@ -118,5 +118,6 @@
     "editor.defaultFormatter": "redhat.java"
   },
   "java.requirements.JDK11Warning": false,
-  "editor.codeActionsOnSave": null
+  "editor.codeActionsOnSave": null,
+  "tabnine.experimentalAutoImports": true
 }

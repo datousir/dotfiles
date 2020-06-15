@@ -11,16 +11,6 @@ if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
   source "${VIRTUAL_ENV}/bin/activate"
 fi
 
-# ==== begin fzf ====
-# export FZF_DEFAULT_COMMAND='rg --files'
-export FZF_DEFAULT_COMMAND='fd --type file --follow --exclude .git'
-# export FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --color=always  --exclude .git'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS="-e --reverse --inline-info"
-# export FZF_DEFAULT_OPTS="-e --reverse --inline-info --preview 'pygmentize {}'"
-
-# ==== end fzf ====
-
 # for tmuxp
 export DISABLE_AUTO_TITLE='true'
 
@@ -87,7 +77,7 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   export PATH="/usr/local/opt/llvm/bin:$PATH"
 
   # for java, only use LTS version
-  export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+  export JAVA_HOME=$(/usr/libexec/java_home -v 11)
   alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
   alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
   alias j13="export JAVA_HOME=`/usr/libexec/java_home -v 13`; java -version"
@@ -95,9 +85,6 @@ if [[ $OSTYPE =~ "darwin" ]]; then
 
   # for golang
   export GOROOT=/usr/local/opt/go/libexec
-
-  # for fzf
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
   # RPi 3B

@@ -115,7 +115,7 @@ Plug 'mbbill/undotree'
 " color themes
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
-Plug 'dracula/vim'
+Plug 'dracula/vim',{'as':'dracula'}
 Plug 'altercation/vim-colors-solarized'
 Plug 'romainl/flattened'
 Plug 'lifepillar/vim-solarized8'
@@ -198,6 +198,7 @@ set foldmethod=expr
 
 " for golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
+Plug 'fatih/molokai'
 
 " for python
 Plug 'jmcantrell/vim-virtualenv'
@@ -296,12 +297,12 @@ endif
 
 syntax enable
 set background=dark
-colorscheme gruvbox
+" colorscheme gruvbox
 " colorscheme dracula
-" colorscheme solarized8_flat
-" colorscheme solarized
-" colorscheme solarized8
-" colorscheme flattened_dark
+
+let g:rehash256 = 1
+let g:molokai_original = 1
+colorscheme molokai
 
 " 注意 \后面有一个空格,因为行尾空格会被删掉,所以增加一个"
 " https://stackoverflow.com/questions/9001337/vim-split-bar-styling
@@ -637,6 +638,25 @@ imap <C-y> <c-o>:call yapf#YAPF()<cr>
 " auto FileType go autocmd BufWritePre <buffer> GoFmt
 " autocmd FileType go compiler go
 
+" vim-go
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_generate_tags = 1
+
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_deadline = "5s"
+
+let g:go_auto_sameids = 1
+
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 
 " ==== rust lang ====
 
