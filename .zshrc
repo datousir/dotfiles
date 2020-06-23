@@ -63,13 +63,13 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # ======== In addition to nvm and fzf, other PATH settings should be in the .zshenv file. ========
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-# This loads nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-# This loads nvm bash_completion
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
+# # nvm
+# export NVM_DIR="$HOME/.nvm"
+# # This loads nvm
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# # This loads nvm bash_completion
+# [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
 # fzf
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -102,6 +102,12 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     autoload -Uz compinit
     compinit
   fi
+
+  # nvm
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 
   # for fzf
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

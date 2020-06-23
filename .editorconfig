@@ -24,4 +24,4 @@ indent_size = 4
 [*.go]
 # 8 columns indentation
 indent_style = tab
-indent_size = 8
+indent_size = 2
