@@ -119,5 +119,7 @@
   },
   "java.requirements.JDK11Warning": false,
   "editor.codeActionsOnSave": null,
-  "tabnine.experimentalAutoImports": true
+"tabnine.experimentalAutoImports": true,
+"python.languageServer": "Microsoft",
+"java.semanticHighlighting.enabled": true
 }
