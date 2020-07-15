@@ -224,6 +224,9 @@ Plug 'kien/rainbow_parentheses.vim'
 " rust
 Plug 'rust-lang/rust.vim'
 
+" shell
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+
 " All of your Plugins must be added before the following line
 call plug#end()            " required
 
@@ -486,7 +489,7 @@ nmap <silent> <leader>d <Plug>DashSearch
 " map <C-K> :py3f /usr/local/Cellar/llvm/8.0.0/share/clang/clang-format.py<cr>
 imap <C-K> <c-o>:py3f /usr/local/opt/llvm/share/clang/clang-format.py<cr>
 
-" ======== Lint ========"
+" ======== Linter ========"
 " ALE
 " Enable completion where available.
 " let g:ale_completion_enabled = 1
@@ -608,7 +611,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " ---- begin programming language pluggin ----
 
-
+" ======== Python ========"
+"
 " vim-virtualenv
 let g:virtualenv_auto_activate=1
 
@@ -634,7 +638,6 @@ let g:SimpylFold_docstring_preview = 1
 map <C-y> :call yapf#YAPF()<cr>
 imap <C-y> <c-o>:call yapf#YAPF()<cr>
 
-" ======== Python End ========"
 
 " ==== golang ====
 
@@ -673,11 +676,15 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-" markdown
+" === markdown ===
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_json_frontmatter = 1
+
+" === shell ===
+let g:shfmt_extra_args = '-i 2 -ci'
+let g:shfmt_fmt_on_save = 1
 
 " tagbar
 
