@@ -13,7 +13,8 @@
 # https://gitee.com/laomocode/fcitx-sogouimebs
 
 sudo apt-get install tmux curl python2 python3 neovim universal-ctags global \
-  doxygen id-utils python3-pygments tmux fzf fonts-firacode
+  doxygen id-utils python3-pygments tmux fzf fonts-firacode shellcheck \
+  llvm clang clang-tools clangd clang-tidy
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -82,7 +83,8 @@ for dir in $dirs; do
   ln -sf $SRC_DIR/$dir ~/
 done
 
-cd cpp
+cd cpp||exit 1
+
 cxx_files=".clang-format .clang-tidy"
 
 for file in $cxx_files; do
