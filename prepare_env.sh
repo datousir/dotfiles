@@ -13,7 +13,7 @@
 # https://gitee.com/laomocode/fcitx-sogouimebs
 
 sudo apt-get install tmux curl python2 python3 neovim universal-ctags global \
-  doxygen id-utils python3-pygments
+  doxygen id-utils python3-pygments tmux fzf fonts-firacode
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -40,6 +40,9 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python2 get-pip.py
 python3 get-pip.py
 
+pip2 install python-neovim tmuxp
+pip3 install python-neovim tmuxp
+
 # install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 nvm install --lts
@@ -56,6 +59,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 # install nerd font
 # install jetbrains nerd font
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
 
 # install powerlevel10k
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
