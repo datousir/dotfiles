@@ -14,7 +14,8 @@
 
 sudo apt-get install tmux curl python2 python3 neovim universal-ctags global \
   doxygen id-utils python3-pygments tmux fzf fonts-firacode shellcheck \
-  llvm clang clang-tools clangd clang-tidy
+  llvm clang clang-tools clangd clang-tidy llvm-dev libclang-dev cmake \
+  default-jdk maven openjdk-8-jdk openjdk-8-jre
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
