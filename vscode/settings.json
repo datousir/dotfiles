@@ -1,7 +1,7 @@
 {
   "vim.leader": ",",
   "vim.enableNeovim": true,
-  "vim.neovimPath": "/usr/local/bin/nvim",
+  "vim.neovimPath": "/usr/bin/nvim",
   "vim.easymotion": true,
   "vim.useSystemClipboard": true,
   "vim.incsearch": true,
@@ -35,15 +35,14 @@
     "statusBar.noFolderBackground": "#005f5f",
     "statusBar.debuggingBackground": "#005f5f"
   },
-  "workbench.colorTheme": "Atom One Dark",
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Dracula",
+  "workbench.iconTheme": "eq-material-theme-icons-darker",
   "workbench.statusBar.visible": true,
   "editor.minimap.enabled": false,
   "editor.minimap.maxColumn": 36,
   "editor.suggestSelection": "first",
-  "editor.fontSize": 16,
   "editor.fontLigatures": true,
-  "editor.fontFamily": "'Fira Code Retina', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'Fira Code Retina', Menlo, Monaco, 'Courier New', monospace,'WenQuanYi Micro Hei'",
   "editor.formatOnSave": true,
   "gitlens.advanced.messages": {
     "suppressShowKeyBindingsNotice": true
@@ -120,6 +119,14 @@
   "java.requirements.JDK11Warning": false,
   "editor.codeActionsOnSave": null,
 "tabnine.experimentalAutoImports": true,
-"python.languageServer": "Microsoft",
-"java.semanticHighlighting.enabled": true
+"python.languageServer": "Pylance",
+"java.semanticHighlighting.enabled": true,
+"vs-kubernetes": {
+  "vs-kubernetes.kubectl-path.linux": "/home/datousir/.vs-kubernetes/tools/kubectl/kubectl",
+  "vs-kubernetes.minikube-path.linux": "/home/datousir/.vs-kubernetes/tools/minikube/linux-amd64/minikube",
+  "vs-kubernetes.draft-path.linux": "/home/datousir/.vs-kubernetes/tools/draft/linux-amd64/draft",
+  "vs-kubernetes.helm-path.linux": "/home/datousir/.vs-kubernetes/tools/helm/linux-amd64/helm"
+},
+"editor.fontSize": 16,
+"editor.tabSize": 8
 }
