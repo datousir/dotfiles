@@ -1,17 +1,51 @@
 ---
-session_name: daily
-start_directory: ~/
+# http://tmuxp.git-pull.com/en/latest/
+session_name: work
+start_directory: ~/src/
 # before_script: pipenv install --dev --skip-lock # ensure dev deps install
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
 windows:
-  - window_name: editor
+  - window_name: playground
+    layout: main-vertical
+    focus: true
+    shell_command_before:
+      - cd ~
+      - mc
     panes:
-      - shell_command:
-        - vim
-  - window_name: shell
+      - echo hello
+      - nvim
+
+  - window_name: docker
+    layout: main-vertical
+    panes:
+      - shell_command:           # pane no. 1
+        - docker images
+
+  - window_name: dev-1
+    shell_command_before:
+      # - cd tad_sim/simcloud_scheduler
+    layout: tiled
+    # layout: main-vertical
+    # focus: true
     panes:
       - blank
-  - window_name: shell
+      # - blank
+
+  - window_name: dev-2
+    shell_command_before:
+      # - cd tad_sim/simcloud_agent
+    panes:
+      - blank
+
+  - window_name: dev-3
+    shell_command_before:
+      # - cd tad_sim/simcloud_supervisor
+    panes:
+      - blank
+
+  - window_name: dev-4
+    shell_command_before:
+      # - cd tad_sim/simcloud_service
     panes:
       - blank
