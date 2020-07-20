@@ -1,7 +1,7 @@
 {
   "vim.leader": ",",
   "vim.enableNeovim": true,
-  "vim.neovimPath": "/usr/bin/nvim",
+  "vim.neovimPath": "/usr/local/bin/nvim",
   "vim.easymotion": true,
   "vim.useSystemClipboard": true,
   "vim.incsearch": true,
