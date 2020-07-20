@@ -53,7 +53,7 @@ nvm install --lts
 
 # vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # neovim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -66,11 +66,10 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsM
 # install powerlevel10k
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-
 # ====================== update config ====================================
 SRC_DIR=$(pwd)
 
-files=".editorconfig .eslintrc.json .projectile .tmux.conf .vimrc .zprofile .zshenv .zshrc"
+files=".editorconfig .eslintrc.json .p10k.zsh .projectile .tmux.conf .vimrc .zprofile .zshenv .zshrc"
 for file in $files; do
   echo "create symbole link for $file"
   ln -sf $SRC_DIR/$file ~/$file
@@ -84,7 +83,7 @@ for dir in $dirs; do
   ln -sf $SRC_DIR/$dir ~/
 done
 
-cd cpp||exit 1
+cd cpp || exit 1
 
 cxx_files=".clang-format .clang-tidy"
 
@@ -92,5 +91,3 @@ for file in $cxx_files; do
   echo "create symbole link for $file"
   ln -sf $SRC_DIR/cpp/$file ~/$file
 done
-
-
