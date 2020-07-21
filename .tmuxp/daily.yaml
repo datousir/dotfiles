@@ -23,7 +23,7 @@ windows:
         - docker images
 
   - window_name: dev-1
-    shell_command_before:
+    # shell_command_before:
       # - cd tad_sim/simcloud_scheduler
     layout: tiled
     # layout: main-vertical
@@ -33,19 +33,19 @@ windows:
       # - blank
 
   - window_name: dev-2
-    shell_command_before:
+    # shell_command_before:
       # - cd tad_sim/simcloud_agent
     panes:
       - blank
 
   - window_name: dev-3
-    shell_command_before:
+    # shell_command_before:
       # - cd tad_sim/simcloud_supervisor
     panes:
       - blank
 
   - window_name: dev-4
-    shell_command_before:
+    # shell_command_before:
       # - cd tad_sim/simcloud_service
     panes:
       - blank
