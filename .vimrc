@@ -330,7 +330,7 @@ highlight clear SignColumn
 let &t_ut=''
 
 " set tab and space characters to show in list mode
-set listchars=tab:>-,space:-
+set listchars=tab:->,space:-
 set list
 let &showbreak='↳ '
 " set listchars=nbsp:␣,eol:↲,tab:»\ ,extends:›,precedes:‹,trail:•
