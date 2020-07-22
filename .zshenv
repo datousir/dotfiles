@@ -46,7 +46,12 @@ function maven_proxy_off {
 }
 
 # for china
-export GOPROXY=https://goproxy.io
+if type "go" &> /dev/null; then
+  go env -w GO111MODULE=on
+  go env -w GOPROXY=https://goproxy.io,direct
+else
+  export GOPROXY=https://goproxy.io
+fi
 
 
 if [[ $OSTYPE =~ "darwin" ]]; then
