@@ -36,7 +36,7 @@
     "statusBar.debuggingBackground": "#005f5f"
   },
   "workbench.colorTheme": "Dracula",
-  "workbench.iconTheme": "eq-material-theme-icons-darker",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.statusBar.visible": true,
   "editor.minimap.enabled": false,
   "editor.minimap.maxColumn": 36,
