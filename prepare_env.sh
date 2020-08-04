@@ -42,12 +42,18 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python2 get-pip.py
 python3 get-pip.py
 
-pip2 install python-neovim tmuxp
-pip3 install python-neovim tmuxp
-
 # install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 nvm install --lts
+
+# for neovim
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt-get update
+sudo apt-get install neovim
+
+pip2 install pynvim tmuxp
+pip3 install pynvim tmuxp
+npm install -g neovim
 
 # vim-plug
 
@@ -61,7 +67,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 # install nerd font
 # install jetbrains nerd font
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip -O ~/.local/share/fonts/JetBrainsMono
 
 # install powerlevel10k
 git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
