@@ -91,12 +91,13 @@ Plug 'jreybert/vimagit'
 " auto-pairs can cause odd delete actions
 " Plug 'jiangmiao/auto-pairs'
 
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-commentary'
 
 " motion and indent
 Plug 'easymotion/vim-easymotion'
