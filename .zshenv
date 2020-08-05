@@ -56,7 +56,12 @@ fi
 
 if [[ $OSTYPE =~ "darwin" ]]; then
   # set proxy for tencent
-  proxy_on
+  # proxy_on
+  if [ -f $HOME/.custom.zsh ]; then
+    source $HOME/.custom.zsh
+  else
+    echo "Missing ~/.custom.zsh"
+  fi
 
   # macports
   export PATH=$PATH:/opt/local/bin:/opt/local/sbin
