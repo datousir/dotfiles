@@ -496,7 +496,7 @@ imap <C-K> <c-o>:py3f /usr/local/opt/llvm/share/clang/clang-format.py<cr>
 " ======== Linter ========"
 " ALE
 " Enable completion where available.
-" let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 1
 " let g:ale_emit_conflict_warnings = 0
 let g:ale_sign_column_always = 1
 let g:ale_linters = {
