@@ -45,15 +45,6 @@ function maven_proxy_off {
   fi
 }
 
-# for china
-if type "go" &> /dev/null; then
-  go env -w GO111MODULE=on
-  go env -w GOPROXY=https://goproxy.io,direct
-else
-  export GOPROXY=https://goproxy.io
-fi
-
-
 if [[ $OSTYPE =~ "darwin" ]]; then
   # set proxy for tencent
   # proxy_on
@@ -130,6 +121,13 @@ export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export GOPATH=~/go
 export GOBIN=~/go/bin
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+# goproxy for china
+if type "go" &> /dev/null; then
+  go env -w GO111MODULE=on
+  go env -w GOPROXY=https://goproxy.io,direct
+else
+  export GOPROXY=https://goproxy.io
+fi
 
 # cargo for rust
 export PATH="$HOME/.cargo/bin:$PATH"

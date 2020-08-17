@@ -160,7 +160,6 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 elif [[ $OSTYPE =~ "linux-gnu" ]]; then
-  export PATH="$HOME/.pyenv/bin:$PATH"
 
   # fzf for zsh
   source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -173,6 +172,7 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
 fi
 
 # pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
