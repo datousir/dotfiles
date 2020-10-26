@@ -65,7 +65,7 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
   # set default editor
-  export EDITOR="/usr/local/bin/vim"
+  export EDITOR=nvim
 
   # brew install coreutils
   export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
@@ -78,7 +78,7 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   export PATH="/usr/local/opt/llvm/bin:$PATH"
 
   # for java, only use LTS version
-  export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+  export JAVA_HOME=$(/usr/libexec/java_home -v 11)
   alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
   alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
   alias j14="export JAVA_HOME=`/usr/libexec/java_home -v 14`; java -version"
