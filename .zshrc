@@ -80,22 +80,6 @@ plugins=(colorize docker git brew osx python screen ssh-agent sublime svn tmux v
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
 
 # Example aliases
 alias ew='emacs'
@@ -174,4 +158,3 @@ eval "$(pyenv virtualenv-init -)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export SUMO_HOME="/usr/local/opt/sumo/share/sumo"
