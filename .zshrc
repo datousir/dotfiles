@@ -76,7 +76,8 @@ ZSH_THEME="ys"
 plugins=(colorize docker git brew osx python screen ssh-agent sublime svn tmux vi-mode yum
          colorize cargo catimg command-not-found urltools history-substring-search
          ubuntu encode64 themes vscode
-         z zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+         z)
+         # z zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -125,6 +126,7 @@ if [[ $OSTYPE =~ "darwin" ]]; then
 
   if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
     autoload -Uz compinit
     compinit
