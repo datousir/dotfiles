@@ -75,7 +75,7 @@ git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$H
 # ====================== update config ====================================
 SRC_DIR=$(pwd)
 
-files=".editorconfig .eslintrc.json .p10k.zsh .projectile .tmux.conf .vimrc .zprofile .zshenv .zshrc"
+files=".editorconfig .eslintrc.json .gitconfig .p10k.zsh .projectile .tmux.conf .vimrc .zprofile .zshenv .zshrc"
 for file in $files; do
   echo "create symbole link for $file"
   ln -sf $SRC_DIR/$file ~/$file
