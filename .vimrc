@@ -35,7 +35,8 @@ Plug 'editorconfig/editorconfig-vim'
 
 " search
 Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim',
 
 Plug 'mhinz/vim-startify'
 
