@@ -11,24 +11,23 @@ windows:
     focus: true
     shell_command_before:
       - cd ~
-      - mc
     panes:
-      - echo hello
       - nvim
+      - mc
 
-  - window_name: docker
+  - window_name: dockers
     layout: main-vertical
     panes:
       - shell_command:           # pane no. 1
         - docker images
 
-  - window_name: ssh-csig
+  - window_name: ssh-term
     layout: tiled
     panes:
       - shell_command:
         - ssh csig
 
-  - window_name: dev-sche
+  - window_name: dev-scheduler
     shell_command_before:
       - cd tad_sim/simcloud_scheduler
     layout: tiled
@@ -44,14 +43,15 @@ windows:
     panes:
       - blank
 
-  - window_name: dev-supervisor
-    shell_command_before:
-      - cd tad_sim/simcloud_supervisor
-    panes:
-      - blank
-
   - window_name: dev-simservice
     shell_command_before:
       - cd tad_sim/simcloud_service
     panes:
       - blank
+
+  - window_name: dev-tencent
+    shell_command_before:
+      - cd tad_sim/
+    panes:
+      - blank
+
