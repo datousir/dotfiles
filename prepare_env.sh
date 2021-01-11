@@ -27,14 +27,14 @@ sh ~/.vim_runtime/install_basic_vimrc.sh
 # install rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-cargo install ripgrep fd-find lsd exa
+cargo install ripgrep fd-find lsd exa git-delta
 
 # install pyenv
 # https://github.com/pyenv/pyenv/wiki/Common-build-problems
 curl https://pyenv.run | bash
 pyenv install 2.7.18
-pyenv install 3.7.8
-pyenv global 2.7.18 3.7.8
+pyenv install 3.8.6
+pyenv global 2.7.18 3.8.6
 
 # install pip
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
