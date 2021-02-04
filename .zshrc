@@ -88,7 +88,7 @@ alias en='emacs -nw'
 alias ec='emacsclient -c'
 alias et='emacsclient -t'
 
-alias vim='nvim'
+# alias vim='nvim'
 
 # force tmux to assume the terminal supports 256 colors
 alias tmux='tmux -2'
