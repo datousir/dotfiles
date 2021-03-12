@@ -10,15 +10,6 @@
         }
       }
     },
-    "cquery": {
-      "command": "cquery",
-      "args": ["--log-file=/tmp/cq.log"],
-      "filetypes": ["c", "cpp"],
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/", ".projectile"],
-      "initializationOptions": {
-        "cacheDirectory": "/tmp/coc/cquery"
-      }
-    },
     "golang": {
       "command": "go-langserver",
       "filetypes": ["go"],

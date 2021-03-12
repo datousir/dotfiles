@@ -348,7 +348,7 @@ let &showbreak='↳ '
 
 if has("gui_macvim") || has("gui_gtk2") || has("gui") || exists("g:gui_oni")
     " https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode
-    set guifont=FiraCode\ Nerd\ Font:h14
+    set guifont=Fira\ Code:h14
     " set guifont=Source\ Code\ Pro:h14
 endif
 
