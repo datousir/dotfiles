@@ -1,0 +1,18 @@
+[core]
+  pager = delta
+
+# https://github.com/dandavison/delta
+[delta]
+  line-numbers = true
+  minus-color = "#340001"
+  plus-color = "#012800"
+#  side-by-side = true
+  syntax-theme = Monokai Extended
+
+[diff]
+  colorMoved = default
+
+[interactive]
+  diffFilter = delta --color-only
+[credential]
+	helper = store

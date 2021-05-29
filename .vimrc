@@ -35,7 +35,8 @@ Plug 'editorconfig/editorconfig-vim'
 
 " search
 Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf.vim', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim',
 
 Plug 'mhinz/vim-startify'
 
@@ -101,10 +102,12 @@ Plug 'tpope/vim-unimpaired'
 
 " motion and indent
 Plug 'easymotion/vim-easymotion'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'wellle/targets.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'terryma/vim-expand-region'
+
+" multi-cursors
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 
 " yank
@@ -135,7 +138,6 @@ Plug 'chr4/nginx.vim'
 Plug 'rizzatti/dash.vim'
 
 " markdown
-" Plug 'tpope/vim-markdown'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
@@ -346,7 +348,7 @@ let &showbreak='↳ '
 
 if has("gui_macvim") || has("gui_gtk2") || has("gui") || exists("g:gui_oni")
     " https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode
-    set guifont=FiraCode\ Nerd\ Font:h14
+    set guifont=Fira\ Code:h14
     " set guifont=Source\ Code\ Pro:h14
 endif
 
@@ -476,6 +478,11 @@ endif
 
 " Dash
 nmap <silent> <leader>d <Plug>DashSearch
+
+
+" snipmate parser
+let g:snipMate = { 'snippet_version' : 1 }
+
 """""""""""" Plugin End """""""""""""""""""""""""""""""""""
 
 
