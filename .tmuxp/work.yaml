@@ -1,7 +1,7 @@
 ---
 # http://tmuxp.git-pull.com/en/latest/
 session_name: work
-start_directory: ~/src/work/tencent
+start_directory: ~/src/work/momenta
 # before_script: pipenv install --dev --skip-lock # ensure dev deps install
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
@@ -13,7 +13,6 @@ windows:
       - cd ~
     panes:
       - nvim
-      - mc
 
   - window_name: dockers
     layout: main-vertical
@@ -21,37 +20,44 @@ windows:
       - shell_command:           # pane no. 1
         - docker images
 
-  - window_name: ssh-term
-    layout: tiled
-    panes:
-      - shell_command:
-        - ssh csig
+#  - window_name: ssh-term
+#    layout: tiled
+#    panes:
+#      - shell_command:
+#        # - ssh csig
+#
+#  - window_name: dev-scheduler
+#    shell_command_before:
+#      - cd tad_sim/simcloud_scheduler
+#    layout: tiled
+#    # layout: main-vertical
+#    # focus: true
+#    panes:
+#      - blank
+#      # - blank
+#
+#  - window_name: dev-agent
+#    shell_command_before:
+#      - cd tad_sim/simcloud_agent
+#    panes:
+#      - blank
+#
+#  - window_name: dev-simservice
+#    shell_command_before:
+#      - cd tad_sim/simcloud_service
+#    panes:
+#      - blank
 
-  - window_name: dev-scheduler
+  - window_name: dev-1
     shell_command_before:
-      - cd tad_sim/simcloud_scheduler
-    layout: tiled
-    # layout: main-vertical
-    # focus: true
+#      - cd tad_sim/
+      - echo hello
     panes:
       - blank
-      # - blank
 
-  - window_name: dev-agent
+  - window_name: dev-2
     shell_command_before:
-      - cd tad_sim/simcloud_agent
+#      - cd tad_sim/
+      - echo hello
     panes:
       - blank
-
-  - window_name: dev-simservice
-    shell_command_before:
-      - cd tad_sim/simcloud_service
-    panes:
-      - blank
-
-  - window_name: dev-tencent
-    shell_command_before:
-      - cd tad_sim/
-    panes:
-      - blank
-
