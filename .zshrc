@@ -21,8 +21,8 @@ ZSH_THEME="ys"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(colorize docker git brew macos python screen ssh-agent sublime svn tmux vi-mode yum
-         colorize cargo catimg command-not-found urltools history-substring-search
+plugins=(colorize docker git brew macos python rust screen ssh-agent sublime svn tmux vi-mode yum
+         colorize catimg command-not-found urltools history-substring-search
          ubuntu encode64 themes vscode
          z)
          # z zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
