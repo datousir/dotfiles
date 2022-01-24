@@ -38,6 +38,14 @@ Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim',
 
+" fuzzy finder
+" We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+
 Plug 'mhinz/vim-startify'
 
 " file management
@@ -179,6 +187,23 @@ Plug 'w0rp/ale'
 "             \ 'do': 'bash install.sh',
 "             \ }
 
+" lsp: Nvim LSP client
+Plug 'neovim/nvim-lspconfig'
+Plug 'glepnir/lspsaga.nvim'
+
+" Completion framework
+Plug 'hrsh7th/nvim-cmp'
+" LSP completion source for nvim-cmp
+Plug 'hrsh7th/cmp-nvim-lsp'
+" Snippet completion source for nvim-cmp
+Plug 'hrsh7th/cmp-vsnip'
+" Other usefull completion sources
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-buffer'
+" See hrsh7th other plugins for more great completion sources!
+" Snippet engine
+Plug 'hrsh7th/vim-vsnip'
+
 " coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -228,6 +253,7 @@ Plug 'kien/rainbow_parentheses.vim'
 
 " rust
 Plug 'rust-lang/rust.vim'
+Plug 'simrat39/rust-tools.nvim'
 
 " shell
 Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
@@ -384,19 +410,38 @@ set switchbuf=useopen,usetab
 
 " ==== begin plugin ====
 
+" ---- Telescope ----
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
 " ---- fzf ----
 set rtp+=/usr/local/opt/fzf
-
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>t :Files<CR>
 nnoremap <silent> <leader>r :History<CR>
-
 " this need fugitive plugin
 let g:fzf_commits_log_options = '--graph --color=always
   \ --format="%C(yellow)%h%C(red)%d%C(reset)
   \ - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)"'
 nnoremap <silent> <leader>c  :Commits<CR>
 nnoremap <silent> <leader>bc :BCommits<CR>
+
+" ---- buf ----
+unmap <leader>h
+unmap <leader>l
+nnoremap <silent> <leader>bp :bprevious<cr>
+nnoremap <silent> <leader>bn :bnext<cr>
+nnoremap <silent> <leader>bo :BufOnly<cr>
+
 
 " this need ag or ripgrep
 nnoremap <leader>ag :Ag<Space>
@@ -405,6 +450,26 @@ nnoremap <leader>rg :Rg<Space>
 " GV
 nnoremap <silent> <leader>gv :GV<cr>
 nnoremap <silent> <leader>gc :GV!<cr>
+
+
+" ---- tagbar ----
+nnoremap <F9> :TagbarToggle<CR>
+nnoremap <silent> <leader>tt :TagbarToggle<cr>
+
+" ---- taglist ----
+nnoremap <silent> <leader>tl :TlistToggle<CR>
+
+" ---- nerdtree ----
+"ignore files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$']
+" How can I open a NERDTree automatically when vim starts up?
+nnoremap <F8> :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>nn :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
+" autocmd vimenter * NERDTree
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
+
 
 " vim-airline
 let g:airline_powerline_fonts = 1
@@ -440,31 +505,6 @@ let g:tmuxline_separators = {
             \ 'right_alt' : '❮',
             \ 'space' : ' '}
 
-" ---- buf ----
-unmap <leader>h
-unmap <leader>l
-
-nnoremap <silent> <leader>bp :bprevious<cr>
-nnoremap <silent> <leader>bn :bnext<cr>
-nnoremap <silent> <leader>bo :BufOnly<cr>
-
-" ---- tagbar ----
-nnoremap <F9> :TagbarToggle<CR>
-nnoremap <silent> <leader>tt :TagbarToggle<cr>
-
-" ---- taglist ----
-nnoremap <silent> <leader>tl :TlistToggle<CR>
-
-" ---- nerdtree ----
-"ignore files in NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$']
-" How can I open a NERDTree automatically when vim starts up?
-nnoremap <F8> :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>nn :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
-" autocmd vimenter * NERDTree
-" let g:NERDTreeDirArrowExpandable = '▸'
-" let g:NERDTreeDirArrowCollapsible = '▾'
 
 let g:indentLine_enabled = 1
 let g:vim_json_syntax_conceal = 0
@@ -482,6 +522,52 @@ nmap <silent> <leader>d <Plug>DashSearch
 
 " snipmate parser
 let g:snipMate = { 'snippet_version' : 1 }
+
+" nvim-treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+
+" nvim-lspconfig
+lua << EOF
+local nvim_lsp = require'lspconfig'
+
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+end
+
+nvim_lsp.rust_analyzer.setup({
+    on_attach=on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            assist = {
+                importGranularity = "module",
+                importPrefix = "by_self",
+            },
+            cargo = {
+                loadOutDirsFromCheck = true
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
+EOF
+
 
 """""""""""" Plugin End """""""""""""""""""""""""""""""""""
 
