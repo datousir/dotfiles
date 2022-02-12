@@ -54,10 +54,6 @@ if [[ $OSTYPE =~ "darwin" ]]; then
     echo "Missing ~/.custom.zsh"
   fi
 
-  # macports
-  export PATH=$PATH:/opt/local/bin:/opt/local/sbin
-  export MANPATH=/opt/local/share/man:$MANPATH
-
   # for z
   [ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
 
@@ -68,23 +64,27 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   export EDITOR=nvim
 
   # brew install coreutils
-  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  # export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
   # for android tools
   export ANDROID_HOME=$HOME/Library/Android/sdk
   export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
   # llvm
-  export PATH="/usr/local/opt/llvm/bin:$PATH"
+  # export PATH="/usr/local/opt/llvm/bin:$PATH"
 
   # for java, only use LTS version
   # export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-  alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
+  # alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
   alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
   export PATH=$PATH:$JAVA_HOME/bin
 
   # for golang
-  export GOROOT=/usr/local/opt/go/libexec
+  if [[ $CPUTYPE =~ "arm64" ]]; then
+    export GOROOT=/opt/homebrew/opt/go/libexec
+  else
+    export GOROOT=/usr/local/opt/go/libexec
+  fi
 
 elif [[ $OSTYPE =~ "linux-gnueabihf" ]]; then
   # RPi 3B

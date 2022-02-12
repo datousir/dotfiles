@@ -1,4 +1,8 @@
 
+if [[ $CPUTYPE =~ "arm64" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 if [[ $OSTYPE =~ "darwin" ]]; then
 
   eval "$(pyenv init --path)"
@@ -11,11 +15,11 @@ elif [[ $OSTYPE =~ "linux-gnu" ]]; then
 
 fi
 
-if which pyenv-virtualenv-init > /dev/null; then 
-  eval "$(pyenv virtualenv-init -)"; 
+if which pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)";
 fi
 
 # This loads nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 

@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
 "
 " Make sure you use single quotes
 
-Plug 'vim-scripts/tlib'
+" Plug 'vim-scripts/tlib'
 Plug 'MarcWeber/vim-addon-mw-utils'
 
 " editorconfig
@@ -425,6 +425,7 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " ---- fzf ----
 set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>t :Files<CR>
 nnoremap <silent> <leader>r :History<CR>

@@ -66,12 +66,16 @@ export FZF_DEFAULT_OPTS="-e --reverse --inline-info"
 # http://www.softec.lu/site/DevelopersCorner/MasteringThePathHelper
 
 if [[ $OSTYPE =~ "darwin" ]]; then
-  # ruby
-  export PATH="/usr/local/opt/ruby/bin:$PATH"
-  export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 
-  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  if [[ $CPUTYPE =~ "arm64" ]]; then
+  else
+    # ruby
+    export PATH="/usr/local/opt/ruby/bin:$PATH"
+    export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  fi
 
   if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -108,3 +112,4 @@ eval "$(jenv init -)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
