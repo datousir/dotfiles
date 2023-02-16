@@ -1,4 +1,5 @@
 [core]
+	excludesfile = /Users/datousir/.gitignore_global
 #  pager = delta
 
 #--- delta ---
@@ -23,3 +24,9 @@
 #
 [credential]
 	helper = store
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

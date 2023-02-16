@@ -74,9 +74,11 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   # export PATH="/usr/local/opt/llvm/bin:$PATH"
 
   # for java, only use LTS version
-  # export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
-  # alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
+  # alias j8="export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_351.jdk/Contents/Home; java -version"
+  # alias j8_t="export JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home; java -version"
+  alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
   alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version"
+  export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
   export PATH=$PATH:$JAVA_HOME/bin
 
   # for golang
