@@ -77,7 +77,6 @@ Plug 'vim-scripts/BufOnly.vim'
 
 Plug 'vim-scripts/taglist.vim'
 Plug 'majutsushi/tagbar'
-Plug 'jsfaint/gen_tags.vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
