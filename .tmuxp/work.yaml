@@ -1,7 +1,7 @@
 ---
 # http://tmuxp.git-pull.com/en/latest/
 session_name: work
-start_directory: ~/src/work/momenta
+start_directory: ~/src/carizon
 # before_script: pipenv install --dev --skip-lock # ensure dev deps install
 # shell_command_before:
 #     - '[ -d `pipenv --venv` ] && source `pipenv --venv`/bin/activate && reset'
@@ -12,12 +12,13 @@ windows:
     shell_command_before:
       - cd ~
     panes:
-      - nvim
+      - ll -a
 
   - window_name: dockers
     layout: main-vertical
     panes:
       - shell_command:           # pane no. 1
+#        - docker images
         - docker images
 
 #  - window_name: ssh-term

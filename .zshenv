@@ -134,3 +134,6 @@ fi
 export PATH="$HOME/.cargo/bin:$PATH"
 
 . "$HOME/.cargo/env"
+
+# doom
+export DOOMDIR="$HOME/.config/doom"

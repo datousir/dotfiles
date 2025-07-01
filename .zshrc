@@ -5,12 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -20,6 +14,18 @@ export ZSH=$HOME/.oh-my-zsh
 # ZSH_THEME="ys"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# Customize to your needs...
+# fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -38,7 +44,6 @@ plugins=(docker git brew macos screen ssh-agent sublime svn tmux vi-mode yum
 
 source $ZSH/oh-my-zsh.sh
 
-
 # Example aliases
 alias ew='emacs'
 alias en='emacs -nw'
@@ -52,9 +57,6 @@ alias tmux='tmux -2'
 
 alias e="exa -l"
 alias l="lsd -l"
-
-# Customize to your needs...
-# fpath=(/usr/local/share/zsh-completions $fpath)
 
 # ======== In addition to nvm and fzf, other PATH settings should be in the .zshenv file. ========
 
@@ -136,6 +138,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

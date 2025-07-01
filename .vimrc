@@ -1,18 +1,20 @@
 " https://vi.stackexchange.com/questions/2572/detect-os-in-vimscript
 if has('mac')
     " let g:python_host_prog = '/usr/local/bin/python2'
-    let g:python_host_prog = '/Users/datousir/.pyenv/shims/python2'
+    let g:python_host_prog = '~/.pyenv/shims/python2'
     " let g:python3_host_prog = '/usr/local/bin/python3'
-    let g:python3_host_prog = '/Users/datousir/.pyenv/shims/python3'
+    let g:python3_host_prog = '~/.pyenv/shims/python3'
 elseif has('unix') " for linux
     " let g:python_host_prog = '/usr/bin/python'
-    let g:python_host_prog = '/home/datousir/.pyenv/shims/python2'
+    let g:python_host_prog = '~/.pyenv/shims/python2'
     " let g:python3_host_prog = '/usr/bin/python3'
-    let g:python3_host_prog = '/home/datousir/.pyenv/shims/python3'
+    let g:python3_host_prog = '~/.pyenv/shims/python3'
 endif
 
+" install vim config
+" git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+" sh ~/.vim_runtime/install_basic_vimrc.sh
 set runtimepath+=~/.vim_runtime
-
 source ~/.vim_runtime/vimrcs/basic.vim
 source ~/.vim_runtime/vimrcs/filetypes.vim
 
@@ -202,6 +204,12 @@ Plug 'hrsh7th/cmp-buffer'
 " See hrsh7th other plugins for more great completion sources!
 " Snippet engine
 Plug 'hrsh7th/vim-vsnip'
+
+" mason.nvim
+Plug 'williamboman/mason.nvim'
+
+" github copilot
+Plug 'github/copilot.vim'
 
 " coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -726,32 +734,45 @@ let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 "             \ },
 "             \ }
 
+" Mason.nvim
+lua << EOF
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+EOF
+
 
 " -- begin coc.nvim --
-
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+"
+"" Use `[c` and `]c` for navigate diagnostics
+"nmap <silent> [c <Plug>(coc-diagnostic-prev)
+"nmap <silent> ]c <Plug>(coc-diagnostic-next)
+"
+"" Remap keys for gotos
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+"
+"" Use K for show documentation in preview window
+"nnoremap <silent> K :call <SID>show_documentation()<CR>
+"
+"function! s:show_documentation()
+"  if &filetype == 'vim'
+"    execute 'h '.expand('<cword>')
+"  else
+"    call CocAction('doHover')
+"  endif
+"endfunction
+"
+"" Highlight symbol under cursor on CursorHold
+"autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " -- end coc.nvim --
 
@@ -885,3 +906,40 @@ let g:tagbar_type_objc = {
       \ }
       \ }
 " ---- end programming language pluggin ----
+" ## added by OPAM user-setup for vim / base ## d611dd144a5764d46fdea4c0c2e0ba07 ## you can edit, but keep this line
+let s:opam_share_dir = system("opam var share")
+let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
+
+let s:opam_configuration = {}
+
+function! OpamConfOcpIndent()
+  execute "set rtp^=" . s:opam_share_dir . "/ocp-indent/vim"
+endfunction
+let s:opam_configuration['ocp-indent'] = function('OpamConfOcpIndent')
+
+function! OpamConfOcpIndex()
+  execute "set rtp+=" . s:opam_share_dir . "/ocp-index/vim"
+endfunction
+let s:opam_configuration['ocp-index'] = function('OpamConfOcpIndex')
+
+function! OpamConfMerlin()
+  let l:dir = s:opam_share_dir . "/merlin/vim"
+  execute "set rtp+=" . l:dir
+endfunction
+let s:opam_configuration['merlin'] = function('OpamConfMerlin')
+
+let s:opam_packages = ["ocp-indent", "ocp-index", "merlin"]
+let s:opam_available_tools = []
+for tool in s:opam_packages
+  " Respect package order (merlin should be after ocp-index)
+  if isdirectory(s:opam_share_dir . "/" . tool)
+    call add(s:opam_available_tools, tool)
+    call s:opam_configuration[tool]()
+  endif
+endfor
+" ## end of OPAM user-setup addition for vim / base ## keep this line
+" ## added by OPAM user-setup for vim / ocp-indent ## 1c8aeb06ffc2f59c157e527cb2d21e2f ## you can edit, but keep this line
+if count(s:opam_available_tools,"ocp-indent") == 0
+  source "/Users/JWXRG28/.opam/default/share/ocp-indent/vim/indent/ocaml.vim"
+endif
+" ## end of OPAM user-setup addition for vim / ocp-indent ## keep this line
